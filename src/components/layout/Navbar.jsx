@@ -91,7 +91,7 @@ export default function Navbar() {
         )}
       </ul>
 
-      <div className="nav-actions">
+      <div className="nav-actions site-nav-actions">
         {isAuthenticated ? (
           <>
             <Link to="/profile" className="user-greeting" title={`View Profile (${fullName || displayName})`}>

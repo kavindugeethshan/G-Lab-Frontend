@@ -161,13 +161,12 @@ export default function HomePage() {
               and storage backed by official islandwide warranty.
             </p>
             <div className="hero-ctas">
-              <Link to="/products" className="btn btn-primary" style={{ padding: '13px 26px', fontSize: '0.98rem' }}>
+              <Link to="/products" className="btn btn-primary hero-cta-btn">
                 <i className="fa-solid fa-bag-shopping"></i> Shop Now
               </Link>
               <a
                 href="#categoriesSection"
-                className="btn btn-outline"
-                style={{ padding: '13px 26px', fontSize: '0.98rem' }}
+                className="btn btn-outline hero-cta-btn"
                 onClick={(e) => {
                   e.preventDefault();
                   const el = document.getElementById('categoriesSection');
@@ -203,7 +202,7 @@ export default function HomePage() {
               src="/animation/Welcome Animation.lottie"
               background="transparent"
               speed="1"
-              style={{ width: '100%', maxWidth: '440px', height: '380px' }}
+              className="hero-lottie-player"
               loop="true"
               autoplay="true"
             ></dotlottie-player>
@@ -296,7 +295,7 @@ export default function HomePage() {
               Discover the latest components engineered to power your ultimate setup.
             </p>
             <div className="cinematic-banner-actions">
-              <Link to="/products" className="btn btn-primary" style={{ padding: '13px 28px', fontSize: '0.98rem' }}>
+              <Link to="/products" className="btn btn-primary banner-cta-btn">
                 <i className="fa-solid fa-fire"></i> Shop High Performance
               </Link>
             </div>
@@ -343,7 +342,7 @@ export default function HomePage() {
               Capture every moment in stunning detail with cameras built for cinematic storytelling, professional photography, and creative adventures.
             </p>
             <div className="cinematic-hero3-actions">
-              <Link to="/products?category=Cameras" className="btn btn-primary" style={{ padding: '14px 32px', fontSize: '1rem' }}>
+              <Link to="/products?category=Cameras" className="btn btn-primary banner-cta-btn">
                 <i className="fa-solid fa-camera"></i> Explore Cameras
               </Link>
             </div>
@@ -390,7 +389,7 @@ export default function HomePage() {
               Take your creativity to new heights with advanced drones built for stunning aerial footage, exploration, and adventure.
             </p>
             <div className="cinematic-hero4-actions">
-              <Link to="/products?category=Drones" className="btn btn-primary" style={{ padding: '14px 32px', fontSize: '1rem' }}>
+              <Link to="/products?category=Drones" className="btn btn-primary banner-cta-btn">
                 <i className="fa-solid fa-plane-up"></i> Explore Drones
               </Link>
             </div>
@@ -461,7 +460,7 @@ export default function HomePage() {
         <div className="cta-container">
           <h3>Ready to Build Your Dream Rig?</h3>
           <p>Browse our complete catalog of CPUs, GPUs, RAM, and accessories with instant stock availability.</p>
-          <Link to="/products" className="btn btn-white" style={{ padding: '14px 32px', fontSize: '1rem' }}>
+          <Link to="/products" className="btn btn-white cta-banner-btn">
             <i className="fa-solid fa-layer-group"></i> Explore Full Catalog
           </Link>
         </div>

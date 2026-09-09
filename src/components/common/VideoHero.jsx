@@ -46,10 +46,10 @@ export default function VideoHero() {
             professional workstation workloads.
           </p>
           <div className="cinematic-hero-actions">
-            <a href="#originalHero" className="btn btn-primary" style={{ padding: '14px 32px', fontSize: '1rem' }}>
+            <a href="#originalHero" className="btn btn-primary cinematic-hero-btn">
               <i className="fa-solid fa-play"></i> Experience G LAB
             </a>
-            <Link to="/products" className="btn btn-outline-light" style={{ padding: '14px 32px', fontSize: '1rem' }}>
+            <Link to="/products" className="btn btn-outline-light cinematic-hero-btn">
               <i className="fa-solid fa-bag-shopping"></i> Shop Hardware
             </Link>
           </div>
