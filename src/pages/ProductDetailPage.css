@@ -36,50 +36,7 @@
             flex-direction: column;
         }
 
-        /* HEADER NAVIGATION */
-        header {
-            background-color: #ffffff;
-            border-bottom: 1px solid var(--border-color);
-            padding: 16px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-        }
 
-        .logo-title {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .logo-icon {
-            width: 42px;
-            height: 42px;
-            background: var(--accent-gradient);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Outfit', sans-serif;
-            font-weight: 800;
-            font-size: 1.3rem;
-            color: white;
-            box-shadow: 0 4px 15px var(--accent-glow);
-        }
-
-
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
 
         /* BUTTONS */
         .btn {

@@ -286,27 +286,37 @@ header.site-header .user-greeting strong,
     flex-wrap: nowrap !important;
   }
 
+  .site-header .site-nav-links:not(.mobile-open),
+  .site-header .nav-links:not(.mobile-open),
+  .site-nav-links:not(.mobile-open),
+  .nav-links:not(.mobile-open),
+  .site-header .site-nav-links,
+  .site-header .nav-links,
+  .site-nav-links,
   .nav-links {
-    display: none;
+    display: none !important;
   }
 
+  .site-header .site-nav-links.mobile-open,
+  .site-header .nav-links.mobile-open,
+  .site-nav-links.mobile-open,
   .nav-links.mobile-open {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: calc(100% + 4px);
-    left: 12px;
-    right: 12px;
-    background: #0b0f19;
-    background: rgba(11, 15, 25, 0.98);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: 16px;
-    padding: 20px 24px;
-    gap: 16px;
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65);
-    z-index: 1002;
+    display: flex !important;
+    flex-direction: column !important;
+    position: absolute !important;
+    top: calc(100% + 4px) !important;
+    left: 12px !important;
+    right: 12px !important;
+    background: #0b0f19 !important;
+    background: rgba(11, 15, 25, 0.98) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+    border-radius: 16px !important;
+    padding: 20px 24px !important;
+    gap: 16px !important;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65) !important;
+    z-index: 1002 !important;
   }
 
   .nav-links.mobile-open li {
