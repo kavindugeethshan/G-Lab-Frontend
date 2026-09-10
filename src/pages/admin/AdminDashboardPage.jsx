@@ -643,12 +643,12 @@ export default function AdminDashboardPage() {
             <h1>
               G LAB <span className="admin-badge">ADMIN</span>
             </h1>
-            <span>E-Commerce Backend Control Panel</span>
+            <span className="admin-subtitle">E-Commerce Backend Control Panel</span>
           </div>
         </div>
 
         <div className="nav-actions">
-          <span className="user-greeting" id="userGreeting">
+          <span className="user-greeting" id="userGreeting" title={`Logged in as ${user?.firstname || 'Admin'}`}>
             {user?.image ? (
               <img
                 src={user.image}
@@ -661,15 +661,17 @@ export default function AdminDashboardPage() {
             ) : (
               <i className="fa-solid fa-user-shield"></i>
             )}
-            <span>
+            <span className="user-greeting-name">
               Hi, <strong>{user?.firstname || 'Admin'}</strong>
             </span>
           </span>
-          <button type="button" className="btn btn-storefront" onClick={() => navigate('/')}>
-            🌐 Storefront
+          <button type="button" className="btn btn-storefront" onClick={() => navigate('/')} title="View Storefront">
+            <span className="btn-icon">🌐</span>
+            <span className="btn-label">Storefront</span>
           </button>
-          <button type="button" className="btn btn-logout" onClick={handleLogout}>
-            Logout
+          <button type="button" className="btn btn-logout" onClick={handleLogout} title="Logout">
+            <i className="fa-solid fa-arrow-right-from-bracket btn-icon"></i>
+            <span className="btn-label">Logout</span>
           </button>
         </div>
       </header>
@@ -994,11 +996,11 @@ export default function AdminDashboardPage() {
                       cutout: '72%',
                       plugins: {
                         legend: {
-                          position: 'right',
+                          position: window.innerWidth < 640 ? 'bottom' : 'right',
                           labels: {
                             color: '#cbd5e1',
-                            font: { size: 12, weight: '600' },
-                            padding: 16,
+                            font: { size: window.innerWidth < 640 ? 11 : 12, weight: '600' },
+                            padding: window.innerWidth < 640 ? 10 : 16,
                             usePointStyle: true,
                             pointStyle: 'circle',
                             boxWidth: 8,
@@ -1363,20 +1365,11 @@ export default function AdminDashboardPage() {
             <h2>📦 Orders Management & Status Control</h2>
 
             {/* Update Order Status Controls */}
-            <div
-              style={{
-                background: 'var(--card-bg)',
-                border: '1px solid var(--border-color)',
-                padding: '20px',
-                borderRadius: '14px',
-                marginBottom: '24px',
-                boxShadow: '0 4px 20px rgba(0,0,0,0.25)',
-              }}
-            >
+            <div className="admin-quick-update-card">
               <h3 style={{ fontSize: '1.1rem', marginBottom: '14px' }}>
                 ⚡ Update Order Status (PATCH /admin/orders/:id/status)
               </h3>
-              <div className="grid-inputs" style={{ gridTemplateColumns: '1fr 1fr auto', alignItems: 'end' }}>
+              <div className="grid-inputs quick-status-grid">
                 <div className="form-group" style={{ marginBottom: 0 }}>
                   <label htmlFor="updateOrderId">Target Order ID</label>
                   <input
@@ -1403,8 +1396,7 @@ export default function AdminDashboardPage() {
                 </div>
                 <button
                   type="button"
-                  className="btn btn-primary"
-                  style={{ height: '45px' }}
+                  className="btn btn-primary btn-update-status"
                   onClick={handleQuickUpdateOrderStatus}
                 >
                   Update Status
@@ -1413,17 +1405,8 @@ export default function AdminDashboardPage() {
             </div>
 
             {/* Search & Filter Controls */}
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                gap: '16px',
-                marginBottom: '18px',
-                flexWrap: 'wrap',
-              }}
-            >
-              <div style={{ display: 'flex', gap: '10px', flex: 1, maxWidth: '500px' }}>
+            <div className="admin-toolbar">
+              <div className="admin-search-box">
                 <input
                   type="text"
                   id="searchOrdersInput"
@@ -1431,31 +1414,16 @@ export default function AdminDashboardPage() {
                   value={searchOrdersInput}
                   onChange={(e) => setSearchOrdersInput(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && handleSearchOrders()}
-                  style={{
-                    flex: 1,
-                    padding: '10px 14px',
-                    borderRadius: '8px',
-                    border: '1px solid var(--border-color)',
-                    background: 'var(--input-bg)',
-                    color: 'var(--text-main)',
-                  }}
                 />
                 <button type="button" className="btn btn-outline" onClick={handleSearchOrders}>
                   🔍 Search
                 </button>
               </div>
-              <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+              <div className="admin-filter-box">
                 <select
                   id="filterStatusSelect"
                   value={filterStatusSelect}
                   onChange={(e) => handleFilterOrdersByStatus(e.target.value)}
-                  style={{
-                    padding: '10px 14px',
-                    borderRadius: '8px',
-                    border: '1px solid var(--border-color)',
-                    background: 'var(--input-bg)',
-                    color: 'var(--text-main)',
-                  }}
                 >
                   <option value="">All Statuses</option>
                   <option value="Pending">Pending</option>
@@ -1854,14 +1822,7 @@ export default function AdminDashboardPage() {
                 ✨ Create New Admin Account
               </h3>
               <form id="createAdminForm" onSubmit={handleCreateAdmin}>
-                <div
-                  style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-                    gap: '16px',
-                    marginBottom: '16px',
-                  }}
-                >
+                <div className="grid-inputs" style={{ marginBottom: '16px' }}>
                   <div className="form-group" style={{ marginBottom: 0 }}>
                     <label htmlFor="adminFirstName">First Name *</label>
                     <input
@@ -1896,14 +1857,7 @@ export default function AdminDashboardPage() {
                     />
                   </div>
                 </div>
-                <div
-                  style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-                    gap: '16px',
-                    marginBottom: '20px',
-                  }}
-                >
+                <div className="grid-inputs" style={{ marginBottom: '20px' }}>
                   <div className="form-group" style={{ marginBottom: 0 }}>
                     <label htmlFor="adminPassword">Password *</label>
                     <input
@@ -2192,7 +2146,7 @@ export default function AdminDashboardPage() {
                   </div>
                 </div>
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', fontSize: '0.9rem' }}>
+              <div className="modal-info-grid">
                 <div>
                   <span style={{ color: 'var(--text-muted)' }}>User ID:</span>
                   <br />

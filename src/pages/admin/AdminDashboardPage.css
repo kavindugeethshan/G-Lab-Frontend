@@ -320,15 +320,25 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(56, 189, 248, 0.35) rgba(255, 255, 255, 0.03);
     gap: 8px;
     width: 100%;
     box-sizing: border-box;
 }
 
 .admin-page-wrapper .admin-tabs-nav::-webkit-scrollbar {
-    display: none;
+    height: 4px;
+}
+
+.admin-page-wrapper .admin-tabs-nav::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 4px;
+}
+
+.admin-page-wrapper .admin-tabs-nav::-webkit-scrollbar-thumb {
+    background: rgba(56, 189, 248, 0.35);
+    border-radius: 4px;
 }
 
 .admin-page-wrapper .admin-tab-btn {
@@ -695,10 +705,28 @@
     -webkit-overflow-scrolling: touch;
     display: block;
     width: 100%;
+    box-sizing: border-box;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(56, 189, 248, 0.3) rgba(255, 255, 255, 0.03);
+}
+
+.admin-page-wrapper .table-responsive::-webkit-scrollbar {
+    height: 5px;
+}
+
+.admin-page-wrapper .table-responsive::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 4px;
+}
+
+.admin-page-wrapper .table-responsive::-webkit-scrollbar-thumb {
+    background: rgba(56, 189, 248, 0.3);
+    border-radius: 4px;
 }
 
 .admin-page-wrapper .admin-table {
     width: 100%;
+    min-width: 620px;
     border-collapse: collapse;
     font-size: 0.9rem;
 }
@@ -899,17 +927,104 @@
     color: var(--text-main);
 }
 
-/* RESPONSIVE BREAKPOINTS */
+/* QUICK STATUS & TOOLBAR UTILITIES */
+.admin-page-wrapper .admin-quick-update-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    border-radius: 14px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.admin-page-wrapper .quick-status-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    align-items: end;
+    gap: 16px;
+}
+
+.admin-page-wrapper .btn-update-status {
+    height: 45px;
+}
+
+.admin-page-wrapper .admin-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+}
+
+.admin-page-wrapper .admin-search-box {
+    display: flex;
+    gap: 10px;
+    flex: 1;
+    max-width: 500px;
+}
+
+.admin-page-wrapper .admin-search-box input {
+    flex: 1;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--input-bg);
+    color: var(--text-main);
+}
+
+.admin-page-wrapper .admin-filter-box {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.admin-page-wrapper .admin-filter-box select {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--input-bg);
+    color: var(--text-main);
+}
+
+.admin-page-wrapper .modal-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    font-size: 0.9rem;
+}
+
+/* ==========================================================================\
+   RESPONSIVE BREAKPOINTS (Mobile-First Polish)
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+    .admin-page-wrapper .admin-tabs-nav {
+        overflow-x: auto;
+    }
+
+    .admin-page-wrapper .admin-tab-btn {
+        flex: 0 0 auto;
+    }
+
+    .admin-page-wrapper .admin-container {
+        padding: 0 18px;
+    }
+}
+
 @media (max-width: 900px) {
     .admin-page-wrapper .charts-grid,
     .admin-page-wrapper .dashboard-widgets-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
     }
 }
 
 @media (max-width: 768px) {
     .admin-page-wrapper .admin-header {
-        padding: 10px 14px;
+        padding: 10px 16px;
+        height: auto;
+        min-height: 60px;
         flex-wrap: wrap;
         gap: 10px 8px;
     }
@@ -919,130 +1034,305 @@
     }
 
     .admin-page-wrapper .admin-logo-icon {
-        width: 36px;
-        height: 36px;
-        font-size: 1.1rem;
-        border-radius: 10px;
+        width: 34px;
+        height: 34px;
+        font-size: 1.05rem;
+        border-radius: 9px;
     }
 
     .admin-page-wrapper .admin-logo-text h1 {
         font-size: 1.15rem;
-    }
-
-    .admin-page-wrapper .admin-logo-text span {
-        font-size: 0.65rem;
-    }
-
-    .admin-page-wrapper .nav-actions {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding-top: 6px;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        margin-top: 2px;
         gap: 6px;
     }
 
-    .admin-page-wrapper .user-greeting {
-        font-size: 0.76rem;
-        padding: 4px 8px;
-        display: inline-block !important;
-        max-width: 120px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+    .admin-page-wrapper .admin-logo-text .admin-subtitle {
+        display: none !important;
     }
 
-    .admin-page-wrapper .btn {
-        padding: 7px 11px;
-        font-size: 0.78rem;
+    .admin-page-wrapper .admin-badge {
+        padding: 2px 8px;
+        font-size: 0.68rem;
+    }
+
+    /* High specificity to override desktop header nav-actions */
+    .admin-page-wrapper .admin-header .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-left: auto;
+    }
+
+    .admin-page-wrapper .admin-header .user-greeting {
+        font-size: 0.78rem !important;
+        padding: 3px 10px 3px 4px !important;
+        max-width: 130px;
+    }
+
+    .admin-page-wrapper .admin-header .user-nav-avatar {
+        width: 24px !important;
+        height: 24px !important;
+    }
+
+    .admin-page-wrapper .admin-header .user-greeting-name {
+        max-width: 75px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .admin-page-wrapper .admin-header .btn-storefront,
+    .admin-page-wrapper .admin-header .btn-logout {
+        padding: 6px 12px;
+        font-size: 0.8rem;
         border-radius: 8px;
-        flex: 1 1 auto;
-        justify-content: center;
+        gap: 5px;
     }
 
     .admin-page-wrapper .admin-container {
         padding: 0 12px;
-        margin: 16px auto;
+        margin: 14px auto;
     }
 
-    .admin-page-wrapper .section-card,
-    .admin-page-wrapper .chart-box,
-    .admin-page-wrapper .progress-card {
-        padding: 16px;
+    .admin-page-wrapper .section-card {
+        padding: 18px 14px;
+        border-radius: 16px;
+        margin-bottom: 20px;
+    }
+
+    .admin-page-wrapper .section-card h2 {
+        font-size: 1.15rem;
+        margin-bottom: 16px;
+        gap: 8px;
+    }
+
+    .admin-page-wrapper .section-card h3 {
+        font-size: 1.05rem;
+        margin-bottom: 14px;
+    }
+
+    /* Tabs Bar Mobile Styling */
+    .admin-page-wrapper .admin-tabs-nav {
+        padding: 5px;
+        gap: 6px;
         border-radius: 14px;
+        margin-bottom: 18px;
     }
 
+    .admin-page-wrapper .admin-tab-btn {
+        flex: 0 0 auto;
+        padding: 8px 13px;
+        font-size: 0.82rem;
+        gap: 6px;
+    }
+
+    .admin-page-wrapper .admin-tab-badge {
+        font-size: 0.7rem;
+        padding: 1px 6px;
+    }
+
+    /* Stats Grid: 2 columns with Revenue as hero card */
     .admin-page-wrapper .stats-grid {
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        grid-template-columns: 1fr 1fr;
         gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    .admin-page-wrapper .stat-card.revenue {
+        grid-column: 1 / -1;
+        padding: 18px 16px;
     }
 
     .admin-page-wrapper .stat-card {
-        padding: 12px 14px;
+        padding: 14px 12px;
         gap: 10px;
     }
 
     .admin-page-wrapper .stat-icon {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
     }
 
     .admin-page-wrapper .stat-value {
         font-size: 1.25rem;
+        word-break: break-word;
+    }
+
+    .admin-page-wrapper .stat-card.revenue .stat-value {
+        font-size: 1.45rem;
     }
 
     .admin-page-wrapper .stat-label {
-        font-size: 0.7rem;
+        font-size: 0.72rem;
+    }
+
+    /* Charts */
+    .admin-page-wrapper .chart-box {
+        padding: 16px 14px;
+        border-radius: 14px;
+    }
+
+    .admin-page-wrapper .chart-header-row {
+        margin-bottom: 14px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .admin-page-wrapper .chart-title {
+        font-size: 1.05rem;
     }
 
     .admin-page-wrapper .chart-container {
-        height: 210px;
+        height: 220px;
+        width: 100%;
     }
 
+    /* Quick Status Grid & Toolbar Mobile */
+    .admin-page-wrapper .admin-quick-update-card {
+        padding: 16px 14px;
+        margin-bottom: 18px;
+    }
+
+    .admin-page-wrapper .quick-status-grid {
+        grid-template-columns: 1fr;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .admin-page-wrapper .btn-update-status {
+        width: 100%;
+        height: 42px;
+    }
+
+    .admin-page-wrapper .admin-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .admin-page-wrapper .admin-search-box {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .admin-page-wrapper .admin-filter-box {
+        width: 100%;
+        display: flex;
+        gap: 8px;
+    }
+
+    .admin-page-wrapper .admin-filter-box select {
+        flex: 1;
+    }
+
+    /* Forms */
+    .admin-page-wrapper .grid-inputs {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .admin-page-wrapper .btn-primary[type="submit"] {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Table cell sizing */
     .admin-page-wrapper .admin-table th,
     .admin-page-wrapper .admin-table td {
-        padding: 10px 8px;
-        font-size: 0.78rem;
-        white-space: nowrap;
+        padding: 10px 12px;
+        font-size: 0.8rem;
     }
 
-    .admin-page-wrapper .admin-tabs-nav {
-        padding: 5px;
-        gap: 5px;
+    .admin-page-wrapper .admin-table th {
+        font-size: 0.72rem;
     }
 
-    .admin-page-wrapper .admin-tab-btn {
-        flex: 1 0 auto;
-        padding: 8px 14px;
-        font-size: 0.82rem;
+    /* Modals */
+    .admin-page-wrapper .modal {
+        padding: 12px;
+    }
+
+    .admin-page-wrapper .modal-content {
+        padding: 20px 16px;
+        border-radius: 16px;
+        width: 95%;
+        max-height: 88vh;
+    }
+
+    .admin-page-wrapper .modal-info-grid {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+    }
+
+    /* Toast messages */
+    .admin-page-wrapper .admin-message {
+        padding: 12px 14px;
+        font-size: 0.84rem;
+        margin-bottom: 16px;
+        border-radius: 10px;
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 520px) {
     .admin-page-wrapper .admin-header {
         padding: 8px 12px;
     }
 
-    .admin-page-wrapper .stats-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
+    .admin-page-wrapper .admin-header .user-greeting-name {
+        max-width: 55px;
     }
 
-    .admin-page-wrapper .stat-card {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 12px;
-        gap: 6px;
+    .admin-page-wrapper .admin-header .btn-storefront .btn-label,
+    .admin-page-wrapper .admin-header .btn-logout .btn-label {
+        display: none !important;
     }
 
-    .admin-page-wrapper .admin-tab-btn {
-        padding: 7px 11px;
-        font-size: 0.78rem;
+    .admin-page-wrapper .admin-header .btn-storefront,
+    .admin-page-wrapper .admin-header .btn-logout {
+        padding: 6px 10px;
+        min-width: 36px;
+        justify-content: center;
+    }
+
+    .admin-page-wrapper .admin-header .btn-storefront .btn-icon,
+    .admin-page-wrapper .admin-header .btn-logout .btn-icon {
+        font-size: 0.95rem;
     }
 
     .admin-page-wrapper .modal-content {
-        padding: 16px;
-        width: 95%;
+        padding: 16px 12px;
+    }
+}
+
+@media (max-width: 380px) {
+    .admin-page-wrapper .admin-header {
+        padding: 8px 8px;
+    }
+
+    .admin-page-wrapper .admin-logo-text h1 {
+        font-size: 1.05rem;
+    }
+
+    .admin-page-wrapper .admin-badge {
+        font-size: 0.62rem;
+        padding: 1px 5px;
+    }
+
+    .admin-page-wrapper .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-page-wrapper .stat-card.revenue {
+        grid-column: auto;
+    }
+
+    .admin-page-wrapper .stat-card {
+        padding: 12px;
+    }
+
+    .admin-page-wrapper .admin-tab-btn {
+        padding: 7px 10px;
+        font-size: 0.78rem;
     }
 }
