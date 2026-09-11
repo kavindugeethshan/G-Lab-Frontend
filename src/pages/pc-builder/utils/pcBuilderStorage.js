@@ -49,6 +49,21 @@ export function deleteSavedBuild(buildId) {
 }
 
 /**
+ * Loads a saved build into the active PC Builder workspace.
+ */
+export function loadBuildIntoWorkspace(build) {
+  if (!build || !build.parts) return;
+  try {
+    localStorage.setItem('glab_pc_builder_parts', JSON.stringify(build.parts));
+    if (typeof build.targetBudget === 'number' || typeof build.targetBudget === 'string') {
+      localStorage.setItem('glab_pc_builder_budget', String(build.targetBudget || 0));
+    }
+  } catch (e) {
+    console.warn('Failed to load build into workspace storage', e);
+  }
+}
+
+/**
  * Generates a formatted Bill of Materials (BOM) text specification sheet.
  */
 export function generateBuildSpecSheet(parts, targetBudget, powerData) {

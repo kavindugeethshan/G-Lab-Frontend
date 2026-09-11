@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
 import { useToast } from '../../context/ToastContext';
 import { productService } from '../../services/productService';
@@ -11,7 +12,7 @@ import BuilderModeSelector from './components/BuilderModeSelector';
 import GameSelector from './components/GameSelector';
 import AutoBuildModal from './components/AutoBuildModal';
 import SavedBuildsModal from './components/SavedBuildsModal';
-import { generateBuildSpecSheet, encodeRigToQuery, decodeRigFromQuery } from './utils/pcBuilderStorage';
+import { generateBuildSpecSheet, encodeRigToQuery, decodeRigFromQuery, getSavedBuilds } from './utils/pcBuilderStorage';
 import { generateAutoBuild } from './utils/recommendations';
 import { calculateSystemPower, validateBuildCompatibility } from './utils/compatibility';
 import { getProductSpecs } from './utils/hardwareSpecs';
@@ -21,6 +22,7 @@ const LOCAL_STORAGE_BUILD_KEY = 'glab_pc_builder_parts';
 const LOCAL_STORAGE_BUDGET_KEY = 'glab_pc_builder_budget';
 
 export default function PCBuilderPage() {
+  const navigate = useNavigate();
   const { addToCart } = useCart();
   const { showToast } = useToast();
 
@@ -41,6 +43,11 @@ export default function PCBuilderPage() {
   // Modals state
   const [isAutoModalOpen, setIsAutoModalOpen] = useState(false);
   const [isSavedBuildsModalOpen, setIsSavedBuildsModalOpen] = useState(false);
+  const [savedBuildsCount, setSavedBuildsCount] = useState(0);
+
+  useEffect(() => {
+    setSavedBuildsCount(getSavedBuilds().length);
+  }, [isSavedBuildsModalOpen]);
 
   // Global inventory products cache for recommendations
   const [catalogProducts, setCatalogProducts] = useState([]);
@@ -450,12 +457,15 @@ export default function PCBuilderPage() {
             </button>
             <button
               type="button"
-              className="btn btn-modern-summary-action btn-summary-share"
-              onClick={handleShareBuild}
-              title="Copy shareable permalink"
+              className="btn btn-modern-summary-action btn-summary-library"
+              onClick={() => navigate('/profile')}
+              title="View your Saved Builds Library in Profile"
             >
-              <i className="fa-solid fa-share-nodes"></i>
-              <span>Share Build</span>
+              <i className="fa-solid fa-layer-group"></i>
+              <span>Builds Library</span>
+              {savedBuildsCount > 0 && (
+                <span className="summary-builds-badge">{savedBuildsCount}</span>
+              )}
             </button>
             <button
               type="button"

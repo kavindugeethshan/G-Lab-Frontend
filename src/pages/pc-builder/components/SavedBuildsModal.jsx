@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { getSavedBuilds, saveBuildToStorage, deleteSavedBuild } from '../utils/pcBuilderStorage';
 
 export default function SavedBuildsModal({
@@ -61,9 +62,33 @@ export default function SavedBuildsModal({
               <p className="modal-subtitle">Save multiple PC configurations or reload a previously assembled custom rig.</p>
             </div>
           </div>
-          <button type="button" className="btn-close-modal" onClick={onClose}>
-            <i className="fa-solid fa-xmark"></i>
-          </button>
+          <div className="modal-header-actions" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <Link
+              to="/profile"
+              className="btn-modal-profile-link"
+              title="Open full Saved Builds Library in Profile"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.45rem',
+                padding: '0.4rem 0.85rem',
+                borderRadius: '8px',
+                fontSize: '0.78rem',
+                fontWeight: '600',
+                color: '#38bdf8',
+                background: 'rgba(56, 189, 248, 0.12)',
+                border: '1px solid rgba(56, 189, 248, 0.35)',
+                textDecoration: 'none',
+                transition: 'all 0.2s ease',
+              }}
+            >
+              <i className="fa-solid fa-arrow-up-right-from-square"></i>
+              <span>View in Profile</span>
+            </Link>
+            <button type="button" className="btn-close-modal" onClick={onClose}>
+              <i className="fa-solid fa-xmark"></i>
+            </button>
+          </div>
         </div>
 
         <div className="modal-card-body">
