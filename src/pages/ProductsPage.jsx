@@ -6,7 +6,6 @@ import './ProductsPage.css';
 
 const CATEGORIES = [
   { label: 'All Categories', value: '' },
-  { label: 'PC Hardware & Components', value: 'Hardware' },
   { label: 'Graphics Cards', value: 'Graphics Cards' },
   { label: 'Processors', value: 'Processors' },
   { label: 'Memory (RAM)', value: 'RAM' },
@@ -214,16 +213,6 @@ export default function ProductsPage() {
                 title="Show all products"
               >
                 <i className="fa-solid fa-layer-group"></i> All Categories
-              </button>
-
-              {/* PC Hardware Button */}
-              <button
-                type="button"
-                className={`btn btn-outline btn-all-categories ${category.toLowerCase() === 'hardware' ? 'active' : ''}`}
-                onClick={() => handleCategorySelect('Hardware')}
-                title="Show PC Hardware components"
-              >
-                <i className="fa-solid fa-microchip"></i> Hardware
               </button>
 
               <select

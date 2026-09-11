@@ -4,7 +4,6 @@ import { useCart } from '../../context/CartContext';
 import { useToast } from '../../context/ToastContext';
 import { productService } from '../../services/productService';
 import AssemblyProgress, { ASSEMBLY_STEPS } from './components/AssemblyProgress';
-import BuildVisualizer from './components/BuildVisualizer';
 import ComponentSelector from './components/ComponentSelector';
 import CompatibilityPanel from './components/CompatibilityPanel';
 import BudgetPanel from './components/BudgetPanel';
@@ -35,10 +34,8 @@ export default function PCBuilderPage() {
     const saved = localStorage.getItem(LOCAL_STORAGE_BUDGET_KEY);
     return saved ? Number(saved) : 350000;
   });
-  // Active mobile view tab: 'builder' | 'chassis' | 'diagnostics'
+  // Active mobile view tab: 'builder' | 'diagnostics'
   const [mobileActiveTab, setMobileActiveTab] = useState('builder');
-  // Power On state for interactive 2D chassis animation
-  const [isPoweredOn, setIsPoweredOn] = useState(false);
 
   // Modals state
   const [isAutoModalOpen, setIsAutoModalOpen] = useState(false);
@@ -141,10 +138,6 @@ export default function PCBuilderPage() {
       delete updated[slotId];
       return updated;
     });
-    // Turn off power if critical part removed
-    if (['cpu', 'motherboard', 'psu', 'ram'].includes(slotId)) {
-      setIsPoweredOn(false);
-    }
     showToast(`Removed component from ${slotId.toUpperCase()} slot.`, 'info');
   }, [showToast]);
 
@@ -152,19 +145,9 @@ export default function PCBuilderPage() {
   const handleClearBuild = useCallback(() => {
     if (window.confirm('Are you sure you want to reset your current PC build? All selected components will be cleared.')) {
       setSelectedParts({});
-      setIsPoweredOn(false);
       showToast('PC build reset successfully.', 'info');
     }
   }, [showToast]);
-
-  // Jump to step by slot key (e.g. from 2D Chassis click)
-  const handleSlotClick = useCallback((slotId) => {
-    const stepIdx = ASSEMBLY_STEPS.findIndex((s) => s.id === slotId);
-    if (stepIdx !== -1) {
-      setCurrentStepIndex(stepIdx);
-      setMobileActiveTab('builder');
-    }
-  }, []);
 
   // Step navigation
   const handleNextStep = useCallback(() => {
@@ -174,16 +157,6 @@ export default function PCBuilderPage() {
   const handlePrevStep = useCallback(() => {
     setCurrentStepIndex((prev) => Math.max(prev - 1, 0));
   }, []);
-
-  // Toggle power on
-  const handleTogglePower = useCallback(() => {
-    setIsPoweredOn((prev) => !prev);
-    if (!isPoweredOn) {
-      showToast('System Powered On! RGB Lighting and cooling fans active.', 'success');
-    } else {
-      showToast('System Powered Down.', 'info');
-    }
-  }, [isPoweredOn, showToast]);
 
   // Handle Mode Change
   const handleModeChange = useCallback((mode) => {
@@ -215,7 +188,6 @@ export default function PCBuilderPage() {
   const handleLoadSavedBuild = useCallback((loadedParts, loadedBudget) => {
     setSelectedParts(loadedParts || {});
     if (loadedBudget) setTargetBudget(loadedBudget);
-    setIsPoweredOn(false);
   }, []);
 
   // Export Bill of Materials (BOM)
@@ -282,50 +254,60 @@ export default function PCBuilderPage() {
   const compatValidation = validateBuildCompatibility(selectedParts);
   const totalCost = Object.values(selectedParts).reduce((sum, p) => sum + (p?.price || 0), 0);
   const installedCount = Object.values(selectedParts).filter(Boolean).length;
+  const remainingBudget = targetBudget > 0 ? targetBudget - totalCost : null;
+  const isOverBudget = targetBudget > 0 && totalCost > targetBudget;
 
   return (
     <div className="glab-pc-builder-page-wrapper">
       <div className="glab-pc-builder-page">
-        {/* PAGE HERO HEADER */}
-        <div className="pc-builder-hero">
-          <div className="hero-content">
-            <div className="hero-badge">
-              <i className="fa-solid fa-microchip"></i> Next-Gen Custom Rig Studio
+        {/* UNIFIED STUDIO COMMAND NAVBAR */}
+        <header className="pc-builder-navbar" role="banner" aria-label="G-Lab PC Builder Control Center">
+          <div className="pcb-nav-top-row">
+            <div className="pcb-nav-brand">
+              <div className="pcb-nav-badge">
+                <i className="fa-solid fa-microchip"></i>
+                <span>Next-Gen Custom Rig Studio</span>
+              </div>
+              <h1 className="pcb-nav-title">G-LAB PC BUILDER</h1>
+              <p className="pcb-nav-desc">
+                Engineer your ultimate gaming or workstation rig. Deterministic hardware validation, game framerate benchmarks, and real-time power budget calculation.
+              </p>
             </div>
-            <h1 className="hero-title">G-LAB PC BUILDER</h1>
-            <p className="hero-description">
-              Engineer your ultimate gaming or workstation rig. Live 2D chassis assembly, deterministic hardware validation, game framerate benchmarks, and real-time power budget calculation.
-            </p>
+
+            {/* TOP CONTROLS & RESET */}
+            <div className="pcb-nav-actions">
+              <button
+                type="button"
+                className="pcb-nav-action-btn btn-modern-hero btn-saved-builds-trigger"
+                onClick={() => setIsSavedBuildsModalOpen(true)}
+                title="View or load saved builds"
+                id="pcb-saved-builds-btn"
+              >
+                <i className="fa-solid fa-bookmark"></i>
+                <span>Saved Builds</span>
+                {savedBuildsCount > 0 && (
+                  <span className="pcb-nav-counter-badge">{savedBuildsCount}</span>
+                )}
+              </button>
+              <button
+                type="button"
+                className="pcb-nav-action-btn btn-modern-hero btn-clear-rig"
+                onClick={handleClearBuild}
+                title="Reset build"
+                id="pcb-reset-rig-btn"
+              >
+                <i className="fa-solid fa-rotate-left"></i>
+                <span>Reset Rig</span>
+              </button>
+            </div>
           </div>
 
-          {/* TOP CONTROLS & RESET */}
-          <div className="hero-actions">
-            <button
-              type="button"
-              className="btn btn-modern-hero btn-saved-builds-trigger"
-              onClick={() => setIsSavedBuildsModalOpen(true)}
-              title="View or load saved builds"
-            >
-              <i className="fa-solid fa-bookmark"></i>
-              <span>Saved Builds</span>
-            </button>
-            <button
-              type="button"
-              className="btn btn-modern-hero btn-clear-rig"
-              onClick={handleClearBuild}
-              title="Reset build"
-            >
-              <i className="fa-solid fa-rotate-left"></i>
-              <span>Reset Rig</span>
-            </button>
-          </div>
-        </div>
-
-        {/* MODE SELECTOR (Manual / Auto / Game) */}
-        <BuilderModeSelector
-          activeMode={activeMode}
-          onSelectMode={handleModeChange}
-        />
+          {/* INTEGRATED 3 MODES NAVIGATION TABS */}
+          <BuilderModeSelector
+            activeMode={activeMode}
+            onSelectMode={handleModeChange}
+          />
+        </header>
 
         {/* GAME MODE PANEL (If active) */}
         {activeMode === 'game' && (
@@ -358,14 +340,6 @@ export default function PCBuilderPage() {
           </button>
           <button
             type="button"
-            className={`mobile-tab-btn ${mobileActiveTab === 'chassis' ? 'active' : ''}`}
-            onClick={() => setMobileActiveTab('chassis')}
-          >
-            <i className="fa-solid fa-server"></i>
-            <span>2D Chassis</span>
-          </button>
-          <button
-            type="button"
             className={`mobile-tab-btn ${mobileActiveTab === 'diagnostics' ? 'active' : ''}`}
             onClick={() => setMobileActiveTab('diagnostics')}
           >
@@ -374,42 +348,36 @@ export default function PCBuilderPage() {
           </button>
         </div>
 
-        {/* MAIN BUILDER WORKSPACE (Dual / Triple Column Layout) */}
+        {/* MAIN BUILDER WORKSPACE (Dual Column Layout) */}
         <div className={`pc-builder-workspace mobile-tab-${mobileActiveTab}`}>
-          {/* LEFT COLUMN: 2D CHASSIS VISUALIZER & DIAGNOSTICS */}
-          <div className="builder-sidebar-column">
-            {/* 2D VISUALIZER */}
-            <BuildVisualizer
-              selectedParts={selectedParts}
-              onSlotClick={handleSlotClick}
-              isPoweredOn={isPoweredOn}
-              onTogglePower={handleTogglePower}
-            />
+          {/* UNIFIED WORKBENCH MASTER CARD (Budget Tracker + Component Selector in 1 Card) */}
+          <div className="pcb-unified-workbench-card">
+            {/* LEFT PANE: BUDGET TRACKER */}
+            <div className="builder-sidebar-column pcb-workbench-sidebar">
+              <BudgetPanel
+                selectedParts={selectedParts}
+                targetBudget={targetBudget}
+                onBudgetChange={setTargetBudget}
+              />
+            </div>
 
-            {/* BUDGET TRACKER */}
-            <BudgetPanel
-              selectedParts={selectedParts}
-              targetBudget={targetBudget}
-              onBudgetChange={setTargetBudget}
-            />
-          </div>
-
-          {/* RIGHT COLUMN: STEP COMPONENT SELECTOR */}
-          <div className="builder-main-column">
-            <ComponentSelector
-              step={currentStep}
-              stepIndex={currentStepIndex}
-              totalSteps={ASSEMBLY_STEPS.length}
-              selectedParts={selectedParts}
-              onSelectPart={handleSelectPart}
-              onRemovePart={handleRemovePart}
-              onNextStep={handleNextStep}
-              onPrevStep={handlePrevStep}
-              onAddAllToCart={handleAddAllToCart}
-              onSaveBuildClick={() => setIsSavedBuildsModalOpen(true)}
-              onExportSpecSheet={handleExportSpecSheet}
-              onShareBuild={handleShareBuild}
-            />
+            {/* RIGHT PANE: STEP COMPONENT SELECTOR */}
+            <div className="builder-main-column pcb-workbench-main">
+              <ComponentSelector
+                step={currentStep}
+                stepIndex={currentStepIndex}
+                totalSteps={ASSEMBLY_STEPS.length}
+                selectedParts={selectedParts}
+                onSelectPart={handleSelectPart}
+                onRemovePart={handleRemovePart}
+                onNextStep={handleNextStep}
+                onPrevStep={handlePrevStep}
+                onAddAllToCart={handleAddAllToCart}
+                onSaveBuildClick={() => setIsSavedBuildsModalOpen(true)}
+                onExportSpecSheet={handleExportSpecSheet}
+                onShareBuild={handleShareBuild}
+              />
+            </div>
           </div>
 
           {/* HORIZONTAL COMPATIBILITY DIAGNOSTICS CONSOLE (Full Width Across Horizontal Axis) */}
@@ -427,6 +395,18 @@ export default function PCBuilderPage() {
                 Rs. {totalCost.toLocaleString()}
               </strong>
             </div>
+            {targetBudget > 0 && (
+              <div className={`summary-stat-block summary-budget-stat-block ${isOverBudget ? 'stat-over-budget' : 'stat-remaining-budget'}`}>
+                <span className="stat-label">
+                  {isOverBudget ? 'Over Budget' : 'Remaining Budget'}
+                </span>
+                <strong className={`stat-value ${isOverBudget ? 'text-danger' : 'text-success'}`}>
+                  {isOverBudget
+                    ? `-Rs. ${(totalCost - targetBudget).toLocaleString()}`
+                    : `Rs. ${remainingBudget.toLocaleString()}`}
+                </strong>
+              </div>
+            )}
             <div className="summary-stat-block">
               <span className="stat-label">Installed</span>
               <strong className="stat-value">

@@ -295,9 +295,20 @@ export default function HomePage() {
               Discover the latest components engineered to power your ultimate setup.
             </p>
             <div className="cinematic-banner-actions">
-              <Link to="/products?category=Hardware" className="btn btn-primary banner-cta-btn">
-                <i className="fa-solid fa-fire"></i> Shop High Performance
-              </Link>
+              <a
+                href="#categoriesSection"
+                className="btn btn-primary banner-cta-btn"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const el = document.getElementById('categoriesSection');
+                  if (el) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    window.history.pushState(null, '', '#categoriesSection');
+                  }
+                }}
+              >
+                <i className="fa-solid fa-microchip"></i> Shop High Performance
+              </a>
             </div>
           </div>
         </div>
@@ -319,9 +330,21 @@ export default function HomePage() {
           )}
 
           <div style={{ textAlign: 'center' }}>
-            <Link to="/products?category=Hardware" className="btn btn-outline" style={{ padding: '12px 30px', fontSize: '0.95rem' }}>
+            <a
+              href="#categoriesSection"
+              className="btn btn-outline"
+              style={{ padding: '12px 30px', fontSize: '0.95rem' }}
+              onClick={(e) => {
+                e.preventDefault();
+                const el = document.getElementById('categoriesSection');
+                if (el) {
+                  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  window.history.pushState(null, '', '#categoriesSection');
+                }
+              }}
+            >
               View All Hardware <i className="fa-solid fa-arrow-right"></i>
-            </Link>
+            </a>
           </div>
         </div>
       </section>

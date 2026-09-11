@@ -26,28 +26,29 @@ export default function BuilderModeSelector({ activeMode, onSelectMode }) {
   ];
 
   return (
-    <div className="builder-mode-switcher-container">
-      <div className="builder-mode-tabs" role="tablist">
+    <div className="pcb-nav-modes-container builder-mode-switcher-container">
+      <div className="pcb-nav-modes-bar builder-mode-tabs" role="tablist" aria-label="PC Builder Modes">
         {MODES.map((mode) => {
           const isActive = activeMode === mode.id;
           return (
             <button
               key={mode.id}
+              id={`pcb-mode-${mode.id}-tab`}
               type="button"
               role="tab"
               aria-selected={isActive}
-              className={`mode-tab-btn ${isActive ? 'active' : ''}`}
+              className={`pcb-mode-tab mode-tab-btn ${isActive ? 'active' : ''}`}
               onClick={() => onSelectMode(mode.id)}
             >
-              <span className="mode-tab-icon">
+              <span className="pcb-mode-icon mode-tab-icon">
                 <i className={mode.icon}></i>
               </span>
-              <div className="mode-tab-info">
-                <div className="mode-tab-title-row">
-                  <span className="mode-tab-title">{mode.label}</span>
-                  <span className="mode-tab-badge">{mode.badge}</span>
+              <div className="pcb-mode-info mode-tab-info">
+                <div className="pcb-mode-title-row mode-tab-title-row">
+                  <span className="pcb-mode-title mode-tab-title">{mode.label}</span>
+                  <span className="pcb-mode-badge mode-tab-badge">{mode.badge}</span>
                 </div>
-                <span className="mode-tab-desc">{mode.description}</span>
+                <span className="pcb-mode-desc mode-tab-desc">{mode.description}</span>
               </div>
             </button>
           );

@@ -45,11 +45,23 @@ export default function BudgetPanel({ selectedParts, targetBudget, onBudgetChang
         </button>
       </div>
 
-      {/* 3-COLUMN SUMMARY TOTALS */}
+      {/* 2-ROW RESPONSIVE SUMMARY METRICS */}
       <div className="budget-metrics-grid budget-metrics-3col">
         {/* 1. TARGET BUDGET */}
         <div className="budget-metric-block target-budget">
-          <span className="metric-label">Target Budget</span>
+          <div className="target-budget-label-row">
+            <span className="metric-label">Target Budget</span>
+            {!isEditingBudget && (
+              <button
+                type="button"
+                className="btn-edit-budget"
+                onClick={() => setIsEditingBudget(true)}
+                title="Edit custom target budget"
+              >
+                <i className="fa-solid fa-pencil"></i>
+              </button>
+            )}
+          </div>
           {isEditingBudget ? (
             <form onSubmit={handleCustomSubmit} className="budget-input-form">
               <input
@@ -64,19 +76,20 @@ export default function BudgetPanel({ selectedParts, targetBudget, onBudgetChang
               <button type="submit" className="btn-save-budget" title="Save budget">
                 <i className="fa-solid fa-check"></i>
               </button>
+              <button
+                type="button"
+                className="btn-cancel-budget"
+                onClick={() => setIsEditingBudget(false)}
+                title="Cancel editing"
+              >
+                <i className="fa-solid fa-xmark"></i>
+              </button>
             </form>
           ) : (
             <div className="budget-display-row" onClick={() => setIsEditingBudget(true)} title="Click to edit budget">
               <strong className="metric-value">
                 {targetBudget > 0 ? formatPrice(targetBudget) : 'No limit'}
               </strong>
-              <button
-                type="button"
-                className="btn-edit-budget"
-                title="Edit custom target budget"
-              >
-                <i className="fa-solid fa-pencil"></i>
-              </button>
             </div>
           )}
           <span className="metric-hint">
@@ -91,9 +104,21 @@ export default function BudgetPanel({ selectedParts, targetBudget, onBudgetChang
           <span className="metric-hint">{items.length} of 9 components</span>
         </div>
 
-        {/* 3. REMAINING / OVER */}
+        {/* 3. REMAINING / OVER (RESPONSIVE FULL-WIDTH HERO BLOCK) */}
         <div className={`budget-metric-block ${isOverBudget ? 'over-budget-block' : 'remaining-budget-block'}`}>
-          <span className="metric-label">{isOverBudget ? 'Over Budget' : 'Remaining'}</span>
+          <div className="remaining-block-header">
+            <span className="metric-label">
+              <i className={`fa-solid ${isOverBudget ? 'fa-triangle-exclamation' : 'fa-circle-check'}`}></i>
+              {isOverBudget ? 'Over Budget' : 'Remaining Budget'}
+            </span>
+            <span className={`remaining-status-pill ${isOverBudget ? 'pill-over' : 'pill-healthy'}`}>
+              {targetBudget > 0
+                ? isOverBudget
+                  ? 'Exceeds Cap'
+                  : `${100 - percentUsed}% Left`
+                : 'No Cap'}
+            </span>
+          </div>
           <strong className={`metric-value ${isOverBudget ? 'text-danger' : 'text-success'}`}>
             {targetBudget > 0
               ? isOverBudget
@@ -104,9 +129,9 @@ export default function BudgetPanel({ selectedParts, targetBudget, onBudgetChang
           <span className="metric-hint">
             {targetBudget > 0
               ? isOverBudget
-                ? 'Exceeds budget limit'
-                : `${100 - percentUsed}% available`
-              : 'No cap defined'}
+                ? `Hardware exceeds target budget by ${formatPrice(overAmount)}`
+                : `${formatPrice(remaining)} available for remaining components`
+              : 'No budget limit defined'}
           </span>
         </div>
       </div>
@@ -155,10 +180,29 @@ export default function BudgetPanel({ selectedParts, targetBudget, onBudgetChang
 
       {/* PRESET TARGET BUTTONS */}
       <div className="budget-presets-row">
-        <span className="presets-label">Presets:</span>
+        <div className="presets-header-row">
+          <span className="presets-label">
+            <i className="fa-solid fa-sliders"></i> Preset Targets
+          </span>
+          {targetBudget > 0 && (
+            <button
+              type="button"
+              className="btn-clear-preset"
+              onClick={() => {
+                onBudgetChange(0);
+                setCustomInputValue('');
+              }}
+              title="Clear budget limit"
+            >
+              <i className="fa-solid fa-rotate-left"></i> Clear Limit
+            </button>
+          )}
+        </div>
         <div className="presets-buttons">
           {DEFAULT_BUDGET_PRESETS.map((preset) => {
             const isSelected = targetBudget === preset.value;
+            const shortTitle = preset.label.replace(' Gaming', '').replace(' Enthusiast', '');
+            const priceTag = preset.value >= 1000000 ? `${preset.value / 1000000}M` : `${preset.value / 1000}k`;
             return (
               <button
                 key={preset.label}
@@ -168,24 +212,13 @@ export default function BudgetPanel({ selectedParts, targetBudget, onBudgetChang
                   onBudgetChange(preset.value);
                   setCustomInputValue(String(preset.value));
                 }}
+                title={`Set target budget to ${formatPrice(preset.value)} (${preset.label})`}
               >
-                {preset.label} ({preset.value / 1000}k)
+                <span className="preset-name">{shortTitle}</span>
+                <span className="preset-chip-val">{priceTag}</span>
               </button>
             );
           })}
-          {targetBudget > 0 && (
-            <button
-              type="button"
-              className="btn-budget-preset btn-clear-preset"
-              onClick={() => {
-                onBudgetChange(0);
-                setCustomInputValue('');
-              }}
-              title="Clear budget limit"
-            >
-              Clear
-            </button>
-          )}
         </div>
       </div>
 
