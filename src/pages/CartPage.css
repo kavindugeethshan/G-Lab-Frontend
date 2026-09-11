@@ -879,6 +879,20 @@
             gap: 16px;
         }
 
+        .search-order-grid {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: end;
+            gap: 14px;
+            margin-top: 14px;
+        }
+
+        @media (max-width: 640px) {
+            .search-order-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .form-group label {
             display: block;
             font-size: 0.85rem;

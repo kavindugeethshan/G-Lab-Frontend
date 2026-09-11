@@ -693,7 +693,54 @@ export default function CartPage() {
         </div>
       </div>
 
-      {/* SECTION 2: MY ORDERS HISTORY & FILTERING */}
+      {/* SECTION 2: SEARCH ORDER BY ID */}
+      <div className="section-card">
+        <h3>🔍 Find Specific Order By ID</h3>
+        <form onSubmit={handleSearchOrder} className="grid-inputs search-order-grid">
+          <div className="form-group" style={{ margin: 0 }}>
+            <label htmlFor="searchOrderId">Order ID</label>
+            <input
+              type="text"
+              id="searchOrderId"
+              placeholder="Enter Order ID (e.g. 64a1b2c3...)"
+              value={searchOrderId}
+              onChange={(e) => setSearchOrderId(e.target.value)}
+            />
+          </div>
+          <button type="submit" className="btn btn-primary" style={{ height: '45px' }} disabled={isSearchingOrder}>
+            {isSearchingOrder ? 'Searching...' : 'Search Order'}
+          </button>
+        </form>
+
+        {searchResult && (
+          <div id="singleOrderResult" style={{ marginTop: '20px', padding: '20px', background: '#f8fafc', border: '1px solid var(--border-color)', borderRadius: '12px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
+              <h4 style={{ fontFamily: 'Outfit, sans-serif', color: '#2563eb', margin: 0 }}>
+                Order #{searchResult._id}
+              </h4>
+              <span className={`status-badge ${getStatusBadgeClass(searchResult.Orderstatus || searchResult.status || 'Pending')}`}>
+                {searchResult.Orderstatus || searchResult.status || 'Pending'}
+              </span>
+            </div>
+            <p style={{ marginTop: '10px' }}><strong>Payment Method:</strong> {searchResult.paymentMethod || 'Card'}</p>
+            <p><strong>Total Amount:</strong> Rs. {(searchResult.FinalTotal || searchResult.Total || 0).toLocaleString()}</p>
+            {((searchResult.Orderstatus || searchResult.status || '').toLowerCase() === 'pending' || (searchResult.Orderstatus || searchResult.status || '').toLowerCase() === 'confirmed') && (
+              <div style={{ marginTop: '14px' }}>
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  style={{ padding: '6px 14px', fontSize: '0.8rem' }}
+                  onClick={() => handleCancelOrder(searchResult._id)}
+                >
+                  Cancel Order
+                </button>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+
+      {/* SECTION 3: MY ORDERS HISTORY & FILTERING */}
       <div className="section-card" id="myOrdersSection">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', flexWrap: 'wrap', gap: '12px' }}>
           <h2>📦 My Order History</h2>
@@ -810,53 +857,6 @@ export default function CartPage() {
             })
           )}
         </div>
-      </div>
-
-      {/* SECTION 3: SEARCH ORDER BY ID */}
-      <div className="section-card">
-        <h3>🔍 Find Specific Order By ID</h3>
-        <form onSubmit={handleSearchOrder} className="grid-inputs" style={{ display: 'grid', gridTemplateColumns: '1fr auto', alignItems: 'end', gap: '14px', marginTop: '14px' }}>
-          <div className="form-group" style={{ margin: 0 }}>
-            <label htmlFor="searchOrderId">Order ID</label>
-            <input
-              type="text"
-              id="searchOrderId"
-              placeholder="Enter Order ID (e.g. 64a1b2c3...)"
-              value={searchOrderId}
-              onChange={(e) => setSearchOrderId(e.target.value)}
-            />
-          </div>
-          <button type="submit" className="btn btn-primary" style={{ height: '45px' }} disabled={isSearchingOrder}>
-            {isSearchingOrder ? 'Searching...' : 'Search Order'}
-          </button>
-        </form>
-
-        {searchResult && (
-          <div id="singleOrderResult" style={{ marginTop: '20px', padding: '20px', background: '#f8fafc', border: '1px solid var(--border-color)', borderRadius: '12px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
-              <h4 style={{ fontFamily: 'Outfit, sans-serif', color: '#2563eb', margin: 0 }}>
-                Order #{searchResult._id}
-              </h4>
-              <span className={`status-badge ${getStatusBadgeClass(searchResult.Orderstatus || searchResult.status || 'Pending')}`}>
-                {searchResult.Orderstatus || searchResult.status || 'Pending'}
-              </span>
-            </div>
-            <p style={{ marginTop: '10px' }}><strong>Payment Method:</strong> {searchResult.paymentMethod || 'Card'}</p>
-            <p><strong>Total Amount:</strong> Rs. {(searchResult.FinalTotal || searchResult.Total || 0).toLocaleString()}</p>
-            {((searchResult.Orderstatus || searchResult.status || '').toLowerCase() === 'pending' || (searchResult.Orderstatus || searchResult.status || '').toLowerCase() === 'confirmed') && (
-              <div style={{ marginTop: '14px' }}>
-                <button
-                  type="button"
-                  className="btn btn-danger"
-                  style={{ padding: '6px 14px', fontSize: '0.8rem' }}
-                  onClick={() => handleCancelOrder(searchResult._id)}
-                >
-                  Cancel Order
-                </button>
-              </div>
-            )}
-          </div>
-        )}
       </div>
 
       {/* CANCEL ORDER CONFIRMATION MODAL */}
