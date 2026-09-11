@@ -295,7 +295,7 @@ export default function HomePage() {
               Discover the latest components engineered to power your ultimate setup.
             </p>
             <div className="cinematic-banner-actions">
-              <Link to="/products" className="btn btn-primary banner-cta-btn">
+              <Link to="/products?category=Hardware" className="btn btn-primary banner-cta-btn">
                 <i className="fa-solid fa-fire"></i> Shop High Performance
               </Link>
             </div>
@@ -304,7 +304,7 @@ export default function HomePage() {
       </section>
 
       {/* 6. NEXT-GEN HARDWARE GRID */}
-      <section className="featured-section" style={{ paddingTop: '20px', paddingBottom: '60px' }}>
+      <section className="featured-section" id="hardwareSection" style={{ paddingTop: '20px', paddingBottom: '60px' }}>
         <div className="featured-container">
           {loading ? (
             <p style={{ textAlign: 'center', color: 'var(--text-muted)', padding: '40px' }}>Loading components...</p>
@@ -319,8 +319,8 @@ export default function HomePage() {
           )}
 
           <div style={{ textAlign: 'center' }}>
-            <Link to="/products" className="btn btn-outline" style={{ padding: '12px 30px', fontSize: '0.95rem' }}>
-              View All Products <i className="fa-solid fa-arrow-right"></i>
+            <Link to="/products?category=Hardware" className="btn btn-outline" style={{ padding: '12px 30px', fontSize: '0.95rem' }}>
+              View All Hardware <i className="fa-solid fa-arrow-right"></i>
             </Link>
           </div>
         </div>

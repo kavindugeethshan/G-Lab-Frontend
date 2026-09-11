@@ -76,7 +76,7 @@
   background: linear-gradient(90deg, #38bdf8 0%, #10b981 100%);
 }
 
-.hero-badge {
+.pc-builder-hero .hero-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
@@ -93,12 +93,12 @@
   box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
 }
 
-.hero-badge i {
+.pc-builder-hero .hero-badge i {
   font-size: 0.85rem;
   filter: drop-shadow(0 0 4px var(--pcb-accent-cyan));
 }
 
-.hero-title {
+.pc-builder-hero .hero-title {
   font-family: var(--font-heading, 'Outfit', sans-serif);
   font-size: 2.5rem;
   font-weight: 800;
@@ -110,7 +110,7 @@
   text-shadow: 0 0 35px rgba(56, 189, 248, 0.15);
 }
 
-.hero-description {
+.pc-builder-hero .hero-description {
   color: var(--pcb-text-secondary);
   font-size: 0.94rem;
   line-height: 1.6;
@@ -118,7 +118,7 @@
   max-width: 820px;
 }
 
-.hero-actions {
+.pc-builder-hero .hero-actions {
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -2862,7 +2862,7 @@
     gap: 1.25rem;
   }
 
-  .hero-title {
+  .pc-builder-hero .hero-title {
     font-size: clamp(1.45rem, 5.5vw, 1.85rem);
     letter-spacing: -0.01em;
     word-break: normal;
@@ -2872,14 +2872,14 @@
     line-height: 1.15;
   }
 
-  .hero-actions {
+  .pc-builder-hero .hero-actions {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
     gap: 0.6rem;
   }
 
-  .hero-actions .btn-modern-hero {
+  .pc-builder-hero .hero-actions .btn-modern-hero {
     flex: 1 1 calc(50% - 0.3rem);
     justify-content: center;
     padding: 0.65rem 0.85rem;
@@ -5945,7 +5945,7 @@
     padding: 1.25rem 1rem;
   }
 
-  .hero-title {
+  .pc-builder-hero .hero-title {
     font-size: 1.6rem;
   }
 
@@ -5979,7 +5979,7 @@
 
 /* Specific small phones: 360px - 390px */
 @media (max-width: 390px) {
-  .hero-title {
+  .pc-builder-hero .hero-title {
     font-size: 1.4rem;
   }
 

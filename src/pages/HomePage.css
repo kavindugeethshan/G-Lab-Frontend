@@ -128,14 +128,20 @@ body {
     letter-spacing: 0.5px;
 }
 
+.hero-section .hero-title,
 .hero-title {
     font-family: 'Outfit', sans-serif;
     font-size: 3.2rem;
     font-weight: 800;
-    color: var(--text-main);
+    color: #0f172a !important;
+    -webkit-text-fill-color: #0f172a !important;
+    background: none !important;
     line-height: 1.15;
     margin-bottom: 18px;
     letter-spacing: -1px;
+    display: block;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 .hero-subtitle {
@@ -644,10 +650,13 @@ body {
         align-items: center;
     }
 
+    .hero-section .hero-title,
     .hero-title {
         font-size: clamp(2rem, 5.5vw, 2.5rem);
         line-height: 1.2;
         letter-spacing: -0.6px;
+        color: #0f172a !important;
+        -webkit-text-fill-color: #0f172a !important;
     }
 
     .hero-subtitle {
@@ -795,11 +804,14 @@ body {
         margin-bottom: 14px;
     }
 
+    .hero-section .hero-title,
     .hero-title {
         font-size: clamp(1.65rem, 6.5vw, 2rem);
         letter-spacing: -0.4px;
         line-height: 1.22;
         margin-bottom: 14px;
+        color: #0f172a !important;
+        -webkit-text-fill-color: #0f172a !important;
     }
 
     .hero-subtitle {

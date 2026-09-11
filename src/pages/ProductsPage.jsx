@@ -6,6 +6,7 @@ import './ProductsPage.css';
 
 const CATEGORIES = [
   { label: 'All Categories', value: '' },
+  { label: 'PC Hardware & Components', value: 'Hardware' },
   { label: 'Graphics Cards', value: 'Graphics Cards' },
   { label: 'Processors', value: 'Processors' },
   { label: 'Memory (RAM)', value: 'RAM' },
@@ -34,12 +35,20 @@ export default function ProductsPage() {
   const [limit, setLimit] = useState(Number(searchParams.get('limit')) || 12);
   const [page, setPage] = useState(Number(searchParams.get('page')) || 1);
 
+  // Synchronize page state from searchParams
+  useEffect(() => {
+    const urlPage = Number(searchParams.get('page')) || 1;
+    setPage(urlPage);
+  }, [searchParams]);
+
   const fetchProducts = useCallback(async () => {
     setLoading(true);
     try {
+      const currPage = Number(searchParams.get('page')) || page || 1;
+      const currLimit = Number(searchParams.get('limit')) || limit || 12;
       const params = {
-        limit,
-        page,
+        limit: currLimit,
+        page: currPage,
       };
 
       const currCat = searchParams.get('category');
@@ -69,7 +78,9 @@ export default function ProductsPage() {
       }
 
       setProducts(list);
-      setTotalProducts(data.pagination?.totalProducts || data.total || list.length);
+      // Read total count from backend totalProducts, total, pagination, or list length
+      const totalCount = Number(data.totalProducts ?? data.total ?? data.pagination?.totalProducts ?? list.length);
+      setTotalProducts(totalCount);
     } catch (err) {
       console.warn('Error loading products:', err?.message);
     } finally {
@@ -127,6 +138,28 @@ export default function ProductsPage() {
 
   const totalPages = Math.ceil(totalProducts / limit) || 1;
 
+  const handlePageChange = (newPage) => {
+    if (newPage < 1 || newPage > totalPages || newPage === page) return;
+    setPage(newPage);
+    const p = new URLSearchParams(searchParams);
+    p.set('page', String(newPage));
+    setSearchParams(p);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const getVisiblePageNumbers = (current, total) => {
+    if (total <= 5) {
+      return Array.from({ length: total }, (_, i) => i + 1);
+    }
+    if (current <= 3) {
+      return [1, 2, 3, 4, 5];
+    }
+    if (current >= total - 2) {
+      return [total - 4, total - 3, total - 2, total - 1, total];
+    }
+    return [current - 2, current - 1, current, current + 1, current + 2];
+  };
+
   return (
     <>
       <div className="page-container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '24px 20px 80px 20px' }}>
@@ -181,6 +214,16 @@ export default function ProductsPage() {
                 title="Show all products"
               >
                 <i className="fa-solid fa-layer-group"></i> All Categories
+              </button>
+
+              {/* PC Hardware Button */}
+              <button
+                type="button"
+                className={`btn btn-outline btn-all-categories ${category.toLowerCase() === 'hardware' ? 'active' : ''}`}
+                onClick={() => handleCategorySelect('Hardware')}
+                title="Show PC Hardware components"
+              >
+                <i className="fa-solid fa-microchip"></i> Hardware
               </button>
 
               <select
@@ -239,52 +282,35 @@ export default function ProductsPage() {
           {/* PAGINATION BAR */}
           <div className="pagination-bar" id="paginationBar">
             <div className="pagination-info">
-              Page {page} of {totalPages}
+              Page {page} of {totalPages} ({totalProducts} total items)
             </div>
             <div className="pagination-buttons">
               <button
                 type="button"
-                className="btn btn-outline btn-sm"
+                className="btn btn-outline btn-sm btn-prev-page"
                 disabled={page <= 1}
-                onClick={() => {
-                  const newPage = page - 1;
-                  setPage(newPage);
-                  const p = new URLSearchParams(searchParams);
-                  p.set('page', String(newPage));
-                  setSearchParams(p);
-                }}
+                onClick={() => handlePageChange(page - 1)}
+                title="Previous Page"
               >
                 &laquo; Prev
               </button>
-              {Array.from({ length: totalPages }).slice(0, 5).map((_, i) => {
-                const pgNum = i + 1;
-                return (
-                  <button
-                    key={pgNum}
-                    type="button"
-                    className={`btn ${page === pgNum ? 'btn-primary' : 'btn-outline'} btn-sm`}
-                    onClick={() => {
-                      setPage(pgNum);
-                      const p = new URLSearchParams(searchParams);
-                      p.set('page', String(pgNum));
-                      setSearchParams(p);
-                    }}
-                  >
-                    {pgNum}
-                  </button>
-                );
-              })}
+              {getVisiblePageNumbers(page, totalPages).map((pgNum) => (
+                <button
+                  key={pgNum}
+                  type="button"
+                  className={`page-num-btn ${page === pgNum ? 'active' : ''}`}
+                  onClick={() => handlePageChange(pgNum)}
+                  title={`Go to page ${pgNum}`}
+                >
+                  {pgNum}
+                </button>
+              ))}
               <button
                 type="button"
-                className="btn btn-outline btn-sm"
+                className="btn btn-outline btn-sm btn-next-page"
                 disabled={page >= totalPages}
-                onClick={() => {
-                  const newPage = page + 1;
-                  setPage(newPage);
-                  const p = new URLSearchParams(searchParams);
-                  p.set('page', String(newPage));
-                  setSearchParams(p);
-                }}
+                onClick={() => handlePageChange(page + 1)}
+                title="Next Page"
               >
                 Next &raquo;
               </button>
