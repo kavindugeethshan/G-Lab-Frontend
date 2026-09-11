@@ -82,6 +82,11 @@ export default function Navbar() {
             Products
           </NavLink>
         </li>
+        <li>
+          <NavLink to="/pc-builder" onClick={() => setMobileOpen(false)} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+            <i className="fa-solid fa-microchip" style={{ color: 'var(--pcb-accent-cyan, #38bdf8)' }}></i> PC Builder
+          </NavLink>
+        </li>
         {isAdmin && (
           <li>
             <NavLink to="/admin" onClick={() => setMobileOpen(false)} style={{ color: 'var(--accent-color)' }}>

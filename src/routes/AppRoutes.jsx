@@ -9,6 +9,7 @@ import ProfilePage from '../pages/ProfilePage';
 import EditProfilePage from '../pages/EditProfilePage';
 import AuthPage from '../pages/AuthPage';
 import AdminDashboardPage from '../pages/admin/AdminDashboardPage';
+import PCBuilderPage from '../pages/pc-builder/PCBuilderPage';
 import NotFoundPage from '../pages/NotFoundPage';
 import ProtectedRoute from './ProtectedRoute';
 import AdminRoute from './AdminRoute';
@@ -19,6 +20,7 @@ export default function AppRoutes() {
       <Route path="/" element={<HomePage />} />
       <Route path="/products" element={<ProductsPage />} />
       <Route path="/products/:id" element={<ProductDetailPage />} />
+      <Route path="/pc-builder" element={<PCBuilderPage />} />
       <Route path="/cart" element={<CartPage />} />
       <Route
         path="/checkout/payment/:paymentId"

@@ -51,20 +51,20 @@ export function CartProvider({ children }) {
     return () => window.removeEventListener('storage', handleStorage);
   }, [isAuthenticated, fetchCart]);
 
-  const addToCart = useCallback(async (productId, quantity = 1) => {
+  const addToCart = useCallback(async (productId, quantity = 1, silent = false) => {
     if (!isAuthenticated) {
-      showToast('Please sign in to add items to your cart.', 'error');
+      if (!silent) showToast('Please sign in to add items to your cart.', 'error');
       return false;
     }
 
     try {
       await cartService.addToCart(productId, quantity);
-      showToast('Item added to cart!', 'success');
+      if (!silent) showToast('Item added to cart!', 'success');
       await fetchCart();
       return true;
     } catch (err) {
       const msg = err.response?.data?.message || 'Failed to add item to cart';
-      showToast(msg, 'error');
+      if (!silent) showToast(msg, 'error');
       return false;
     }
   }, [isAuthenticated, fetchCart, showToast]);

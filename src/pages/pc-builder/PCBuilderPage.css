@@ -1,0 +1,6042 @@
+/* ==========================================================================
+   G-LAB PC BUILDER: MASTER STYLESHEET
+   Luxury Obsidian & Pitch Black Aesthetics, Neon Cyan & Emerald Accents
+   ========================================================================== */
+
+:root {
+  --pcb-bg-darkest: #090e17;
+  --pcb-bg-canvas: #f8fafc;
+  --pcb-bg-card: #090e17;
+  --pcb-bg-card-hover: #0e1627;
+  --pcb-border: rgba(255, 255, 255, 0.09);
+  --pcb-border-accent: rgba(56, 189, 248, 0.3);
+  --pcb-border-active: #38bdf8;
+  --pcb-accent-cyan: #38bdf8;
+  --pcb-accent-cyan-glow: rgba(56, 189, 248, 0.25);
+  --pcb-accent-emerald: #10b981;
+  --pcb-accent-emerald-glow: rgba(16, 185, 129, 0.25);
+  --pcb-accent-amber: #f59e0b;
+  --pcb-accent-rose: #f43f5e;
+  --pcb-text-primary: #f8fafc;
+  --pcb-text-secondary: #94a3b8;
+  --pcb-text-muted: #64748b;
+  --pcb-radius: 14px;
+  --pcb-radius-sm: 8px;
+  --pcb-radius-lg: 20px;
+  --pcb-card-shadow: 0 10px 30px rgba(15, 23, 42, 0.12), 0 2px 8px rgba(15, 23, 42, 0.06);
+}
+
+/* Studio Canvas Wrapper: Clean White Background matching all site pages */
+.glab-pc-builder-page-wrapper {
+  width: 100%;
+  min-height: calc(100vh - 75px);
+  background-color: var(--bg-color, #f8fafc);
+  background-image: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+  color: var(--pcb-text-primary);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Page Outer Container */
+.glab-pc-builder-page {
+  width: 100%;
+  max-width: 1540px;
+  margin: 0 auto;
+  padding: 1.75rem 1.5rem 5rem 1.5rem;
+  color: var(--pcb-text-primary);
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+/* --------------------------------------------------------------------------
+   1. HERO HEADER (Modern Luxury Obsidian)
+   -------------------------------------------------------------------------- */
+.pc-builder-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.75rem;
+  background: #090e17;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 2rem 2.25rem;
+  border-radius: var(--pcb-radius-lg);
+  margin-bottom: 1.5rem;
+  box-shadow: 0 12px 36px rgba(15, 23, 42, 0.12), 0 2px 8px rgba(15, 23, 42, 0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+.pc-builder-hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #38bdf8 0%, #10b981 100%);
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  color: var(--pcb-accent-cyan);
+  padding: 0.35rem 0.95rem;
+  border-radius: 20px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
+}
+
+.hero-badge i {
+  font-size: 0.85rem;
+  filter: drop-shadow(0 0 4px var(--pcb-accent-cyan));
+}
+
+.hero-title {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.6px;
+  margin: 0 0 0.5rem 0;
+  background: linear-gradient(135deg, #ffffff 30%, #cbd5e1 70%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 35px rgba(56, 189, 248, 0.15);
+}
+
+.hero-description {
+  color: var(--pcb-text-secondary);
+  font-size: 0.94rem;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 820px;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.btn-saved-builds-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #f1f5f9;
+  padding: 0.6rem 1.15rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.84rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-saved-builds-trigger:hover {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: var(--pcb-accent-cyan);
+  color: #ffffff;
+  box-shadow: 0 0 16px var(--pcb-accent-cyan-glow);
+  transform: translateY(-1px);
+}
+
+.btn-clear-rig {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(244, 63, 94, 0.08);
+  border: 1px solid rgba(244, 63, 94, 0.25);
+  color: #fca5a5;
+  padding: 0.6rem 1.15rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.84rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-clear-rig:hover {
+  background: rgba(244, 63, 94, 0.2);
+  border-color: #f87171;
+  color: #ffffff;
+  box-shadow: 0 0 16px rgba(244, 63, 94, 0.3);
+  transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
+   2. MODE SELECTOR (Modern Luxury 3-Card Segmented Switcher)
+   -------------------------------------------------------------------------- */
+.builder-mode-switcher-container {
+  margin-bottom: 1.5rem;
+}
+
+.builder-mode-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.mode-tab-btn {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem 1.35rem;
+  background: #090e17;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--pcb-radius);
+  color: var(--pcb-text-primary);
+  text-align: left;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+.mode-tab-btn:hover {
+  border-color: rgba(56, 189, 248, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.15);
+  background: #0d1424;
+}
+
+.mode-tab-btn.active {
+  background: #0c1527;
+  border-color: #38bdf8;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.16), 0 0 20px rgba(56, 189, 248, 0.2);
+}
+
+.mode-tab-btn.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #38bdf8, #10b981);
+}
+
+.mode-tab-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.04);
+  color: #94a3b8;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.2s ease;
+}
+
+.mode-tab-btn:hover .mode-tab-icon {
+  color: #38bdf8;
+  border-color: rgba(56, 189, 248, 0.3);
+}
+
+.mode-tab-btn.active .mode-tab-icon {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+}
+
+.mode-tab-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.mode-tab-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.mode-tab-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  letter-spacing: -0.2px;
+}
+
+.mode-tab-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.18rem 0.55rem;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #94a3b8;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  white-space: nowrap;
+}
+
+.mode-tab-btn.active .mode-tab-badge {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border-color: rgba(56, 189, 248, 0.3);
+}
+
+.mode-tab-desc {
+  font-size: 0.81rem;
+  color: #64748b;
+  line-height: 1.45;
+  display: block;
+  transition: color 0.2s ease;
+}
+
+.mode-tab-btn:hover .mode-tab-desc {
+  color: #94a3b8;
+}
+
+.mode-tab-btn.active .mode-tab-desc {
+  color: #cbd5e1;
+}
+
+/* --------------------------------------------------------------------------
+   3. ASSEMBLY PROGRESS (10-Step Guided Stream)
+   -------------------------------------------------------------------------- */
+.assembly-progress-container {
+  background: #090e17;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--pcb-radius);
+  padding: 1.15rem 1.35rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+.assembly-progress-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 0.95rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.progress-tally {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.tally-count {
+  font-size: 0.88rem;
+  color: #cbd5e1;
+  font-weight: 500;
+}
+
+.tally-count strong {
+  color: #38bdf8;
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+
+.tally-percentage {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.65rem;
+  border-radius: 20px;
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  letter-spacing: 0.3px;
+}
+
+.progress-legend {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 500;
+}
+
+.legend-sym {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.legend-sym.check {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.legend-sym.arrow {
+  background: rgba(56, 189, 248, 0.2);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+}
+
+.legend-sym.pending {
+  background: rgba(255, 255, 255, 0.06);
+  color: #64748b;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.legend-sym.error {
+  background: rgba(244, 63, 94, 0.2);
+  color: #f43f5e;
+  border: 1px solid rgba(244, 63, 94, 0.4);
+}
+
+.assembly-progress-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(56, 189, 248, 0.25) transparent;
+  padding-bottom: 0.35rem;
+}
+
+.assembly-progress-bar::-webkit-scrollbar {
+  height: 5px;
+}
+
+.assembly-progress-bar::-webkit-scrollbar-thumb {
+  background: rgba(56, 189, 248, 0.25);
+  border-radius: 4px;
+}
+
+.assembly-progress-bar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.assembly-step-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+  padding: 0.45rem 0.85rem;
+  border-radius: 24px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.assembly-step-pill:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.assembly-step-pill.state-completed {
+  background: rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.35);
+  color: #f1f5f9;
+}
+
+.assembly-step-pill.state-completed .step-symbol {
+  color: #10b981;
+  font-weight: 800;
+}
+
+.assembly-step-pill.is-current {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: #38bdf8;
+  color: #ffffff;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.3);
+  font-weight: 700;
+}
+
+.assembly-step-pill.is-current .step-symbol {
+  color: #38bdf8;
+  font-weight: 800;
+}
+
+.assembly-step-pill.state-error {
+  background: rgba(244, 63, 94, 0.1);
+  border-color: rgba(244, 63, 94, 0.5);
+  color: #fca5a5;
+}
+
+.assembly-step-pill.state-error .step-symbol {
+  color: #f43f5e;
+  font-weight: 800;
+}
+
+.step-symbol {
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.step-name {
+  letter-spacing: 0.2px;
+}
+
+.step-part-badge {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  font-size: 0.68rem;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  font-weight: 700;
+  max-width: 90px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   4. MOBILE VIEW TABS (Hidden on Desktop)
+   -------------------------------------------------------------------------- */
+.mobile-view-tabs {
+  display: none;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  background: var(--pcb-bg-card);
+  border: 1px solid var(--pcb-border);
+  padding: 0.5rem;
+  border-radius: var(--pcb-radius);
+  margin-bottom: 1.25rem;
+}
+
+.mobile-tab-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.6rem 0.4rem;
+  background: transparent;
+  border: none;
+  color: var(--pcb-text-secondary);
+  border-radius: var(--pcb-radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mobile-tab-btn i {
+  font-size: 1rem;
+}
+
+.mobile-tab-btn.active {
+  background: var(--pcb-accent-cyan);
+  color: #070b14;
+}
+
+/* --------------------------------------------------------------------------
+   5. WORKSPACE LAYOUT (2 Columns on Desktop)
+   -------------------------------------------------------------------------- */
+.pc-builder-workspace {
+  display: grid;
+  grid-template-columns: 460px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.builder-sidebar-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.builder-main-column {
+  min-width: 0;
+  /* Prevents overflow in CSS Grid */
+}
+
+/* --------------------------------------------------------------------------
+   6. INTERACTIVE 3D CHASSIS & LIVE ASSEMBLY RIG (REALISTIC PHYSICAL SHADERS)
+   -------------------------------------------------------------------------- */
+:root {
+  --amber: #ffb454;
+  --amber-glow: rgba(255, 180, 84, .55);
+  --cyan: #6fe3ff;
+  --cyan-glow: rgba(111, 227, 255, .45);
+  --metal-lo: #5b6472;
+  --metal-hi: #d7dee6;
+  --pcb: #0d2a1c;
+  --gold: #d9b45c;
+}
+
+.pc-build-visualizer.realistic-rig-mode {
+  background: linear-gradient(180deg, #0b0e15 0%, #080a10 100%);
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, .6), inset 0 1px 0 rgba(255, 255, 255, .03);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+/* ---------- Rig Header ---------- */
+.rig-header-realistic {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.rig-title-block h2 {
+  font-size: 0.98rem;
+  margin: 0;
+  color: #ffffff;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+
+.rig-sub-caption {
+  font-size: 0.68rem;
+  color: #7c8798;
+  font-family: 'JetBrains Mono', monospace;
+  display: block;
+}
+
+.rig-controls-realistic {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rig-angle-toggle {
+  display: flex;
+  background: #03050a;
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 14px;
+  padding: 2px;
+  gap: 2px;
+}
+
+.rig-angle-toggle button {
+  background: transparent;
+  border: none;
+  color: #7c8798;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 11px;
+  cursor: pointer;
+  font-family: 'JetBrains Mono', monospace;
+  transition: 0.2s;
+}
+
+.rig-angle-toggle button:hover {
+  color: #ffffff;
+}
+
+.rig-angle-toggle button.active {
+  background: rgba(111, 227, 255, .14);
+  color: var(--cyan);
+  box-shadow: 0 0 10px rgba(111, 227, 255, .15);
+}
+
+.pwr-realistic-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, .04);
+  border: 1px solid rgba(255, 255, 255, .1);
+  padding: 6px 12px;
+  border-radius: 14px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #8b95a4;
+  cursor: pointer;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.4px;
+  transition: 0.3s;
+}
+
+.pwr-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #3a4150;
+  transition: 0.3s;
+}
+
+.pwr-realistic-btn.on {
+  color: #8fffc7;
+  border-color: rgba(80, 255, 170, .35);
+  background: rgba(80, 255, 170, .08);
+}
+
+.pwr-realistic-btn.on .pwr-dot {
+  background: #4dff9e;
+  box-shadow: 0 0 8px #4dff9e;
+}
+
+.pwr-realistic-btn.disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.rig-glass-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: #060911;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 6px 10px;
+  border-radius: 12px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #7c8798;
+  cursor: pointer;
+  font-family: 'JetBrains Mono', monospace;
+  transition: all 0.2s ease;
+}
+
+.rig-glass-toggle-btn:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.rig-glass-toggle-btn.active {
+  color: var(--cyan);
+  border-color: rgba(111, 227, 255, 0.4);
+  background: rgba(111, 227, 255, 0.08);
+  box-shadow: 0 0 10px rgba(111, 227, 255, 0.15);
+}
+
+/* ---------- Viewport ---------- */
+.rig-viewport-realistic {
+  position: relative;
+  aspect-ratio: 1 / 1.08;
+  border-radius: 14px;
+  background: radial-gradient(circle at 50% 20%, #10131c 0%, #020306 75%);
+  border: 1px solid rgba(255, 255, 255, .05);
+  box-shadow: inset 0 0 70px rgba(0, 0, 0, .9);
+  overflow: hidden;
+  perspective: 1400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* subtle desk light falloff */
+.rig-viewport-realistic::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 40;
+  background: radial-gradient(ellipse at 30% 0%, rgba(255, 255, 255, .05), transparent 55%);
+}
+
+.rig-stage-realistic {
+  width: 90%;
+  height: 94%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.25, 1);
+}
+
+/* ---------- Case Shell : Brushed Aluminum ---------- */
+.case-shell-realistic {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  padding: 12px;
+  transform-style: preserve-3d;
+  background:
+    repeating-linear-gradient(100deg, rgba(255, 255, 255, .05) 0px, transparent 1px, transparent 3px),
+    linear-gradient(160deg, #1c212b 0%, #0a0d13 55%, #14161d 100%);
+  border: 1px solid rgba(255, 255, 255, .09);
+  box-shadow:
+    inset 0 2px 1px rgba(255, 255, 255, .08),
+    inset 0 -30px 60px rgba(0, 0, 0, .8),
+    0 25px 45px rgba(0, 0, 0, .7);
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.case-shell-realistic.empty-case {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-style: dashed;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.empty-rig-placeholder {
+  text-align: center;
+  color: #64748b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.empty-rig-placeholder i {
+  font-size: 2rem;
+  color: var(--cyan);
+  opacity: 0.6;
+}
+
+.empty-rig-placeholder strong {
+  color: #e2e8f0;
+  font-size: 0.92rem;
+}
+
+.empty-rig-placeholder span {
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+/* Tempered Glass Side Panel — light sweep on hover, real reflection */
+.glass-panel-realistic {
+  position: absolute;
+  inset: 6px;
+  border-radius: 9px;
+  z-index: 30;
+  pointer-events: none;
+  transform: translateZ(60px);
+  border: 1px solid rgba(255, 255, 255, .14);
+  background: linear-gradient(128deg, rgba(255, 255, 255, .10) 0%, rgba(255, 255, 255, .02) 30%, transparent 55%);
+  overflow: hidden;
+  transition: transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s ease;
+}
+
+.glass-panel-realistic::after {
+  content: '';
+  position: absolute;
+  top: -40%;
+  left: -20%;
+  width: 35%;
+  height: 220%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .10), transparent);
+  transform: rotate(22deg);
+  animation: sweep 7s ease-in-out infinite;
+}
+
+/* Detached / Opened Glass Panel */
+.case-shell-realistic.glass-open .glass-panel-realistic {
+  transform: translateZ(90px) rotateY(-40deg) translateX(30px);
+  opacity: 0.25;
+}
+
+@keyframes sweep {
+  0%, 60% { left: -30%; }
+  100% { left: 120%; }
+}
+
+/* ---------- Motherboard : Etched PCB ---------- */
+.mobo-realistic {
+  position: relative;
+  transform: translateZ(6px);
+  border-radius: 8px;
+  padding: 10px;
+  background:
+    repeating-linear-gradient(90deg, rgba(217, 180, 92, .05) 0 1px, transparent 1px 9px),
+    repeating-linear-gradient(0deg, rgba(217, 180, 92, .04) 0 1px, transparent 1px 11px),
+    linear-gradient(160deg, #0f2b1d, #081a12 70%);
+  border: 1px solid rgba(80, 220, 150, .15);
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, .65);
+  transform-style: preserve-3d;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobo-realistic.empty-mobo {
+  border-style: dashed;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobo-realistic-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #6ee7b7;
+  letter-spacing: 0.4px;
+  display: block;
+  margin-bottom: 8px;
+  opacity: 0.95;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* EZ-debug style LED readout — real boot behavior */
+.debug-led-realistic {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 20;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  font-size: 0.82rem;
+  color: #3a2f18;
+  background: #0a0906;
+  border: 1px solid rgba(255, 180, 84, .15);
+  padding: 3px 7px;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  transition: color 0.2s, text-shadow 0.2s;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.realistic-rig-mode.on .debug-led-realistic {
+  color: var(--amber);
+  text-shadow: 0 0 8px var(--amber-glow);
+}
+
+.realistic-rig-mode.on .debug-led-realistic.done {
+  color: #5fff9e;
+  text-shadow: 0 0 8px rgba(95, 255, 158, .6);
+}
+
+/* VRM heatsinks — brushed metal fins */
+.vrm-realistic {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 34px;
+  height: 58px;
+  border-radius: 3px;
+  background: repeating-linear-gradient(180deg, var(--metal-hi) 0 2px, var(--metal-lo) 2px 4px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, .6), inset 0 0 4px rgba(0, 0, 0, .4);
+}
+
+/* CPU + cooler fan — real motion blur when spinning */
+.cpu-block-realistic {
+  position: absolute;
+  top: 8px;
+  left: 52px;
+  width: 74px;
+  height: 74px;
+  transform: translateZ(22px);
+  cursor: pointer;
+  transform-style: preserve-3d;
+}
+
+.cpu-die-realistic {
+  position: absolute;
+  inset: 0;
+  border-radius: 6px;
+  background: linear-gradient(160deg, #3a3f47, #111318);
+  border: 1px solid rgba(255, 255, 255, .12);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, .7), inset 0 1px 0 rgba(255, 255, 255, .15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cpu-empty-cue {
+  font-size: 0.65rem;
+  color: #94a3b8;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.fan-realistic {
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #2a3542, #05070a 70%);
+  border: 1px solid rgba(111, 227, 255, .25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .5), inset 0 0 12px rgba(0, 0, 0, .8);
+}
+
+.blades-realistic {
+  width: 82%;
+  height: 82%;
+  border-radius: 50%;
+  background:
+    conic-gradient(from 0deg,
+      #232a35 0deg 24deg, transparent 24deg 66deg,
+      #232a35 66deg 90deg, transparent 90deg 132deg,
+      #232a35 132deg 156deg, transparent 156deg 198deg,
+      #232a35 198deg 222deg, transparent 222deg 264deg,
+      #232a35 264deg 288deg, transparent 288deg 330deg,
+      #232a35 330deg 354deg, transparent 354deg 360deg);
+  animation: spin 1.8s linear infinite paused;
+}
+
+.realistic-rig-mode.on .blades-realistic {
+  animation-play-state: running;
+  animation-duration: 0.35s;
+}
+
+.realistic-rig-mode.spinning-up .blades-realistic {
+  animation-play-state: running;
+  animation-duration: 1.4s;
+}
+
+/* motion-blur ring appears only once at full speed */
+.fan-realistic::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  opacity: 0;
+  background: radial-gradient(circle, transparent 55%, rgba(255, 255, 255, .05) 58%, transparent 62%);
+  transition: opacity 0.4s;
+}
+
+.realistic-rig-mode.on .fan-realistic::after {
+  opacity: 1;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.hub-realistic {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #8fefff, #0a2a33 75%);
+  box-shadow: 0 0 0 transparent;
+}
+
+.realistic-rig-mode.on .hub-realistic {
+  box-shadow: 0 0 14px var(--cyan-glow);
+}
+
+/* RAM — RGB diffuser, real gradual light-up not instant glow */
+.ram-cluster-realistic {
+  position: absolute;
+  top: 14px;
+  right: 50px;
+  display: flex;
+  gap: 4px;
+  transform: translateZ(16px);
+  cursor: pointer;
+}
+
+.stick-realistic {
+  width: 7px;
+  height: 56px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #1a1e27, #0a0c11);
+  border: 1px solid rgba(255, 255, 255, .08);
+  position: relative;
+  overflow: hidden;
+}
+
+.stick-realistic::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border-radius: 1px;
+  opacity: 0;
+  background: linear-gradient(180deg, var(--cyan), #b06fff 50%, var(--amber));
+  filter: blur(2px);
+  transition: opacity 1.1s ease 0.3s;
+}
+
+.realistic-rig-mode.on .stick-realistic.installed::after {
+  opacity: 0.75;
+  animation: hue 6s linear infinite;
+}
+
+@keyframes hue {
+  to {
+    filter: blur(2px) hue-rotate(360deg);
+  }
+}
+
+/* M.2 Heatsink Shield */
+.m2-shield-realistic {
+  position: absolute;
+  bottom: 58px;
+  left: 52px;
+  background: linear-gradient(90deg, #1e293b 0%, #0f172a 100%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 3px;
+  padding: 2px 7px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #cbd5e1;
+  transform: translateZ(12px);
+  cursor: pointer;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* GPU — brushed shroud, backplate, triple fan, power-connector glow */
+.gpu-realistic {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  height: 44px;
+  transform: translateZ(40px);
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .06), transparent 30%),
+    repeating-linear-gradient(95deg, rgba(255, 255, 255, .035) 0 1px, transparent 1px 3px),
+    linear-gradient(160deg, #232936, #0b0d12 80%);
+  border: 1px solid rgba(111, 227, 255, .2);
+  box-shadow: 0 14px 26px rgba(0, 0, 0, .75);
+  cursor: pointer;
+}
+
+.gpu-realistic.empty-gpu {
+  border-style: dashed;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.gpu-empty-cue {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #cbd5e1;
+  font-family: 'JetBrains Mono', monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.gpu-fans-trio-realistic {
+  display: flex;
+  gap: 5px;
+}
+
+.gfan-realistic {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #05070a;
+  border: 1px solid rgba(255, 255, 255, .1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gfan-realistic .blades-realistic {
+  width: 80%;
+  height: 80%;
+}
+
+.gpu-name-realistic {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 140px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.power-conn-realistic {
+  width: 16px;
+  height: 8px;
+  border-radius: 2px;
+  background: #111;
+  border: 1px solid rgba(255, 180, 84, .2);
+  transition: all 0.3s ease;
+}
+
+.realistic-rig-mode.on .power-conn-realistic {
+  box-shadow: 0 0 8px var(--amber-glow);
+  border-color: var(--amber);
+}
+
+/* PSU + cables — real sag via bezier path, braided texture */
+.psu-realistic {
+  position: relative;
+  transform: translateZ(4px);
+  transform-style: preserve-3d;
+  z-index: 20;
+  border-radius: 8px;
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(160deg, #161a22, #08090d);
+  border: 1px solid rgba(255, 255, 255, .08);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, .7);
+  cursor: pointer;
+}
+
+.psu-fan-realistic {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #05070a;
+  border: 1px solid rgba(255, 255, 255, .1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.psu-fan-realistic .blades-realistic {
+  width: 78%;
+  height: 78%;
+}
+
+.psu-text-realistic strong {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #f8fafc;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.psu-text-realistic span {
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: #94a3b8;
+  font-family: 'JetBrains Mono', monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.cables-realistic {
+  position: absolute;
+  right: 8px;
+  bottom: -2px;
+  width: 60px;
+  height: 22px;
+}
+
+.cables-realistic svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.cables-realistic path {
+  fill: none;
+  stroke: #1c2028;
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+.cables-realistic path.cable-core {
+  stroke: #0a0c10;
+  stroke-width: 3;
+}
+
+/* Boot Progress Readout Footer */
+.rig-footer-realistic {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: #6d7684;
+}
+
+.rig-footer-realistic .status-realistic {
+  color: #4dff9e;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-weight: 700;
+}
+
+.realistic-rig-mode.on .rig-footer-realistic .status-realistic {
+  opacity: 1;
+}
+
+.telemetry-highlight strong {
+  color: var(--cyan);
+}
+
+/* ---------- 9-Point Hotspot Pins for Manual Assembly ---------- */
+.rig-hotspot-pin {
+  position: absolute;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #080d17;
+  border: 1.5px solid rgba(111, 227, 255, 0.4);
+  /* REMOVED backdrop-filter: blur(8px) which causes text rasterization blur in 3D */
+  padding: 4px 9px 4px 6px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  transform: translateZ(95px);
+  font-family: 'JetBrains Mono', monospace;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.9), 0 0 10px rgba(111, 227, 255, 0.2);
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  backface-visibility: hidden;
+}
+
+.rig-hotspot-pin:hover,
+.rig-hotspot-pin.hovered {
+  transform: translateZ(140px) scale(1.06);
+  border-color: #6fe3ff;
+  box-shadow: 0 0 20px rgba(111, 227, 255, 0.6), 0 8px 25px rgba(0, 0, 0, 0.95);
+  background: #0d1525;
+}
+
+.rig-hotspot-pin.installed {
+  border-color: rgba(52, 211, 153, 0.5);
+}
+
+.rig-hotspot-pin.installed:hover,
+.rig-hotspot-pin.installed.hovered {
+  border-color: #34d399;
+  box-shadow: 0 0 20px rgba(52, 211, 153, 0.55), 0 8px 25px rgba(0, 0, 0, 0.95);
+}
+
+.rig-hotspot-pin.installed .beacon-dot {
+  background: #10b981;
+  color: #03140a;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.85);
+}
+
+.rig-hotspot-pin.empty .beacon-dot {
+  background: rgba(255, 180, 84, 0.25);
+  color: var(--amber);
+  border: 1px solid rgba(255, 180, 84, 0.7);
+  box-shadow: 0 0 6px rgba(255, 180, 84, 0.5);
+}
+
+.pin-beacon {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.beacon-ring {
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1px solid rgba(111, 227, 255, 0.5);
+  animation: pulse-ring 2.5s infinite;
+  opacity: 0.7;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); opacity: 0.85; }
+  70% { transform: scale(1.6); opacity: 0; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+.beacon-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.58rem;
+  font-weight: 900;
+}
+
+.pin-card {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+  text-align: left;
+}
+
+.pin-title {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.pin-brand {
+  font-size: 0.62rem;
+  font-weight: 700;
+  white-space: nowrap;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.rig-hotspot-pin.installed .pin-brand {
+  color: #34d399;
+}
+
+.rig-hotspot-pin.empty .pin-brand {
+  color: var(--amber);
+}
+
+/* ---------- Large Readable Popover (Opens on Point / Hover / Focus) ---------- */
+.pin-large-popover {
+  position: absolute;
+  z-index: 100;
+  width: 250px;
+  max-width: min(270px, 80vw);
+  background: #090e1a;
+  border: 1.5px solid rgba(111, 227, 255, 0.55);
+  border-radius: 12px;
+  padding: 12px 14px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.95), 0 0 25px rgba(111, 227, 255, 0.25);
+  pointer-events: auto;
+  cursor: pointer;
+  text-align: left;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  color: #f1f5f9;
+  animation: popover-fade-in 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  backface-visibility: hidden;
+}
+
+.pin-large-popover.installed {
+  border-color: rgba(52, 211, 153, 0.65);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.95), 0 0 25px rgba(52, 211, 153, 0.25);
+}
+
+.pin-large-popover.empty {
+  border-color: rgba(255, 180, 84, 0.6);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.95), 0 0 25px rgba(255, 180, 84, 0.2);
+}
+
+@keyframes popover-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Slot-Specific Popover Placements (Always within Chassis Boundaries) */
+.popover-pos-pcCase {
+  top: calc(100% + 8px);
+  left: 0;
+  transform: translateZ(160px);
+}
+
+.popover-pos-fans {
+  top: calc(100% + 8px);
+  right: 0;
+  left: auto;
+  transform: translateZ(160px);
+}
+
+.popover-pos-motherboard {
+  top: calc(100% + 6px);
+  left: 0;
+  transform: translateZ(160px);
+}
+
+.popover-pos-cpu {
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateZ(160px);
+}
+
+.popover-pos-cooler {
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateZ(160px);
+}
+
+.popover-pos-ram {
+  top: calc(100% + 6px);
+  right: 0;
+  left: auto;
+  transform: translateZ(160px);
+}
+
+.popover-pos-storage {
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateZ(160px);
+}
+
+.popover-pos-gpu {
+  bottom: calc(100% + 8px);
+  right: 0;
+  left: auto;
+  transform: translateZ(160px);
+}
+
+.popover-pos-psu {
+  bottom: calc(100% + 10px);
+  left: 0;
+  right: auto;
+  transform: translateZ(160px);
+}
+
+.popover-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.popover-slot-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #6fe3ff;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.popover-status-pill {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.58rem;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.4px;
+}
+
+.popover-status-pill.mounted {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.5);
+}
+
+.popover-status-pill.empty {
+  background: rgba(255, 180, 84, 0.16);
+  color: #ffb454;
+  border: 1px solid rgba(255, 180, 84, 0.4);
+}
+
+.popover-title-row {
+  margin-bottom: 6px;
+}
+
+.popover-product-name {
+  font-size: 0.94rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.28;
+  margin: 0;
+  word-break: break-word;
+  -webkit-font-smoothing: antialiased;
+}
+
+.popover-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.popover-price-label {
+  font-size: 0.66rem;
+  color: #94a3b8;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.popover-price-val {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #4ade80;
+  font-family: 'JetBrains Mono', monospace;
+  -webkit-font-smoothing: antialiased;
+}
+
+.popover-specs-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.popover-spec-chip {
+  font-size: 0.62rem;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.08);
+  color: #cbd5e1;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  -webkit-font-smoothing: antialiased;
+}
+
+.popover-empty-desc {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  line-height: 1.35;
+  margin: 4px 0 8px 0;
+}
+
+.popover-cta-action {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.66rem;
+  font-weight: 800;
+  color: #6fe3ff;
+  padding-top: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  letter-spacing: 0.2px;
+  font-family: 'JetBrains Mono', monospace;
+  -webkit-font-smoothing: antialiased;
+}
+
+.popover-cta-action.install {
+  color: #ffb454;
+}
+
+/* Specific Slot Positioning for the 9 Components (Non-Overlapping) */
+.pin-case {
+  top: 6px;
+  left: 10px;
+}
+
+.pin-fans {
+  top: 4px;
+  right: 12px;
+}
+
+.pin-motherboard {
+  top: 38px;
+  left: 6px;
+}
+
+.pin-cpu {
+  top: 14px;
+  left: 132px;
+}
+
+.pin-cooler {
+  top: 54px;
+  left: 132px;
+}
+
+.pin-ram {
+  top: 76px;
+  right: 32px;
+}
+
+.pin-storage {
+  bottom: 58px;
+  left: 118px;
+}
+
+.pin-gpu {
+  bottom: 8px;
+  right: 8px;
+}
+
+.pin-psu {
+  bottom: 16px;
+  left: 16px;
+}
+
+/* Top Exhaust Fan Array */
+.top-fans-array-realistic {
+  position: absolute;
+  top: 8px;
+  left: 12px;
+  right: 12px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  z-index: 15;
+  cursor: pointer;
+  padding: 0 10px;
+  background: rgba(8, 11, 18, 0.7);
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.2s ease;
+}
+
+.top-fans-array-realistic:hover {
+  border-color: var(--cyan);
+}
+
+.top-fan-unit {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #05070a;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.top-fan-unit .blades-realistic {
+  width: 82%;
+  height: 82%;
+}
+
+/* ---------- Amplified Power-On Lighting Effects ---------- */
+.realistic-rig-mode.on .case-shell-realistic {
+  box-shadow:
+    inset 0 2px 1px rgba(255, 255, 255, .15),
+    inset 0 -30px 60px rgba(0, 0, 0, .8),
+    inset 0 0 90px rgba(111, 227, 255, 0.2),
+    0 25px 45px rgba(0, 0, 0, .7),
+    0 0 55px rgba(111, 227, 255, 0.25);
+  border-color: rgba(111, 227, 255, 0.4);
+}
+
+.realistic-rig-mode.on .mobo-realistic {
+  box-shadow: 
+    inset 0 0 35px rgba(0, 0, 0, 0.7),
+    0 0 30px rgba(111, 227, 255, 0.5),
+    0 0 65px rgba(77, 255, 158, 0.3);
+  border-color: rgba(111, 227, 255, 0.55);
+}
+
+.realistic-rig-mode.on .stick-realistic.installed::after {
+  opacity: 0.95;
+  animation: hue 4s linear infinite;
+  box-shadow: 0 0 16px var(--cyan), 0 0 28px rgba(176, 111, 255, 0.9);
+  filter: blur(1.5px) drop-shadow(0 0 10px var(--cyan)) drop-shadow(0 0 20px #b06fff);
+}
+
+.realistic-rig-mode.on .fan-realistic {
+  box-shadow: 
+    0 0 0 1px rgba(111, 227, 255, 0.5),
+    0 0 30px rgba(111, 227, 255, 0.55),
+    0 0 50px rgba(111, 227, 255, 0.25),
+    inset 0 0 18px rgba(111, 227, 255, 0.4);
+  border-color: var(--cyan);
+}
+
+.realistic-rig-mode.on .hub-realistic {
+  box-shadow: 0 0 22px var(--cyan), 0 0 40px var(--cyan-glow);
+}
+
+.realistic-rig-mode.on .gpu-realistic.installed {
+  box-shadow: 
+    0 14px 26px rgba(0, 0, 0, 0.75),
+    0 0 28px rgba(111, 227, 255, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  border-color: rgba(111, 227, 255, 0.65);
+}
+
+.realistic-rig-mode.on .power-conn-realistic {
+  box-shadow: 0 0 16px var(--amber), 0 0 32px var(--amber-glow);
+  border-color: var(--amber);
+  background: #ffb454;
+}
+
+.realistic-rig-mode.on .top-fans-array-realistic {
+  box-shadow: 0 0 25px rgba(111, 227, 255, 0.35);
+  border-color: rgba(111, 227, 255, 0.4);
+}
+
+.realistic-rig-mode.on .top-fan-unit {
+  box-shadow: 0 0 12px var(--cyan-glow);
+  border-color: rgba(111, 227, 255, 0.5);
+}
+
+.realistic-rig-mode.on .glass-panel-realistic {
+  background: 
+    radial-gradient(ellipse at 40% 30%, rgba(111, 227, 255, 0.15) 0%, transparent 60%),
+    linear-gradient(128deg, rgba(255, 255, 255, .18) 0%, rgba(255, 255, 255, .04) 30%, transparent 55%);
+}
+
+/* --------------------------------------------------------------------------
+   7. COMPATIBILITY & BUDGET PANELS (Diagnostics Sidebar)
+   -------------------------------------------------------------------------- */
+.budget-tracker-card {
+  background: var(--pcb-bg-card);
+  border: 1px solid var(--pcb-border);
+  border-radius: var(--pcb-radius);
+  padding: 1.25rem;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.1);
+}
+
+.compatibility-panel-card {
+  background: var(--pcb-bg-card);
+  border: 1px solid var(--pcb-border);
+  border-radius: var(--pcb-radius);
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12), 0 2px 8px rgba(15, 23, 42, 0.05);
+}
+
+.compat-header,
+.budget-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.compat-title-row,
+.budget-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.compat-header-icon,
+.budget-header-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(56, 189, 248, 0.12);
+  color: var(--pcb-accent-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.compat-title-row h4,
+.budget-title-row h4 {
+  font-size: 0.98rem;
+  font-weight: 700;
+  margin: 0;
+  color: #ffffff;
+}
+
+.compat-subtitle,
+.budget-subtitle {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--pcb-text-secondary);
+}
+
+/* Status Badges */
+.overall-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.overall-badge.success {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: var(--pcb-accent-emerald);
+}
+
+.overall-badge.error {
+  background: rgba(244, 63, 94, 0.15);
+  border: 1px solid rgba(244, 63, 94, 0.4);
+  color: var(--pcb-accent-rose);
+}
+
+.overall-badge.warning {
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  color: var(--pcb-accent-amber);
+}
+
+.overall-badge.unverified {
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  color: var(--pcb-accent-cyan);
+}
+
+.overall-badge.waiting {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--pcb-text-secondary);
+}
+
+/* Power Estimator Section */
+.power-estimator-section {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--pcb-radius-sm);
+  padding: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.power-metrics-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.82rem;
+  margin-bottom: 0.5rem;
+}
+
+.power-gauge-track,
+.budget-progress-track {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.power-gauge-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.3s ease, background 0.3s ease;
+}
+
+.power-gauge-fill.normal {
+  background: linear-gradient(90deg, #10b981, #38bdf8);
+}
+
+.power-gauge-fill.high {
+  background: linear-gradient(90deg, #f59e0b, #ef4444);
+}
+
+.power-gauge-fill.overload {
+  background: #ef4444;
+}
+
+.power-submetrics {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--pcb-text-secondary);
+}
+
+.unverified-power-note {
+  margin-top: 0.45rem;
+  font-size: 0.7rem;
+  color: var(--pcb-accent-cyan);
+}
+
+/* Compatibility Checklist Items */
+.checks-list-title {
+  font-size: 0.8rem;
+  color: var(--pcb-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 0.65rem 0;
+}
+
+.compat-check-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--pcb-radius-sm);
+  padding: 0.65rem 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.compat-check-item.check-item-success {
+  border-left: 3px solid var(--pcb-accent-emerald);
+}
+
+.compat-check-item.check-item-danger {
+  border-left: 3px solid var(--pcb-accent-rose);
+  background: rgba(244, 63, 94, 0.05);
+}
+
+.compat-check-item.check-item-warning {
+  border-left: 3px solid var(--pcb-accent-amber);
+  background: rgba(245, 158, 11, 0.05);
+}
+
+.compat-check-item.check-item-unverified {
+  border-left: 3px solid var(--pcb-accent-cyan);
+  background: rgba(56, 189, 248, 0.05);
+}
+
+.check-item-header {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.25rem;
+}
+
+.check-item-title {
+  font-size: 0.8rem;
+  color: #ffffff;
+  flex: 1;
+}
+
+.status-pill {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+}
+
+.status-pill.compatible {
+  background: rgba(16, 185, 129, 0.2);
+  color: var(--pcb-accent-emerald);
+}
+
+.status-pill.incompatible {
+  background: rgba(244, 63, 94, 0.2);
+  color: var(--pcb-accent-rose);
+}
+
+.status-pill.warning {
+  background: rgba(245, 158, 11, 0.2);
+  color: var(--pcb-accent-amber);
+}
+
+.status-pill.unverified {
+  background: rgba(56, 189, 248, 0.2);
+  color: var(--pcb-accent-cyan);
+}
+
+.check-item-message {
+  font-size: 0.75rem;
+  color: var(--pcb-text-secondary);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Budget Panel */
+.budget-metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.budget-metric-block {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--pcb-radius-sm);
+  padding: 0.75rem;
+}
+
+.budget-metric-block .metric-label {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--pcb-text-muted);
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.budget-metric-block .metric-value {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #ffffff;
+  display: block;
+}
+
+.budget-metric-block.current-total .metric-value {
+  color: var(--pcb-accent-cyan);
+}
+
+.budget-metric-block .metric-hint {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--pcb-text-secondary);
+  margin-top: 0.2rem;
+}
+
+.budget-display-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+}
+
+.btn-edit-budget {
+  background: none;
+  border: none;
+  color: var(--pcb-text-muted);
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.btn-edit-budget:hover {
+  color: #ffffff;
+}
+
+.budget-input-form {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.budget-input-form input {
+  width: 100%;
+  background: #090e17;
+  border: 1px solid var(--pcb-accent-cyan);
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 0.8rem;
+  padding: 0.25rem 0.45rem;
+}
+
+.btn-save-budget {
+  background: var(--pcb-accent-cyan);
+  border: none;
+  color: #070b14;
+  border-radius: 4px;
+  padding: 0 0.5rem;
+  cursor: pointer;
+}
+
+.budget-progress-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.budget-progress-fill.healthy-budget {
+  background: linear-gradient(90deg, #38bdf8, #10b981);
+}
+
+.budget-progress-fill.near-budget {
+  background: #f59e0b;
+}
+
+.budget-progress-fill.over-budget {
+  background: #ef4444;
+}
+
+.budget-progress-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  margin-bottom: 0.85rem;
+}
+
+.budget-presets-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.presets-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.btn-budget-preset {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--pcb-text-secondary);
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-budget-preset:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.btn-budget-preset.active {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: var(--pcb-accent-cyan);
+  color: var(--pcb-accent-cyan);
+  font-weight: 600;
+}
+
+.btn-toggle-breakdown {
+  background: none;
+  border: none;
+  color: var(--pcb-accent-cyan);
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+}
+
+.budget-breakdown-table {
+  margin-top: 0.85rem;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: var(--pcb-radius-sm);
+  padding: 0.5rem;
+  font-size: 0.72rem;
+}
+
+.breakdown-header,
+.breakdown-row {
+  display: grid;
+  grid-template-columns: 60px 1fr auto;
+  gap: 0.5rem;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.breakdown-header {
+  color: var(--pcb-text-muted);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.breakdown-name {
+  color: #ffffff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.breakdown-price {
+  font-weight: 700;
+  color: var(--pcb-accent-emerald);
+}
+
+/* --------------------------------------------------------------------------
+   8. COMPONENT SELECTOR (Right Column)
+   -------------------------------------------------------------------------- */
+.component-selector {
+  background: var(--pcb-bg-card);
+  border: 1px solid var(--pcb-border);
+  border-radius: var(--pcb-radius);
+  padding: 1.5rem;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+.selector-header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.header-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.step-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.step-icon-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(56, 189, 248, 0.12);
+  color: var(--pcb-accent-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.step-title-group h3 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin: 0;
+  color: #ffffff;
+}
+
+.selector-subtitle {
+  font-size: 0.85rem;
+  color: var(--pcb-text-secondary);
+  margin: 0.2rem 0 0 0;
+}
+
+.step-counter-badge {
+  font-size: 0.75rem;
+  color: var(--pcb-accent-cyan);
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  padding: 0.3rem 0.65rem;
+  border-radius: 20px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Installed Banner */
+.currently-installed-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 0.75rem 1rem;
+  border-radius: var(--pcb-radius-sm);
+  margin-bottom: 1rem;
+}
+
+.installed-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.installed-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: var(--pcb-accent-emerald);
+  color: #070b14;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.installed-name {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.installed-price {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--pcb-accent-emerald);
+}
+
+.slot-unselected-notice {
+  font-size: 0.82rem;
+  color: var(--pcb-text-muted);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  padding: 0.65rem 1rem;
+  border-radius: var(--pcb-radius-sm);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Search & Filter Controls */
+.selector-controls-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.search-box {
+  position: relative;
+  flex: 1;
+  min-width: 240px;
+}
+
+.search-box i.fa-magnifying-glass {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--pcb-text-muted);
+  font-size: 0.85rem;
+}
+
+.search-box input {
+  width: 100%;
+  background: rgba(7, 11, 20, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--pcb-radius-sm);
+  padding: 0.6rem 2.2rem 0.6rem 2.25rem;
+  color: #ffffff;
+  font-size: 0.85rem;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+.search-box input:focus {
+  outline: none;
+  border-color: var(--pcb-accent-cyan);
+  box-shadow: 0 0 12px var(--pcb-accent-cyan-glow);
+}
+
+.clear-search-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--pcb-text-muted);
+  cursor: pointer;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.toggle-compatible-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.82rem;
+  color: #ffffff;
+  cursor: pointer;
+  user-select: none;
+}
+
+.sort-select {
+  background: rgba(7, 11, 20, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--pcb-radius-sm);
+  color: #ffffff;
+  padding: 0.55rem 0.85rem;
+  font-size: 0.82rem;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Product Catalog Grid */
+.product-catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.catalog-loading-state,
+.catalog-error-state,
+.catalog-empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem 1.5rem;
+  color: var(--pcb-text-secondary);
+}
+
+.catalog-loading-state i,
+.catalog-error-state i,
+.catalog-empty-state i {
+  font-size: 2.25rem;
+  margin-bottom: 1rem;
+  color: var(--pcb-accent-cyan);
+}
+
+.catalog-error-state i {
+  color: var(--pcb-accent-rose);
+}
+
+/* Product Card (Solid Premium Black) */
+.product-part-card {
+  display: flex;
+  flex-direction: column;
+  background: #090e17;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--pcb-radius);
+  overflow: hidden;
+  transition: all 0.25s ease;
+  position: relative;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.12);
+}
+
+.product-part-card:hover {
+  border-color: var(--pcb-border-active);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.18);
+  background: #0d1422;
+}
+
+.product-part-card.selected {
+  border-color: var(--pcb-accent-emerald);
+  box-shadow: 0 0 20px var(--pcb-accent-emerald-glow), 0 8px 24px rgba(15, 23, 42, 0.15);
+  background: #0b1420;
+}
+
+.product-part-card.incompatible-card {
+  opacity: 0.8;
+  border-color: rgba(244, 63, 94, 0.3);
+}
+
+.part-card-img-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: #090e17;
+  overflow: hidden;
+}
+
+.part-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.product-part-card:hover .part-card-img {
+  transform: scale(1.04);
+}
+
+.stock-warning-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(245, 158, 11, 0.9);
+  color: #070b14;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+}
+
+.stock-out-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(244, 63, 94, 0.9);
+  color: #ffffff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+}
+
+.part-card-content {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.brand-category-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.4rem;
+}
+
+.part-brand {
+  font-size: 0.72rem;
+  color: var(--pcb-text-muted);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.compatibility-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.compatibility-badge.compatible {
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--pcb-accent-emerald);
+}
+
+.compatibility-badge.incompatible {
+  background: rgba(244, 63, 94, 0.15);
+  color: var(--pcb-accent-rose);
+}
+
+.part-card-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 0.65rem 0;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.part-specs-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.spec-chip {
+  font-size: 0.68rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--pcb-text-secondary);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+}
+
+.unverified-card-warning {
+  font-size: 0.7rem;
+  color: var(--pcb-accent-cyan);
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+  margin-bottom: 0.65rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.incompatible-reason-alert {
+  font-size: 0.72rem;
+  color: #fca5a5;
+  background: rgba(244, 63, 94, 0.1);
+  border: 1px solid rgba(244, 63, 94, 0.25);
+  padding: 0.35rem 0.5rem;
+  border-radius: 4px;
+  margin-bottom: 0.75rem;
+  line-height: 1.35;
+}
+
+.part-card-footer {
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.part-price-display {
+  display: flex;
+  flex-direction: column;
+}
+
+.part-price-display .price-label {
+  font-size: 0.68rem;
+  color: var(--pcb-text-muted);
+  text-transform: uppercase;
+}
+
+.part-price-display .price-amount {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.btn-install {
+  background: var(--pcb-accent-cyan);
+  border: none;
+  color: #070b14;
+  padding: 0.45rem 0.95rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-install:hover {
+  background: #7dd3fc;
+  box-shadow: 0 0 14px var(--pcb-accent-cyan-glow);
+}
+
+.btn-install-warning {
+  background: rgba(244, 63, 94, 0.2);
+  border: 1px solid rgba(244, 63, 94, 0.4);
+  color: #fca5a5;
+}
+
+.btn-installed {
+  background: rgba(16, 185, 129, 0.2);
+  border: 1px solid var(--pcb-accent-emerald);
+  color: var(--pcb-accent-emerald);
+  padding: 0.45rem 0.95rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.selector-footer-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* --------------------------------------------------------------------------
+   9. REVIEW STEP BOM TABLE
+   -------------------------------------------------------------------------- */
+.review-step-view {
+  display: flex;
+  flex-direction: column;
+}
+
+.review-bom-table-container {
+  overflow-x: auto;
+  margin-bottom: 2rem;
+  border-radius: var(--pcb-radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.review-bom-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.85rem;
+}
+
+.review-bom-table th {
+  background: rgba(7, 11, 20, 0.8);
+  color: var(--pcb-text-secondary);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.5px;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.review-bom-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  vertical-align: middle;
+}
+
+.slot-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--pcb-accent-cyan);
+  background: rgba(56, 189, 248, 0.1);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.part-name-with-img {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.bom-part-thumb {
+  width: 42px;
+  height: 42px;
+  border-radius: 6px;
+  object-fit: cover;
+  background: #000000;
+}
+
+.unverified-tag {
+  display: block;
+  font-size: 0.68rem;
+  color: var(--pcb-accent-amber);
+  margin-top: 0.2rem;
+}
+
+.spec-tag {
+  font-size: 0.7rem;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  margin-right: 0.35rem;
+  color: var(--pcb-text-secondary);
+}
+
+.bom-total-label {
+  text-align: right;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding-right: 1.5rem;
+}
+
+.bom-total-price {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--pcb-accent-emerald);
+}
+
+.btn-remove-part {
+  background: none;
+  border: none;
+  color: var(--pcb-text-muted);
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.btn-remove-part:hover {
+  color: var(--pcb-accent-rose);
+}
+
+.btn-add-build {
+  padding: 0.65rem 1.5rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   10. RESPONSIVE MEDIA QUERIES (Desktop, Tablet, Mobile)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1200px) {
+  .pc-builder-workspace {
+    grid-template-columns: 400px 1fr;
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 960px) {
+  .mode-selector-grid,
+  .builder-mode-tabs {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .mode-tab-btn {
+    padding: 0.95rem 1.15rem;
+    gap: 0.85rem;
+  }
+
+  .mode-tab-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.15rem;
+    flex-shrink: 0;
+  }
+
+  .mode-tab-desc {
+    font-size: 0.8rem;
+    line-height: 1.35;
+  }
+
+  .pc-builder-hero {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1.35rem 1.1rem;
+    gap: 1.25rem;
+  }
+
+  .hero-title {
+    font-size: clamp(1.45rem, 5.5vw, 1.85rem);
+    letter-spacing: -0.01em;
+    word-break: normal;
+    overflow-wrap: normal;
+    hyphens: none;
+    white-space: normal;
+    line-height: 1.15;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 0.6rem;
+  }
+
+  .hero-actions .btn-modern-hero {
+    flex: 1 1 calc(50% - 0.3rem);
+    justify-content: center;
+    padding: 0.65rem 0.85rem;
+    font-size: 0.82rem;
+  }
+
+  .assembly-progress-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.65rem;
+  }
+
+  .progress-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  .assembly-progress-bar {
+    -webkit-overflow-scrolling: touch;
+    gap: 0.45rem;
+  }
+
+  .assembly-step-pill {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.76rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .mobile-view-tabs {
+    display: grid;
+  }
+
+  .pc-builder-workspace {
+    grid-template-columns: 1fr;
+  }
+
+  /* Control visibility based on active mobile tab */
+  .pc-builder-workspace.mobile-tab-builder .builder-sidebar-column,
+  .pc-builder-workspace.mobile-tab-builder .builder-horizontal-diagnostics-column {
+    display: none;
+  }
+
+  .pc-builder-workspace.mobile-tab-builder .builder-main-column {
+    display: block;
+  }
+
+  .pc-builder-workspace.mobile-tab-chassis .builder-main-column,
+  .pc-builder-workspace.mobile-tab-chassis .builder-horizontal-diagnostics-column {
+    display: none;
+  }
+
+  .pc-builder-workspace.mobile-tab-chassis .compatibility-panel-card,
+  .pc-builder-workspace.mobile-tab-chassis .budget-tracker-card {
+    display: none;
+  }
+
+  .pc-builder-workspace.mobile-tab-chassis .pc-build-visualizer {
+    display: block;
+  }
+
+  .pc-builder-workspace.mobile-tab-diagnostics .builder-main-column {
+    display: none;
+  }
+
+  .pc-builder-workspace.mobile-tab-diagnostics .pc-build-visualizer {
+    display: none;
+  }
+
+  .pc-builder-workspace.mobile-tab-diagnostics .compatibility-panel-card,
+  .pc-builder-workspace.mobile-tab-diagnostics .budget-tracker-card,
+  .pc-builder-workspace.mobile-tab-diagnostics .builder-horizontal-diagnostics-column {
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  .selector-controls-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .search-box {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .filter-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .toggle-compatible-filter {
+    font-size: 0.82rem;
+    white-space: nowrap;
+  }
+
+  .sort-select {
+    flex: 1;
+    max-width: 180px;
+    font-size: 0.82rem;
+  }
+
+  .selector-footer-navigation {
+    flex-direction: row;
+    gap: 0.75rem;
+  }
+
+  .selector-footer-navigation button {
+    flex: 1;
+    justify-content: center;
+    font-size: 0.82rem;
+    padding: 0.65rem 0.85rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .glab-pc-builder-page {
+    padding: 0.85rem 0.5rem 3rem 0.5rem;
+  }
+
+  .product-catalog-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .header-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .step-counter-badge {
+    align-self: flex-start;
+  }
+
+  .pc-build-visualizer {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .rig-header-realistic {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .rig-title-block {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .rig-title-block h2 {
+    font-size: 0.92rem;
+  }
+
+  .rig-sub-caption {
+    font-size: 0.62rem;
+  }
+
+  .rig-controls-realistic {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+    width: 100%;
+  }
+
+  .rig-angle-toggle {
+    display: flex;
+    flex: 0 0 auto;
+    gap: 1px;
+    padding: 2px;
+  }
+
+  .rig-angle-toggle button {
+    padding: 4px 7px;
+    font-size: 0.6rem;
+    border-radius: 9px;
+  }
+
+  .rig-glass-toggle-btn {
+    padding: 4px 6px;
+    font-size: 0.6rem;
+    border-radius: 10px;
+    gap: 3px;
+  }
+
+  .pwr-realistic-btn {
+    padding: 4px 8px;
+    font-size: 0.62rem;
+    border-radius: 10px;
+    gap: 4px;
+    margin-left: auto;
+  }
+
+  .rig-viewport-realistic {
+    aspect-ratio: auto;
+    height: 480px;
+    max-height: 70vh;
+    border-radius: 12px;
+    perspective: 1100px;
+    touch-action: pan-y;
+  }
+
+  .rig-stage-realistic {
+    width: 96%;
+    height: 96%;
+  }
+
+  .case-shell-realistic {
+    padding: 8px;
+    gap: 8px;
+    border-radius: 10px;
+  }
+
+  .mobo-realistic {
+    min-height: 250px;
+    padding: 8px;
+  }
+
+  .cpu-block-realistic {
+    left: 44px;
+    width: 66px;
+    height: 66px;
+  }
+
+  .vrm-realistic {
+    width: 28px;
+    height: 50px;
+  }
+
+  .ram-cluster-realistic {
+    right: 32px;
+    gap: 3px;
+  }
+
+  .stick-realistic {
+    width: 6px;
+    height: 48px;
+  }
+
+  /* Compact non-overlapping mobile pins */
+  .rig-hotspot-pin {
+    padding: 2px 5px 2px 3px;
+    gap: 3px;
+    border-radius: 16px;
+    transform: translateZ(35px);
+  }
+
+  .rig-hotspot-pin .pin-beacon {
+    width: 10px;
+    height: 10px;
+  }
+
+  .rig-hotspot-pin .beacon-dot {
+    width: 10px;
+    height: 10px;
+    font-size: 0.42rem;
+  }
+
+  .rig-hotspot-pin .pin-title {
+    font-size: 0.5rem;
+    font-weight: 700;
+  }
+
+  .rig-hotspot-pin .pin-brand {
+    font-size: 0.44rem;
+    max-width: 48px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Mobile-specific non-overlapping coordinates */
+  .pin-case {
+    top: 4px;
+    left: 6px;
+  }
+
+  .pin-fans {
+    top: 2px;
+    right: 8px;
+  }
+
+  .pin-motherboard {
+    top: 36px;
+    left: 6px;
+  }
+
+  .pin-cpu {
+    top: 10px;
+    left: 114px;
+  }
+
+  .pin-cooler {
+    top: 48px;
+    left: 114px;
+  }
+
+  .pin-ram {
+    top: 68px;
+    right: 22px;
+  }
+
+  .pin-storage {
+    bottom: 54px;
+    left: 106px;
+  }
+
+  .pin-gpu {
+    bottom: 6px;
+    right: 6px;
+  }
+
+  .pin-psu {
+    bottom: 6px;
+    left: 6px;
+  }
+
+  .game-selector-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .btn-close-game-mode {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .games-picker-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .target-level-button-group {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .active-game-benchmark-card {
+    padding: 1rem 0.75rem;
+  }
+
+  .budget-presets-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .presets-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    width: 100%;
+  }
+
+  .btn-budget-preset {
+    flex: 1 1 calc(50% - 0.4rem);
+    text-align: center;
+    font-size: 0.75rem;
+    padding: 0.45rem 0.5rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   11. GAME SELECTOR & BENCHMARK STUDIO
+   -------------------------------------------------------------------------- */
+.game-selector-container {
+  background: var(--pcb-bg-card);
+  border: 1px solid var(--pcb-border-active);
+  border-radius: var(--pcb-radius);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0 30px rgba(56, 189, 248, 0.15);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.game-selector-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.game-mode-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--pcb-accent-emerald);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  margin-bottom: 0.35rem;
+}
+
+.game-selector-title-group h3 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin: 0 0 0.35rem 0;
+  color: #ffffff;
+}
+
+.game-selector-subtitle {
+  font-size: 0.85rem;
+  color: var(--pcb-text-secondary);
+  margin: 0;
+  max-width: 800px;
+}
+
+.games-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.game-card {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  background: rgba(7, 11, 20, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--pcb-radius-sm);
+  padding: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.game-card:hover {
+  border-color: var(--pcb-border-active);
+  transform: translateY(-2px);
+  background: rgba(18, 30, 56, 0.8);
+}
+
+.game-card.active {
+  border-color: var(--pcb-accent-cyan);
+  background: rgba(56, 189, 248, 0.12);
+  box-shadow: 0 0 16px var(--pcb-accent-cyan-glow);
+}
+
+.game-card-icon-wrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(56, 189, 248, 0.1);
+  color: var(--pcb-accent-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.game-card.active .game-card-icon-wrapper {
+  background: var(--pcb-accent-cyan);
+  color: #070b14;
+}
+
+.game-badge {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--pcb-accent-cyan);
+  margin-bottom: 0.15rem;
+}
+
+.game-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.game-genre {
+  font-size: 0.7rem;
+  color: var(--pcb-text-muted);
+}
+
+.active-game-benchmark-card {
+  background: #060911;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--pcb-radius);
+  padding: 1.5rem;
+}
+
+/* Step 2 & 3: Target Resolution & Budget Studio Controls */
+.game-budget-studio-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding: 1.25rem;
+  background: #090e17;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--pcb-radius-sm);
+}
+
+@media (max-width: 900px) {
+  .game-budget-studio-controls {
+    grid-template-columns: 1fr;
+  }
+}
+
+.studio-control-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.studio-control-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0;
+}
+
+.step-inline-badge {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--pcb-accent-cyan);
+  color: #090e17;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.target-level-button-group {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+}
+
+.target-level-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.85rem 0.5rem;
+  background: #060a12;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--pcb-radius-sm);
+  color: var(--pcb-text-secondary);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: center;
+  font-family: inherit;
+}
+
+.target-level-btn strong {
+  font-size: 1.05rem;
+  color: #ffffff;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.target-level-btn span {
+  font-size: 0.68rem;
+  line-height: 1.2;
+  color: var(--pcb-text-muted);
+}
+
+.target-level-btn:hover {
+  border-color: var(--pcb-accent-cyan);
+  background: rgba(56, 189, 248, 0.08);
+  transform: translateY(-2px);
+}
+
+.target-level-btn.active {
+  border-color: var(--pcb-accent-cyan);
+  background: rgba(56, 189, 248, 0.15);
+  box-shadow: 0 0 16px var(--pcb-accent-cyan-glow);
+}
+
+.target-level-btn.active strong {
+  color: var(--pcb-accent-cyan);
+}
+
+.target-level-btn.active span {
+  color: #e0f2fe;
+}
+
+.studio-budget-input-wrapper {
+  display: flex;
+  align-items: center;
+  background: #060a12;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--pcb-radius-sm);
+  padding: 0 1rem;
+  height: 48px;
+  transition: all 0.2s ease;
+}
+
+.studio-budget-input-wrapper:focus-within {
+  border-color: var(--pcb-accent-cyan);
+  box-shadow: 0 0 14px var(--pcb-accent-cyan-glow);
+}
+
+.currency-prefix {
+  color: var(--pcb-accent-cyan);
+  font-weight: 800;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+  user-select: none;
+}
+
+.studio-budget-input {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 700;
+  width: 100%;
+  outline: none;
+  font-family: inherit;
+}
+
+.budget-preset-chips {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  margin-top: 0.35rem;
+}
+
+.preset-label {
+  font-size: 0.72rem;
+  color: var(--pcb-text-muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.preset-chip {
+  background: #0c1220;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--pcb-text-secondary);
+  padding: 0.3rem 0.65rem;
+  border-radius: 12px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.preset-chip:hover {
+  border-color: var(--pcb-accent-cyan);
+  color: #ffffff;
+  background: rgba(56, 189, 248, 0.1);
+}
+
+.preset-chip.active {
+  background: rgba(56, 189, 248, 0.2);
+  border-color: var(--pcb-accent-cyan);
+  color: var(--pcb-accent-cyan);
+  font-weight: 700;
+}
+
+/* Step 4: Feasibility Status & Alternatives */
+.studio-step-heading-small {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 0.85rem;
+}
+
+.studio-step-heading-small h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0;
+}
+
+.budget-feasibility-banner {
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--pcb-radius-sm);
+  margin-bottom: 1.5rem;
+  background: #090e17;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.budget-feasibility-banner.feasible {
+  background: rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.35);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.1);
+}
+
+.budget-feasibility-banner.insufficient {
+  background: rgba(244, 63, 94, 0.08);
+  border-color: rgba(244, 63, 94, 0.35);
+  box-shadow: 0 0 20px rgba(244, 63, 94, 0.1);
+}
+
+.feasibility-banner-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.feasibility-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.feasibility-title-wrap i {
+  font-size: 1.2rem;
+}
+
+.feasibility-title-wrap h4 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin: 0;
+  color: #ffffff;
+}
+
+.feasibility-target-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: rgba(56, 189, 248, 0.12);
+  color: var(--pcb-accent-cyan);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.feasibility-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .feasibility-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.feasibility-stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.feasibility-stat-item .stat-label {
+  font-size: 0.68rem;
+  color: var(--pcb-text-muted);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.feasibility-stat-item .stat-value {
+  font-size: 0.98rem;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.feasibility-breakdown-row {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  flex-wrap: wrap;
+}
+
+.feasibility-alternatives-box {
+  margin-top: 1.25rem;
+  padding: 1.15rem;
+  background: rgba(245, 158, 11, 0.06);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-radius: var(--pcb-radius-sm);
+}
+
+.alternatives-header {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 0.85rem;
+}
+
+.alternatives-header h5 {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #f59e0b;
+  margin: 0;
+}
+
+.alternatives-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.alternative-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: #090e17;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.85rem 1.1rem;
+  border-radius: 8px;
+}
+
+.alternative-card .alt-content strong {
+  display: block;
+  font-size: 0.86rem;
+  color: #ffffff;
+  margin-bottom: 0.2rem;
+}
+
+.alternative-card .alt-content p {
+  font-size: 0.76rem;
+  color: var(--pcb-text-secondary);
+  margin: 0;
+  line-height: 1.35;
+}
+
+.btn-apply-alt {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.generation-error-alert {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  background: rgba(244, 63, 94, 0.12);
+  border: 1px solid var(--pcb-accent-rose);
+  border-radius: var(--pcb-radius-sm);
+  padding: 0.85rem 1.2rem;
+  color: #fecdd3;
+  font-size: 0.88rem;
+  margin-bottom: 1.25rem;
+  line-height: 1.4;
+}
+
+.btn-disabled-visual {
+  opacity: 0.55;
+  cursor: not-allowed !important;
+  filter: grayscale(0.5);
+}
+
+.benchmark-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.target-res-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--pcb-accent-cyan);
+  background: rgba(56, 189, 248, 0.1);
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  margin-bottom: 0.4rem;
+}
+
+.benchmark-game-meta h3 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin: 0 0 0.25rem 0;
+  color: #ffffff;
+}
+
+.min-budget-rec {
+  font-size: 0.82rem;
+  color: var(--pcb-text-secondary);
+}
+
+.performance-readiness-pill {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.readiness-label {
+  display: block;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  color: var(--pcb-text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.readiness-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.92rem;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 0.4rem 0.85rem;
+  border-radius: 20px;
+  border: 1px solid currentColor;
+}
+
+.specs-comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.spec-tier-box {
+  background: rgba(7, 11, 20, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--pcb-radius-sm);
+  padding: 1rem;
+}
+
+.spec-tier-box.minimum {
+  border-top: 3px solid #64748b;
+}
+
+.spec-tier-box.recommended {
+  border-top: 3px solid var(--pcb-accent-emerald);
+}
+
+.spec-tier-box.current-build {
+  border-top: 3px solid var(--pcb-accent-cyan);
+  background: rgba(56, 189, 248, 0.04);
+}
+
+.tier-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.85rem;
+}
+
+.tier-header h5 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin: 0;
+  color: #ffffff;
+}
+
+.tier-specs-list,
+.current-build-checks-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  font-size: 0.78rem;
+  color: var(--pcb-text-secondary);
+}
+
+.current-build-checks-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  line-height: 1.35;
+}
+
+.current-build-checks-list li i {
+  margin-top: 0.15rem;
+  flex-shrink: 0;
+}
+
+.benchmark-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.btn-auto-build-game {
+  padding: 0.65rem 1.35rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.auto-build-hint {
+  font-size: 0.78rem;
+  color: var(--pcb-text-secondary);
+  max-width: 600px;
+}
+
+/* --------------------------------------------------------------------------
+   12. MODALS (AutoBuildModal & SavedBuildsModal)
+   -------------------------------------------------------------------------- */
+.modal-backdrop-blur {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+
+.auto-build-modal-card,
+.saved-builds-modal-card {
+  width: 100%;
+  max-width: 780px;
+  background: #090e1a;
+  border: 1px solid var(--pcb-border-active);
+  border-radius: var(--pcb-radius);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.8), 0 0 35px var(--pcb-accent-cyan-glow);
+  overflow: hidden;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(13, 21, 39, 0.7);
+}
+
+.title-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.auto-modal-badge,
+.saved-modal-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--pcb-accent-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.title-with-icon h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin: 0 0 0.25rem 0;
+  color: #ffffff;
+}
+
+.modal-subtitle {
+  font-size: 0.82rem;
+  color: var(--pcb-text-secondary);
+  margin: 0;
+}
+
+.btn-close-modal {
+  background: none;
+  border: none;
+  color: var(--pcb-text-muted);
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.btn-close-modal:hover {
+  color: #ffffff;
+}
+
+.modal-card-body {
+  padding: 1.5rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.generator-control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.control-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+.budget-highlight {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--pcb-accent-cyan);
+}
+
+.budget-range-slider {
+  width: 100%;
+  accent-color: var(--pcb-accent-cyan);
+  cursor: pointer;
+}
+
+.modal-budget-presets {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.btn-budget-chip {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--pcb-text-secondary);
+  font-size: 0.75rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-budget-chip.active {
+  background: rgba(56, 189, 248, 0.2);
+  border-color: var(--pcb-accent-cyan);
+  color: var(--pcb-accent-cyan);
+  font-weight: 700;
+}
+
+.section-label {
+  font-size: 0.82rem;
+  color: var(--pcb-text-muted);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.purpose-options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.purpose-tile {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--pcb-radius-sm);
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.purpose-tile:hover {
+  border-color: var(--pcb-border-active);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.purpose-tile.active {
+  border-color: var(--pcb-accent-cyan);
+  background: rgba(56, 189, 248, 0.1);
+}
+
+.purpose-tile i {
+  font-size: 1.25rem;
+  color: var(--pcb-accent-cyan);
+}
+
+.purpose-tile strong {
+  display: block;
+  font-size: 0.82rem;
+  color: #ffffff;
+}
+
+.purpose-tile span {
+  font-size: 0.7rem;
+  color: var(--pcb-text-muted);
+}
+
+.generator-dual-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.pill-toggle-row {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.pill-toggle-btn {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--pcb-text-secondary);
+  font-size: 0.75rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.pill-toggle-btn.active {
+  background: var(--pcb-accent-cyan);
+  color: #070b14;
+  font-weight: 700;
+  border-color: var(--pcb-accent-cyan);
+}
+
+.btn-run-generator {
+  width: 100%;
+  padding: 0.85rem;
+  font-size: 0.95rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+}
+
+.auto-build-preview-result {
+  background: rgba(7, 11, 20, 0.8);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  border-radius: var(--pcb-radius-sm);
+  padding: 1.25rem;
+}
+
+.preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.preview-header h4 {
+  margin: 0.2rem 0 0 0;
+  font-size: 1.15rem;
+  color: #ffffff;
+}
+
+.preview-components-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.preview-part-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.4rem 0.65rem;
+  border-radius: 4px;
+  font-size: 0.72rem;
+}
+
+.part-slot-tag {
+  color: var(--pcb-accent-cyan);
+  font-weight: 700;
+}
+
+.part-name {
+  color: #ffffff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 180px;
+}
+
+.part-price {
+  color: var(--pcb-accent-emerald);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Saved Builds Modal Specifics */
+.save-current-build-form {
+  margin-bottom: 1rem;
+}
+
+.save-form-input-row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.save-form-input-row input {
+  flex: 1;
+  background: rgba(7, 11, 20, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--pcb-radius-sm);
+  color: #ffffff;
+  padding: 0.6rem 0.85rem;
+  font-size: 0.85rem;
+}
+
+.save-form-input-row input:focus {
+  outline: none;
+  border-color: var(--pcb-accent-cyan);
+}
+
+.saved-builds-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.saved-build-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--pcb-radius-sm);
+  padding: 0.85rem 1rem;
+}
+
+.build-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 0.25rem 0;
+}
+
+.build-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--pcb-text-muted);
+}
+
+.build-actions-col {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-delete-saved {
+  background: none;
+  border: none;
+  color: var(--pcb-text-muted);
+  cursor: pointer;
+  padding: 0.4rem;
+  font-size: 0.85rem;
+}
+
+.btn-delete-saved:hover {
+  color: var(--pcb-accent-rose);
+}
+
+.empty-saved-builds {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  color: var(--pcb-text-muted);
+}
+
+.empty-saved-builds i {
+  font-size: 2.25rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Extra Review Step Buttons */
+.btn-review-extra {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.btn-saved-builds-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(56, 189, 248, 0.08);
+  border-color: rgba(56, 189, 248, 0.3);
+  color: var(--pcb-accent-cyan);
+}
+
+.btn-saved-builds-trigger:hover {
+  background: rgba(56, 189, 248, 0.2);
+  border-color: var(--pcb-accent-cyan);
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .specs-comparison-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .purpose-options-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .generator-dual-row {
+    grid-template-columns: 1fr;
+  }
+
+  .preview-components-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .save-form-input-row {
+    flex-direction: column;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   13. PHASE A: OUT OF STOCK, LGA1851 ALERT & INSUFFICIENT BUDGET STYLES
+   -------------------------------------------------------------------------- */
+.btn-install.btn-out-of-stock {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--pcb-text-muted);
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.btn-install.btn-out-of-stock:hover {
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: none;
+}
+
+.product-part-card.card-out-of-stock {
+  opacity: 0.7;
+}
+
+.product-part-card.card-out-of-stock .part-card-img {
+  filter: grayscale(40%);
+}
+
+/* LGA1851 Empty State */
+.lga1851-alert-state {
+  background: rgba(245, 158, 11, 0.06);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: var(--pcb-radius);
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.lga1851-alert-state .empty-alert-icon {
+  font-size: 2.25rem;
+  margin-bottom: 0.85rem;
+}
+
+.lga1851-alert-state h5 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin: 0 0 0.5rem 0;
+}
+
+.lga1851-alert-state p {
+  max-width: 600px;
+  margin: 0 auto 1.25rem auto;
+  font-size: 0.88rem;
+  color: var(--pcb-text-secondary);
+  line-height: 1.5;
+}
+
+.empty-state-suggestions {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* Auto-Build Insufficient Budget Alert */
+.auto-build-insufficient-alert {
+  background: rgba(244, 63, 94, 0.08);
+  border: 1px solid rgba(244, 63, 94, 0.35);
+  border-radius: var(--pcb-radius-sm);
+  padding: 1.25rem;
+}
+
+.insufficient-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.insufficient-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: rgba(244, 63, 94, 0.2);
+  color: var(--pcb-accent-rose);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.insufficient-expl {
+  font-size: 0.82rem;
+  color: var(--pcb-text-secondary);
+  line-height: 1.45;
+  margin: 0.25rem 0 0 0;
+}
+
+.insufficient-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.insufficient-metric {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.insufficient-metric .metric-label {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--pcb-text-muted);
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+
+.insufficient-metric .metric-val {
+  font-size: 1.05rem;
+  font-weight: 800;
+  display: block;
+}
+
+.insufficient-metric.highlight-shortfall {
+  border-color: rgba(244, 63, 94, 0.5);
+  background: rgba(244, 63, 94, 0.12);
+}
+
+.insufficient-alternatives .alternatives-title {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--pcb-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.65rem;
+}
+
+.alternatives-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.alternative-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+}
+
+.alternative-card strong {
+  display: block;
+  font-size: 0.85rem;
+  color: #ffffff;
+  margin-bottom: 0.15rem;
+}
+
+.alternative-card p {
+  font-size: 0.75rem;
+  color: var(--pcb-text-muted);
+  margin: 0;
+}
+
+/* ==========================================================================
+   PHASE B: INCOMPATIBLE PART INSTALLATION CONFIRMATION MODAL
+   ========================================================================== */
+.modal-overlay.incompatible-warning-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 8, 15, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 1.5rem;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.incompatible-confirm-modal {
+  background: #0d131f;
+  border: 1px solid rgba(244, 63, 94, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(244, 63, 94, 0.2);
+  border-radius: var(--pcb-radius, 12px);
+  max-width: 480px;
+  width: 100%;
+  overflow: hidden;
+  animation: modalScaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.confirm-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1.25rem 1.5rem;
+  background: rgba(244, 63, 94, 0.08);
+  border-bottom: 1px solid rgba(244, 63, 94, 0.2);
+}
+
+.confirm-header-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(244, 63, 94, 0.15);
+  border: 1px solid rgba(244, 63, 94, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.confirm-modal-header h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.confirm-subtitle {
+  font-size: 0.75rem;
+  color: var(--pcb-text-muted, #94a3b8);
+}
+
+.confirm-modal-body {
+  padding: 1.5rem;
+}
+
+.confirm-lead-text {
+  font-size: 0.92rem;
+  color: #f1f5f9;
+  margin: 0 0 1rem 0;
+  font-weight: 600;
+}
+
+.confirm-reason-callout {
+  background: rgba(244, 63, 94, 0.08);
+  border-left: 3px solid #f43f5e;
+  border-radius: 4px;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.reason-heading {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #f43f5e;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.3rem;
+}
+
+.reason-detail {
+  font-size: 0.84rem;
+  color: #ffffff;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.confirm-part-preview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 0.65rem 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.preview-label {
+  font-size: 0.75rem;
+  color: var(--pcb-text-muted, #94a3b8);
+}
+
+.confirm-part-preview strong {
+  font-size: 0.85rem;
+  color: #ffffff;
+}
+
+.confirm-warning-footer-note {
+  font-size: 0.78rem;
+  color: #f59e0b;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.confirm-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  background: rgba(0, 0, 0, 0.35);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.btn-danger.btn-confirm-install-anyway {
+  background: linear-gradient(135deg, #e11d48, #be123c);
+  border: 1px solid #f43f5e;
+  color: #ffffff;
+  font-weight: 700;
+  padding: 0.55rem 1.25rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-danger.btn-confirm-install-anyway:hover {
+  background: #f43f5e;
+  box-shadow: 0 0 15px rgba(244, 63, 94, 0.4);
+}
+
+/* ==========================================================================
+   PHASE B: COMPATIBILITY DIAGNOSTICS CATEGORIES
+   ========================================================================== */
+/* ==========================================================================
+   PHASE B: HORIZONTAL COMPATIBILITY DIAGNOSTICS CONSOLE (MODERN LUXURY UI)
+   ========================================================================== */
+.builder-horizontal-diagnostics-column {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+
+.compatibility-panel-card.horizontal-console-view {
+  background: #090e17;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: var(--pcb-radius, 14px);
+  padding: 1.5rem 1.75rem;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12), 0 2px 8px rgba(15, 23, 42, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.compatibility-panel-card.horizontal-console-view::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #38bdf8 0%, #10b981 50%, #38bdf8 100%);
+}
+
+/* Horizontal Command Strip: Top Row */
+.compat-horizontal-command-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.75rem;
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.compat-header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.compat-title-badge-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.compat-title-badge-wrap h4 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin: 0;
+  color: #ffffff;
+  letter-spacing: -0.2px;
+}
+
+.compat-live-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: var(--pcb-accent-emerald, #10b981);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--pcb-accent-emerald, #10b981);
+  box-shadow: 0 0 8px var(--pcb-accent-emerald, #10b981);
+  animation: pulseLiveDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseLiveDot {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+}
+
+.compat-subtitle {
+  font-size: 0.8rem;
+  color: var(--pcb-text-secondary, #94a3b8);
+  margin: 0;
+}
+
+/* Horizontal Power HUD */
+.power-estimator-section.horizontal-hud {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  background: #060a12;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 0.65rem 1.15rem;
+  min-width: 380px;
+  max-width: 520px;
+  flex: 1;
+  margin: 0;
+}
+
+.power-hud-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.power-hud-top .power-metrics-header {
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.power-hud-top .metric-label {
+  font-size: 0.76rem;
+  color: var(--pcb-text-secondary, #94a3b8);
+  font-weight: 600;
+}
+
+.power-hud-top .metric-val {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.power-submetrics-compact {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-size: 0.72rem;
+  color: var(--pcb-text-secondary, #94a3b8);
+}
+
+.power-submetrics-compact strong {
+  color: var(--pcb-accent-cyan, #38bdf8);
+}
+
+.horizontal-hud .power-gauge-track {
+  height: 6px;
+  margin-bottom: 0;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.horizontal-hud .unverified-power-note {
+  font-size: 0.68rem;
+  margin-top: 0.15rem;
+  color: var(--pcb-accent-cyan, #38bdf8);
+}
+
+/* Overall Status Badge */
+.overall-badge-wrapper {
+  flex-shrink: 0;
+}
+
+.overall-badge-wrapper .overall-badge {
+  font-size: 0.82rem;
+  padding: 0.45rem 1rem;
+  border-radius: 30px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* 4 Categories Horizontal Grid */
+.compat-categories-container.horizontal-axis-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  align-items: stretch;
+}
+
+.compat-category-block {
+  background: #060a12;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.compat-category-block:hover {
+  border-color: rgba(56, 189, 248, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* Category Status Top Accents */
+.compat-category-block.status-compatible {
+  border-top: 3px solid var(--pcb-accent-emerald, #10b981);
+}
+
+.compat-category-block.status-incompatible {
+  border-top: 3px solid var(--pcb-accent-rose, #f43f5e);
+  background: rgba(244, 63, 94, 0.04);
+}
+
+.compat-category-block.status-warning {
+  border-top: 3px solid var(--pcb-accent-amber, #f59e0b);
+}
+
+.compat-category-block.status-unverified {
+  border-top: 3px solid var(--pcb-accent-cyan, #38bdf8);
+}
+
+.compat-category-block.status-pending {
+  border-top: 3px solid #475569;
+}
+
+.compat-category-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.category-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.cat-icon-badge {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: rgba(56, 189, 248, 0.12);
+  color: var(--pcb-accent-cyan, #38bdf8);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.82rem;
+  flex-shrink: 0;
+}
+
+.compat-category-block.status-compatible .cat-icon-badge {
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--pcb-accent-emerald, #10b981);
+}
+
+.compat-category-block.status-incompatible .cat-icon-badge {
+  background: rgba(244, 63, 94, 0.12);
+  color: var(--pcb-accent-rose, #f43f5e);
+}
+
+.category-title-group h5 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin: 0;
+  color: #ffffff;
+  letter-spacing: 0.2px;
+}
+
+.category-status-pill {
+  font-size: 0.66rem;
+  font-weight: 700;
+  padding: 0.18rem 0.55rem;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.category-status-pill.compatible {
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--pcb-accent-emerald, #10b981);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+}
+
+.category-status-pill.incompatible {
+  background: rgba(244, 63, 94, 0.15);
+  color: var(--pcb-accent-rose, #f43f5e);
+  border: 1px solid rgba(244, 63, 94, 0.35);
+}
+
+.category-status-pill.warning {
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--pcb-accent-amber, #f59e0b);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+}
+
+.category-status-pill.unverified {
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--pcb-accent-cyan, #38bdf8);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+}
+
+.category-status-pill.pending {
+  background: rgba(100, 116, 139, 0.15);
+  color: var(--pcb-text-secondary, #94a3b8);
+  border: 1px solid rgba(100, 116, 139, 0.3);
+}
+
+.category-checks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  flex: 1;
+}
+
+.compat-check-item {
+  background: #090e17;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 0.65rem 0.85rem;
+  transition: all 0.2s ease;
+}
+
+.compat-check-item:hover {
+  background: #0d1424;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.compat-check-item.check-item-success {
+  border-left: 3px solid var(--pcb-accent-emerald, #10b981);
+}
+
+.compat-check-item.check-item-danger {
+  border-left: 3px solid var(--pcb-accent-rose, #f43f5e);
+  background: rgba(244, 63, 94, 0.08);
+  border-color: rgba(244, 63, 94, 0.25);
+}
+
+.compat-check-item.check-item-warning {
+  border-left: 3px solid var(--pcb-accent-amber, #f59e0b);
+  background: rgba(245, 158, 11, 0.05);
+}
+
+.compat-check-item.check-item-unverified {
+  border-left: 3px solid var(--pcb-accent-cyan, #38bdf8);
+  background: rgba(56, 189, 248, 0.05);
+}
+
+.compat-check-item.check-item-pending {
+  border-left: 3px solid #334155;
+  opacity: 0.85;
+}
+
+.check-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  margin-bottom: 0.25rem;
+}
+
+.check-item-title {
+  font-size: 0.78rem;
+  color: #ffffff;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.status-pill {
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 0.12rem 0.45rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.status-pill.compatible {
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--pcb-accent-emerald, #10b981);
+}
+
+.status-pill.incompatible {
+  background: rgba(244, 63, 94, 0.18);
+  color: var(--pcb-accent-rose, #f43f5e);
+}
+
+.status-pill.warning {
+  background: rgba(245, 158, 11, 0.18);
+  color: var(--pcb-accent-amber, #f59e0b);
+}
+
+.status-pill.unverified {
+  background: rgba(56, 189, 248, 0.18);
+  color: var(--pcb-accent-cyan, #38bdf8);
+}
+
+.status-pill.pending {
+  background: rgba(148, 163, 184, 0.1);
+  color: var(--pcb-text-muted, #94a3b8);
+}
+
+.check-item-message {
+  font-size: 0.72rem;
+  color: var(--pcb-text-secondary, #94a3b8);
+  line-height: 1.35;
+  margin: 0;
+}
+
+@media (max-width: 1280px) {
+  .compat-categories-container.horizontal-axis-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 960px) {
+  .compat-horizontal-command-strip {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .power-estimator-section.horizontal-hud {
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  .overall-badge-wrapper {
+    align-self: flex-start;
+  }
+}
+
+@media (max-width: 850px) {
+  .compat-categories-container.horizontal-axis-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+/* ==========================================================================
+   PHASE B: GAME MODE STEP STYLES & FEASIBILITY BREAKDOWN
+   ========================================================================== */
+.studio-step-section {
+  margin-bottom: 1.5rem;
+}
+
+.step-section-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.85rem;
+}
+
+.step-num-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--pcb-accent-cyan, #38bdf8);
+  color: #090e17;
+  font-weight: 800;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.step-section-heading h4 {
+  margin: 0;
+  font-size: 1rem;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.step-inline-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--pcb-accent-cyan, #38bdf8);
+  color: #090e17;
+  font-weight: 800;
+  font-size: 0.65rem;
+  margin-right: 0.35rem;
+}
+
+.studio-step-heading-small {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 1.25rem 0 0.75rem 0;
+}
+
+.studio-step-heading-small h4 {
+  margin: 0;
+  font-size: 0.92rem;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.feasibility-breakdown-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ==========================================================================
+   AUDIT & ENHANCEMENT: BUDGET 3-COLUMN METRICS & ALERTS
+   ========================================================================== */
+.budget-metrics-grid.budget-metrics-3col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.65rem;
+  margin-bottom: 0.85rem;
+}
+
+.budget-metric-block.remaining-budget-block {
+  border-color: rgba(16, 185, 129, 0.25);
+  background: rgba(16, 185, 129, 0.04);
+}
+
+.budget-metric-block.over-budget-block {
+  border-color: rgba(244, 63, 94, 0.35);
+  background: rgba(244, 63, 94, 0.06);
+}
+
+.budget-alert-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  border-radius: var(--pcb-radius-sm);
+  padding: 0.65rem 0.85rem;
+  font-size: 0.78rem;
+  margin-bottom: 0.85rem;
+  line-height: 1.4;
+}
+
+.budget-alert-banner.alert-danger {
+  background: rgba(244, 63, 94, 0.1);
+  border: 1px solid rgba(244, 63, 94, 0.35);
+  color: #fca5a5;
+}
+
+.budget-alert-banner.alert-danger i {
+  color: #f43f5e;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.budget-alert-banner.alert-danger span {
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.budget-alert-banner.alert-warning {
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  color: #fde68a;
+}
+
+.budget-alert-banner.alert-warning i {
+  color: #f59e0b;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   AUDIT & ENHANCEMENT: VISUALIZER HIERARCHY BAR & CUES
+   ========================================================================== */
+.visualizer-hierarchy-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: var(--pcb-radius-sm);
+  margin-bottom: 0.75rem;
+  font-size: 0.72rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.visualizer-hierarchy-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.hierarchy-label {
+  color: var(--pcb-text-muted);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  white-space: nowrap;
+}
+
+.hierarchy-crumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  white-space: nowrap;
+}
+
+.hierarchy-crumbs .crumb {
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-weight: 600;
+}
+
+.hierarchy-crumbs .crumb.installed {
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--pcb-accent-emerald);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.hierarchy-crumbs .crumb.empty {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--pcb-text-muted);
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+}
+
+.hierarchy-crumbs .crumb:hover {
+  filter: brightness(1.25);
+  transform: translateY(-1px);
+}
+
+.hierarchy-crumbs .crumb-arrow {
+  color: var(--pcb-text-muted);
+  font-size: 0.65rem;
+}
+
+.cooler-missing-hint {
+  margin-top: 0.3rem;
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px dashed rgba(245, 158, 11, 0.4);
+  color: var(--pcb-accent-amber);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+}
+
+.cooler-missing-hint:hover {
+  background: rgba(245, 158, 11, 0.25);
+}
+
+/* ==========================================================================
+   AUDIT & ENHANCEMENT: SAVED BUILDS MODAL CHIPS & TITLES
+   ========================================================================== */
+.build-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.25rem;
+}
+
+.build-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  word-break: break-word;
+}
+
+.build-date-tag {
+  font-size: 0.7rem;
+  color: var(--pcb-text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.build-count-badge {
+  font-size: 0.72rem;
+  color: var(--pcb-text-secondary);
+}
+
+.build-price-tag {
+  color: var(--pcb-accent-cyan) !important;
+  font-size: 0.85rem;
+}
+
+.build-budget-tag {
+  font-size: 0.7rem;
+  color: var(--pcb-text-muted);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+}
+
+.saved-build-components-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.45rem;
+}
+
+.saved-part-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  color: #bae6fd;
+  font-size: 0.7rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  max-width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.btn-load-saved-rig {
+  color: var(--pcb-accent-cyan);
+  border-color: rgba(56, 189, 248, 0.4);
+}
+
+.btn-load-saved-rig:hover {
+  background: var(--pcb-accent-cyan);
+  color: #070b14;
+}
+
+/* ==========================================================================
+   AUDIT & ENHANCEMENT: MODAL FOOTER & VIEWPORT CONSTRAINTS
+   ========================================================================== */
+.modal-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  background: rgba(13, 21, 39, 0.95);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+}
+
+/* ==========================================================================
+   AUDIT & ENHANCEMENT: PERSISTENT BUILD SUMMARY BAR
+   ========================================================================== */
+.pc-builder-summary-bar {
+  position: sticky;
+  bottom: 1rem;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  background: #090e17;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.22), 0 0 25px rgba(56, 189, 248, 0.15);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--pcb-radius);
+  margin-top: 2rem;
+  animation: summarySlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes summarySlideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.summary-left-stats {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  flex-wrap: wrap;
+}
+
+.summary-stat-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.summary-stat-block .stat-label {
+  font-size: 0.68rem;
+  color: var(--pcb-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.summary-stat-block .stat-value {
+  font-size: 1.05rem;
+  color: #ffffff;
+}
+
+.summary-status-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.15rem 0.55rem;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.summary-status-badge.compatible {
+  background: rgba(16, 185, 129, 0.2);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: var(--pcb-accent-emerald);
+}
+
+.summary-status-badge.incompatible {
+  background: rgba(244, 63, 94, 0.2);
+  border: 1px solid rgba(244, 63, 94, 0.4);
+  color: var(--pcb-accent-rose);
+}
+
+.summary-status-badge.warning {
+  background: rgba(245, 158, 11, 0.2);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  color: var(--pcb-accent-amber);
+}
+
+.summary-status-badge.unverified {
+  background: rgba(56, 189, 248, 0.2);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  color: var(--pcb-accent-cyan);
+}
+
+.summary-status-badge.pending {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--pcb-text-muted);
+}
+
+.summary-right-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   MODERN HIGH-TECH BUTTON SUITE (EXPORT, SHARE, SAVE, ADD TO CART, SAVED BUILDS)
+   ========================================================================== */
+
+/* 1. HERO TOP ACTIONS (Saved Builds & Reset Rig) */
+.btn-modern-hero {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.6rem 1.15rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.84rem;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-modern-hero.btn-saved-builds-trigger {
+  background: linear-gradient(180deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.9) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  color: #f1f5f9;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.btn-modern-hero.btn-saved-builds-trigger i {
+  color: var(--pcb-accent-cyan);
+  font-size: 0.9rem;
+  transition: transform 0.25s ease;
+}
+
+.btn-modern-hero.btn-saved-builds-trigger:hover {
+  background: linear-gradient(180deg, rgba(56, 189, 248, 0.2) 0%, rgba(15, 23, 42, 0.95) 100%);
+  border-color: var(--pcb-accent-cyan);
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.35), 0 6px 16px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn-modern-hero.btn-saved-builds-trigger:hover i {
+  transform: translateY(-2px);
+}
+
+.btn-modern-hero.btn-clear-rig {
+  background: linear-gradient(180deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.9) 100%);
+  border: 1px solid rgba(244, 63, 94, 0.25);
+  color: #fca5a5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.btn-modern-hero.btn-clear-rig i {
+  color: var(--pcb-accent-rose);
+  font-size: 0.9rem;
+  transition: transform 0.35s ease;
+}
+
+.btn-modern-hero.btn-clear-rig:hover {
+  background: linear-gradient(180deg, rgba(244, 63, 94, 0.2) 0%, rgba(15, 23, 42, 0.95) 100%);
+  border-color: var(--pcb-accent-rose);
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(244, 63, 94, 0.35), 0 6px 16px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn-modern-hero.btn-clear-rig:hover i {
+  transform: rotate(-90deg);
+}
+
+/* 2. STEP 10 REVIEW FOOTER & ACTION GROUP */
+.review-footer-modern {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding-top: 1.25rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.review-action-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.btn-modern-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.15rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #cbd5e1;
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-modern-nav:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  transform: translateX(-2px);
+}
+
+/* Secondary Review Actions: Export Spec Sheet, Share Build, Save Rig */
+.btn-modern-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.65rem 1.15rem;
+  border-radius: 10px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  background: linear-gradient(180deg, rgba(26, 38, 57, 0.5) 0%, rgba(11, 18, 30, 0.85) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #e2e8f0;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  white-space: nowrap;
+}
+
+.btn-modern-action:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Export Spec Sheet Button Specifics */
+.btn-modern-action.btn-export-spec-sheet i {
+  color: #10b981;
+  font-size: 0.95rem;
+  transition: transform 0.25s ease;
+}
+
+.btn-modern-action.btn-export-spec-sheet:hover:not(:disabled) {
+  background: linear-gradient(180deg, rgba(16, 185, 129, 0.18) 0%, rgba(11, 18, 30, 0.9) 100%);
+  border-color: rgba(16, 185, 129, 0.5);
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.3), 0 6px 16px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn-modern-action.btn-export-spec-sheet:hover:not(:disabled) i {
+  transform: translateY(2px);
+}
+
+/* Share Build Button Specifics */
+.btn-modern-action.btn-share-build-action i {
+  color: #38bdf8;
+  font-size: 0.95rem;
+  transition: transform 0.25s ease;
+}
+
+.btn-modern-action.btn-share-build-action:hover:not(:disabled) {
+  background: linear-gradient(180deg, rgba(56, 189, 248, 0.18) 0%, rgba(11, 18, 30, 0.9) 100%);
+  border-color: rgba(56, 189, 248, 0.5);
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.3), 0 6px 16px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn-modern-action.btn-share-build-action:hover:not(:disabled) i {
+  transform: rotate(15deg);
+}
+
+/* Save Rig Button Specifics */
+.btn-modern-action.btn-save-rig-action i {
+  color: #f59e0b;
+  font-size: 0.95rem;
+  transition: transform 0.25s ease;
+}
+
+.btn-modern-action.btn-save-rig-action:hover:not(:disabled) {
+  background: linear-gradient(180deg, rgba(245, 158, 11, 0.18) 0%, rgba(11, 18, 30, 0.9) 100%);
+  border-color: rgba(245, 158, 11, 0.5);
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.3), 0 6px 16px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn-modern-action.btn-save-rig-action:hover:not(:disabled) i {
+  transform: translateY(-2px);
+}
+
+/* 3. FLAGSHIP PRIMARY CTA: Add Complete Build to Cart */
+.btn-modern-cta.btn-add-build-action,
+.btn-modern-summary-cta.btn-summary-cart {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.65rem 1.45rem;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 45%, #10b981 100%);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #040810;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 22px rgba(56, 189, 248, 0.4), 0 6px 16px rgba(0, 0, 0, 0.35);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.btn-modern-cta.btn-add-build-action::before,
+.btn-modern-summary-cta.btn-summary-cart::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transform: rotate(25deg);
+  transition: all 0.6s ease;
+}
+
+.btn-modern-cta.btn-add-build-action:hover:not(:disabled)::before,
+.btn-modern-summary-cta.btn-summary-cart:hover:not(:disabled)::before {
+  left: 120%;
+}
+
+.btn-modern-cta.btn-add-build-action i,
+.btn-modern-summary-cta.btn-summary-cart i {
+  font-size: 1rem;
+  transition: transform 0.25s ease;
+}
+
+.btn-modern-cta.btn-add-build-action:hover:not(:disabled),
+.btn-modern-summary-cta.btn-summary-cart:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 0 32px rgba(56, 189, 248, 0.6), 0 8px 24px rgba(0, 0, 0, 0.45);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.btn-modern-cta.btn-add-build-action:hover:not(:disabled) i,
+.btn-modern-summary-cta.btn-summary-cart:hover:not(:disabled) i {
+  transform: scale(1.15);
+}
+
+.btn-modern-cta.btn-add-build-action:active:not(:disabled),
+.btn-modern-summary-cta.btn-summary-cart:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.btn-modern-cta.btn-add-build-action:disabled,
+.btn-modern-summary-cta.btn-summary-cart:disabled {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.25);
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* 4. SUMMARY BAR ACTION BUTTONS (Save Rig & Share Build) */
+.btn-modern-summary-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.05rem;
+  border-radius: 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  background: linear-gradient(180deg, rgba(26, 38, 57, 0.5) 0%, rgba(11, 18, 30, 0.85) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #e2e8f0;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  white-space: nowrap;
+}
+
+.btn-modern-summary-action.btn-summary-save i {
+  color: #f59e0b;
+  font-size: 0.85rem;
+  transition: transform 0.25s ease;
+}
+
+.btn-modern-summary-action.btn-summary-save:hover {
+  background: linear-gradient(180deg, rgba(245, 158, 11, 0.18) 0%, rgba(11, 18, 30, 0.9) 100%);
+  border-color: rgba(245, 158, 11, 0.5);
+  color: #ffffff;
+  box-shadow: 0 0 18px rgba(245, 158, 11, 0.3), 0 6px 14px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn-modern-summary-action.btn-summary-save:hover i {
+  transform: translateY(-2px);
+}
+
+.btn-modern-summary-action.btn-summary-share i {
+  color: #38bdf8;
+  font-size: 0.85rem;
+  transition: transform 0.25s ease;
+}
+
+.btn-modern-summary-action.btn-summary-share:hover {
+  background: linear-gradient(180deg, rgba(56, 189, 248, 0.18) 0%, rgba(11, 18, 30, 0.9) 100%);
+  border-color: rgba(56, 189, 248, 0.5);
+  color: #ffffff;
+  box-shadow: 0 0 18px rgba(56, 189, 248, 0.3), 0 6px 14px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn-modern-summary-action.btn-summary-share:hover i {
+  transform: rotate(15deg);
+}
+
+/* ==========================================================================
+   AUDIT & ENHANCEMENT: COMPREHENSIVE RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .pc-builder-summary-bar {
+    position: static;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .summary-left-stats {
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .summary-right-actions {
+    justify-content: stretch;
+  }
+
+  .summary-right-actions button {
+    flex: 1;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .budget-metrics-grid.budget-metrics-3col {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .saved-build-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .build-actions-col {
+    justify-content: flex-end;
+  }
+
+  .summary-left-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .summary-compat-block {
+    grid-column: span 2;
+  }
+
+  .modal-backdrop-blur {
+    padding: 0.5rem;
+  }
+
+  .auto-build-modal-card,
+  .saved-builds-modal-card {
+    max-height: 94vh;
+    border-radius: 8px;
+  }
+
+  .modal-card-header,
+  .modal-card-body,
+  .modal-card-footer {
+    padding: 1rem;
+  }
+
+  .title-with-icon h3 {
+    font-size: 1.05rem;
+  }
+
+  .btn-summary-cart {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .glab-pc-builder-page {
+    padding: 0.75rem 0.5rem 3rem 0.5rem;
+  }
+
+  .pc-builder-hero {
+    padding: 1.25rem 1rem;
+  }
+
+  .hero-title {
+    font-size: 1.6rem;
+  }
+
+  .summary-right-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .summary-right-actions button {
+    width: 100%;
+  }
+
+  .saved-build-components-chips .saved-part-chip {
+    max-width: 100%;
+  }
+
+  .pin-large-popover {
+    width: 220px;
+    max-width: min(240px, 78vw);
+    padding: 10px 12px;
+  }
+
+  .popover-product-name {
+    font-size: 0.86rem;
+  }
+
+  .popover-price-val {
+    font-size: 0.88rem;
+  }
+}
+
+/* Specific small phones: 360px - 390px */
+@media (max-width: 390px) {
+  .hero-title {
+    font-size: 1.4rem;
+  }
+
+  .modal-card-header {
+    padding: 0.75rem;
+  }
+
+  .title-with-icon {
+    gap: 0.5rem;
+  }
+
+  .auto-modal-badge,
+  .saved-modal-badge {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+
+  .summary-left-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-compat-block {
+    grid-column: span 1;
+  }
+
+  .rig-viewport-realistic {
+    height: 430px;
+  }
+
+  .pin-cpu {
+    left: 102px;
+  }
+
+  .pin-cooler {
+    left: 102px;
+  }
+
+  .pin-storage {
+    left: 94px;
+  }
+
+  .pin-ram {
+    right: 12px;
+  }
+
+  .rig-hotspot-pin .pin-brand {
+    max-width: 60px;
+  }
+
+  .pin-large-popover {
+    width: 195px;
+    max-width: min(210px, 72vw);
+    padding: 8px 10px;
+  }
+
+  .popover-slot-badge {
+    font-size: 0.62rem;
+  }
+
+  .popover-product-name {
+    font-size: 0.8rem;
+  }
+
+  .popover-price-val {
+    font-size: 0.84rem;
+  }
+
+  .popover-empty-desc {
+    font-size: 0.68rem;
+  }
+
+  .popover-cta-action {
+    font-size: 0.62rem;
+  }
+
+  .pin-psu {
+    bottom: 14px;
+    left: 14px;
+  }
+}

@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>G-Lab Live Assembly Rig — Next-Gen Physical Simulator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root {
+  --amber: #ffb454;
+  --amber-glow: rgba(255, 180, 84, 0.55);
+  --cyan: #6fe3ff;
+  --cyan-glow: rgba(111, 227, 255, 0.45);
+  --green: #4dff9e;
+  --green-glow: rgba(77, 255, 158, 0.5);
+  --purple: #b06fff;
+  --purple-glow: rgba(176, 111, 255, 0.5);
+  
+  --rgb-accent: var(--cyan);
+  --rgb-glow: var(--cyan-glow);
+
+  --metal-lo: #5b6472;
+  --metal-hi: #d7dee6;
+  --pcb: #0d2a1c;
+  --gold: #d9b45c;
+
+  --bg-desk: #090d14;
+  --surface-card: #0e131d;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(1200px 700px at 50% -10%, #171f30 0%, #06080d 65%),
+    #05070b;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  color: #cbd3dd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  overflow-x: hidden;
+}
+
+/* Master Desk Container */
+.desk {
+  width: min(720px, 96vw);
+  background: linear-gradient(180deg, #101522 0%, #080a11 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 22px;
+  box-shadow: 
+    0 35px 80px rgba(0, 0, 0, 0.75), 
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 0 0 1px rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+/* ---------- Header ---------- */
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(111, 227, 255, 0.15), rgba(77, 255, 158, 0.1));
+  border: 1px solid rgba(111, 227, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cyan);
+  font-size: 1.1rem;
+  box-shadow: 0 0 15px rgba(111, 227, 255, 0.2);
+}
+
+.head h1 {
+  font-size: 1.05rem;
+  margin: 0;
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+
+.head .sub {
+  font-size: 0.68rem;
+  color: #7c8798;
+  font-family: 'JetBrains Mono', monospace;
+  display: block;
+}
+
+.ctrls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Viewport Angles */
+.toggle-group {
+  display: flex;
+  background: #04060c;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.toggle-group button {
+  background: transparent;
+  border: none;
+  color: #7c8798;
+  font-size: 0.66rem;
+  font-weight: 700;
+  padding: 5px 11px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'JetBrains Mono', monospace;
+  transition: all 0.2s ease;
+}
+
+.toggle-group button:hover {
+  color: #e2e8f0;
+}
+
+.toggle-group button.active {
+  background: rgba(111, 227, 255, 0.14);
+  color: var(--cyan);
+  box-shadow: 0 0 12px rgba(111, 227, 255, 0.18);
+}
+
+/* Quick Action Buttons (Glass, Sound, RGB) */
+.icon-btn {
+  background: #070a12;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #8b95a4;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 0.68rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.icon-btn:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.2);
+  background: #0d121f;
+}
+
+.icon-btn.active {
+  color: var(--cyan);
+  border-color: rgba(111, 227, 255, 0.4);
+  background: rgba(111, 227, 255, 0.08);
+}
+
+/* Power Button */
+.pwr {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 7px 14px;
+  border-radius: 12px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #94a3b8;
+  cursor: pointer;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.4px;
+  transition: all 0.25s ease;
+}
+
+.pwr .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #3a4150;
+  transition: all 0.3s;
+}
+
+.pwr.on {
+  color: #8fffc7;
+  border-color: rgba(80, 255, 170, 0.4);
+  background: rgba(80, 255, 170, 0.1);
+  box-shadow: 0 0 16px rgba(77, 255, 158, 0.2);
+}
+
+.pwr.on .dot {
+  background: #4dff9e;
+  box-shadow: 0 0 10px #4dff9e;
+}
+
+/* ---------- 3D Viewport ---------- */
+.viewport {
+  position: relative;
+  aspect-ratio: 1 / 1.04;
+  border-radius: 16px;
+  background: radial-gradient(circle at 50% 25%, #131826 0%, #030408 80%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.95);
+  overflow: hidden;
+  perspective: 1400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+/* Studio Desk Falloff */
+.viewport::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 40;
+  background: radial-gradient(ellipse at 35% 0%, rgba(255, 255, 255, 0.06), transparent 60%);
+}
+
+.stage {
+  width: 86%;
+  height: 90%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.25, 1);
+  transform: rotateX(9deg) rotateY(-16deg);
+}
+
+.viewport.hero .stage {
+  transform: rotateX(-5deg) rotateY(15deg) scale(1.02);
+}
+
+.viewport.front .stage {
+  transform: rotateX(1deg) rotateY(0deg);
+}
+
+/* ---------- Case Shell : Brushed Aluminum ---------- */
+.case {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  padding: 12px;
+  transform-style: preserve-3d;
+  background:
+    repeating-linear-gradient(100deg, rgba(255, 255, 255, 0.05) 0px, transparent 1px, transparent 3px),
+    linear-gradient(160deg, #1e2430 0%, #0b0e15 55%, #151821 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    inset 0 2px 1px rgba(255, 255, 255, 0.08),
+    inset 0 -30px 60px rgba(0, 0, 0, 0.85),
+    0 25px 45px rgba(0, 0, 0, 0.7);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 10px;
+}
+
+/* Top Exhaust Mesh */
+.top-exhaust {
+  height: 10px;
+  border-radius: 4px;
+  background: repeating-linear-gradient(90deg, #090c12 0 3px, #1a222f 3px 6px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  opacity: 0.7;
+}
+
+/* Tempered Glass Side Panel — Detachable in 3D */
+.glass {
+  position: absolute;
+  inset: 6px;
+  border-radius: 10px;
+  z-index: 30;
+  pointer-events: none;
+  transform: translateZ(60px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: linear-gradient(128deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.02) 30%, transparent 55%);
+  overflow: hidden;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s ease;
+}
+
+.glass::after {
+  content: '';
+  position: absolute;
+  top: -40%;
+  left: -20%;
+  width: 35%;
+  height: 220%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+  transform: rotate(22deg);
+  animation: sweep 7s ease-in-out infinite;
+}
+
+/* When Glass Panel is Removed / Swung Open */
+.case.glass-open .glass {
+  transform: translateZ(90px) rotateY(-40deg) translateX(30px);
+  opacity: 0.25;
+}
+
+@keyframes sweep {
+  0%, 60% { left: -30%; }
+  100% { left: 120%; }
+}
+
+/* ---------- Motherboard : Etched PCB ---------- */
+.mobo {
+  position: relative;
+  transform: translateZ(6px);
+  border-radius: 9px;
+  padding: 10px;
+  background:
+    repeating-linear-gradient(90deg, rgba(217, 180, 92, 0.06) 0 1px, transparent 1px 9px),
+    repeating-linear-gradient(0deg, rgba(217, 180, 92, 0.05) 0 1px, transparent 1px 11px),
+    linear-gradient(160deg, #0f2b1d, #081a12 70%);
+  border: 1px solid rgba(80, 220, 150, 0.18);
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.7);
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.mobo-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem;
+  color: #5fae86;
+  letter-spacing: 0.4px;
+  display: block;
+  margin-bottom: 8px;
+  opacity: 0.85;
+}
+
+/* EZ-Debug Style LED Readout */
+.debug-led {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 20;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  font-size: 0.82rem;
+  color: #3a2f18;
+  background: #0a0906;
+  border: 1px solid rgba(255, 180, 84, 0.15);
+  padding: 3px 7px;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  transition: color 0.2s, text-shadow 0.2s;
+}
+
+.on .debug-led {
+  color: var(--amber);
+  text-shadow: 0 0 8px var(--amber-glow);
+}
+
+.on .debug-led.done {
+  color: #5fff9e;
+  text-shadow: 0 0 8px rgba(95, 255, 158, 0.6);
+}
+
+/* VRM Heatsinks */
+.vrm {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 36px;
+  height: 60px;
+  border-radius: 3px;
+  background: repeating-linear-gradient(180deg, var(--metal-hi) 0 2px, var(--metal-lo) 2px 4px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6), inset 0 0 4px rgba(0, 0, 0, 0.4);
+}
+
+/* CPU + Cooler Fan */
+.cpu-block {
+  position: absolute;
+  top: 8px;
+  left: 54px;
+  width: 76px;
+  height: 76px;
+  transform: translateZ(22px);
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.2s ease;
+}
+
+.cpu-block:hover {
+  transform: translateZ(26px) scale(1.02);
+}
+
+.cpu-die {
+  position: absolute;
+  inset: 0;
+  border-radius: 6px;
+  background: linear-gradient(160deg, #3a3f47, #111318);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.fan {
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #2a3542, #05070a 70%);
+  border: 1px solid rgba(111, 227, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5), inset 0 0 12px rgba(0, 0, 0, 0.8);
+}
+
+.blades {
+  width: 82%;
+  height: 82%;
+  border-radius: 50%;
+  background:
+    conic-gradient(from 0deg,
+      #232a35 0deg 24deg, transparent 24deg 66deg,
+      #232a35 66deg 90deg, transparent 90deg 132deg,
+      #232a35 132deg 156deg, transparent 156deg 198deg,
+      #232a35 198deg 222deg, transparent 222deg 264deg,
+      #232a35 264deg 288deg, transparent 288deg 330deg,
+      #232a35 330deg 354deg, transparent 354deg 360deg);
+  animation: spin 1.8s linear infinite paused;
+}
+
+.on .blades {
+  animation-play-state: running;
+  animation-duration: 0.35s;
+}
+
+.spinning-up .blades {
+  animation-play-state: running;
+  animation-duration: 1.4s;
+}
+
+/* Motion-Blur Ring */
+.fan::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  opacity: 0;
+  background: radial-gradient(circle, transparent 55%, rgba(255, 255, 255, 0.06) 58%, transparent 62%);
+  transition: opacity 0.4s;
+}
+
+.on .fan::after {
+  opacity: 1;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.hub {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #8fefff, #0a2a33 75%);
+  box-shadow: 0 0 0 transparent;
+  transition: all 0.3s;
+}
+
+.on .hub {
+  box-shadow: 0 0 14px var(--rgb-glow);
+}
+
+/* RAM — RGB Diffuser */
+.ram {
+  position: absolute;
+  top: 14px;
+  right: 50px;
+  display: flex;
+  gap: 4px;
+  transform: translateZ(16px);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.ram:hover {
+  transform: translateZ(20px);
+}
+
+.stick {
+  width: 7px;
+  height: 56px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #1a1e27, #0a0c11);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.stick::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border-radius: 1px;
+  opacity: 0;
+  background: linear-gradient(180deg, var(--rgb-accent), #b06fff 50%, var(--amber));
+  filter: blur(2px);
+  transition: opacity 1.1s ease 0.3s;
+}
+
+.on .stick::after {
+  opacity: 0.8;
+  animation: hue 6s linear infinite;
+}
+
+/* Theme Spectrum Overrides */
+.theme-cyan .on .stick::after {
+  background: var(--cyan);
+  animation: none;
+}
+.theme-amber .on .stick::after {
+  background: var(--amber);
+  animation: none;
+}
+.theme-matrix .on .stick::after {
+  background: var(--green);
+  animation: none;
+}
+.theme-stealth .on .stick::after {
+  opacity: 0 !important;
+  animation: none;
+}
+
+@keyframes hue {
+  to { filter: blur(2px) hue-rotate(360deg); }
+}
+
+/* GPU — Brushed Shroud & Triple Fan */
+.gpu {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  height: 46px;
+  transform: translateZ(40px);
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 30%),
+    repeating-linear-gradient(95deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 3px),
+    linear-gradient(160deg, #232936, #0b0d12 80%);
+  border: 1px solid rgba(111, 227, 255, 0.2);
+  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.75);
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.3s ease;
+}
+
+.gpu:hover {
+  transform: translateZ(46px);
+  border-color: var(--cyan);
+}
+
+.gpu-fans {
+  display: flex;
+  gap: 5px;
+}
+
+.gfan {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #05070a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gfan .blades {
+  width: 80%;
+  height: 80%;
+}
+
+.gpu-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.52rem;
+  color: #8b95a4;
+  letter-spacing: 0.2px;
+}
+
+.power-conn {
+  width: 16px;
+  height: 8px;
+  border-radius: 2px;
+  background: #111;
+  border: 1px solid rgba(255, 180, 84, 0.2);
+  transition: all 0.3s ease;
+}
+
+.on .power-conn {
+  box-shadow: 0 0 8px var(--amber-glow);
+  border-color: var(--amber);
+}
+
+/* PSU + Braided Cables */
+.psu {
+  position: relative;
+  transform: translateZ(4px);
+  border-radius: 8px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(160deg, #161a22, #08090d);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+}
+
+.psu-fan {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #05070a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.psu-fan .blades {
+  width: 78%;
+  height: 78%;
+}
+
+.psu-text strong {
+  display: block;
+  font-size: 0.68rem;
+  color: #e2e6eb;
+}
+
+.psu-text span {
+  font-size: 0.58rem;
+  color: #6d7684;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.cables {
+  position: absolute;
+  right: 8px;
+  bottom: -2px;
+  width: 60px;
+  height: 22px;
+}
+
+.cables svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.cables path {
+  fill: none;
+  stroke: #1c2028;
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+.cables path.core {
+  stroke: #0a0c10;
+  stroke-width: 3;
+}
+
+/* ---------- Telemetry & Specs Inspection Card ---------- */
+.hud-telemetry {
+  background: #060910;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 10px 14px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+}
+
+.tele-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.tele-label {
+  color: #64748b;
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tele-val {
+  color: #e2e8f0;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.tele-val.accent {
+  color: var(--cyan);
+}
+
+.tele-val.good {
+  color: var(--green);
+}
+
+/* ---------- Footer Controls ---------- */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: #6d7684;
+  padding-top: 4px;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.footer .status {
+  color: #4dff9e;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.on .footer .status {
+  opacity: 1;
+}
+
+/* Theme selector strip */
+.theme-selector {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.theme-pill {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.theme-pill:hover {
+  transform: scale(1.2);
+}
+
+.theme-pill.active {
+  box-shadow: 0 0 10px currentColor;
+  transform: scale(1.25);
+}
+
+.pill-cyan { background: var(--cyan); color: var(--cyan); }
+.pill-amber { background: var(--amber); color: var(--amber); }
+/* ---------- 9-Point Hotspot Pins for Manual Assembly ---------- */
+.rig-hotspot-pin {
+  position: absolute;
+  z-index: 35;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(8, 12, 20, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(8px);
+  padding: 3px 8px 3px 5px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: translateZ(45px);
+  font-family: 'JetBrains Mono', monospace;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.65);
+  user-select: none;
+}
+
+.rig-hotspot-pin:hover,
+.rig-hotspot-pin.hovered {
+  transform: translateZ(55px) scale(1.08);
+  border-color: var(--cyan);
+  box-shadow: 0 0 16px var(--cyan-glow), 0 6px 20px rgba(0, 0, 0, 0.8);
+  background: rgba(14, 21, 35, 0.96);
+}
+
+.rig-hotspot-pin.installed .beacon-dot {
+  background: #10b981;
+  color: #03140a;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.85);
+}
+
+.rig-hotspot-pin.empty .beacon-dot {
+  background: rgba(255, 180, 84, 0.22);
+  color: var(--amber);
+  border: 1px solid rgba(255, 180, 84, 0.6);
+  box-shadow: 0 0 6px rgba(255, 180, 84, 0.4);
+}
+
+.pin-beacon {
+  position: relative;
+  width: 13px;
+  height: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.beacon-ring {
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1px solid rgba(111, 227, 255, 0.45);
+  animation: pulse-ring 2.5s infinite;
+  opacity: 0.6;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); opacity: 0.8; }
+  70% { transform: scale(1.6); opacity: 0; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+.beacon-dot {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.52rem;
+  font-weight: 900;
+}
+
+.pin-card {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+  text-align: left;
+}
+
+.pin-title {
+  font-size: 0.58rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+}
+
+.pin-brand {
+  font-size: 0.5rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.rig-hotspot-pin.installed .pin-brand {
+  color: #34d399;
+}
+
+.rig-hotspot-pin.empty .pin-brand {
+  color: var(--amber);
+}
+
+.pin-case { top: 6px; left: 10px; }
+.pin-fans { top: 4px; right: 12px; }
+.pin-motherboard { top: 38px; left: 6px; }
+.pin-cpu { top: 14px; left: 132px; }
+.pin-cooler { top: 54px; left: 132px; }
+.pin-ram { top: 76px; right: 32px; }
+.pin-storage { bottom: 58px; left: 118px; }
+.pin-gpu { bottom: 8px; right: 8px; }
+.pin-psu { bottom: 8px; left: 8px; }
+
+/* Amplified Power-On Lighting */
+.on .case {
+  box-shadow:
+    inset 0 2px 1px rgba(255, 255, 255, .15),
+    inset 0 -30px 60px rgba(0, 0, 0, .8),
+    inset 0 0 90px rgba(111, 227, 255, 0.2),
+    0 25px 45px rgba(0, 0, 0, .7),
+    0 0 55px rgba(111, 227, 255, 0.25);
+  border-color: rgba(111, 227, 255, 0.4);
+}
+
+.on .mobo {
+  box-shadow: 
+    inset 0 0 35px rgba(0, 0, 0, 0.7),
+    0 0 30px rgba(111, 227, 255, 0.5),
+    0 0 65px rgba(77, 255, 158, 0.3);
+  border-color: rgba(111, 227, 255, 0.55);
+}
+
+.on .stick::after {
+  opacity: 0.95;
+  box-shadow: 0 0 16px var(--cyan), 0 0 28px rgba(176, 111, 255, 0.9);
+  filter: blur(1.5px) drop-shadow(0 0 10px var(--cyan)) drop-shadow(0 0 20px #b06fff);
+}
+
+.on .fan {
+  box-shadow: 
+    0 0 0 1px rgba(111, 227, 255, 0.5),
+    0 0 30px rgba(111, 227, 255, 0.55),
+    0 0 50px rgba(111, 227, 255, 0.25),
+    inset 0 0 18px rgba(111, 227, 255, 0.4);
+  border-color: var(--cyan);
+}
+
+.on .hub {
+  box-shadow: 0 0 22px var(--cyan), 0 0 40px var(--cyan-glow);
+}
+
+.on .gpu {
+  box-shadow: 
+    0 14px 26px rgba(0, 0, 0, 0.75),
+    0 0 28px rgba(111, 227, 255, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  border-color: rgba(111, 227, 255, 0.65);
+}
+
+.on .power-conn {
+  box-shadow: 0 0 16px var(--amber), 0 0 32px var(--amber-glow);
+  border-color: var(--amber);
+  background: #ffb454;
+}
+
+.hide-pins .rig-hotspot-pin {
+  display: none !important;
+}
+</style>
+</head>
+<body class="theme-chroma">
+
+<div class="desk">
+  <!-- HEADER -->
+  <div class="head">
+    <div class="title-group">
+      <div class="brand-icon">
+        <i class="fa-solid fa-microchip"></i>
+      </div>
+      <div>
+        <h1>Live Assembly Rig</h1>
+        <span class="sub">real materials · real boot sequence · live telemetry</span>
+      </div>
+    </div>
+
+    <div class="ctrls">
+      <!-- Perspective Angle Toggles -->
+      <div class="toggle-group">
+        <button data-view="iso">ISO</button>
+        <button data-view="hero">HERO</button>
+        <button class="active" data-view="front">FRONT</button>
+      </div>
+
+      <!-- Toggle Hotspot Points -->
+      <button class="icon-btn active" id="pointsToggle" title="Toggle Hardware Points">
+        <i class="fa-solid fa-location-dot"></i> POINTS
+      </button>
+
+      <!-- Detach Glass Panel -->
+      <button class="icon-btn" id="glassToggle" title="Toggle Tempered Glass Panel">
+        <i class="fa-regular fa-window-maximize"></i> GLASS
+      </button>
+
+      <!-- Synthesized Audio Switch -->
+      <button class="icon-btn active" id="audioToggle" title="Toggle Motherboard POST Beep & Acoustic Fans">
+        <i class="fa-solid fa-volume-high"></i> AUDIO
+      </button>
+
+      <!-- Physical Power Switch -->
+      <button class="pwr" id="pwrBtn">
+        <span class="dot"></span>POWER
+      </button>
+    </div>
+  </div>
+
+  <!-- 3D VIEWPORT -->
+  <div class="viewport front" id="viewport">
+    <div class="stage" id="stage">
+      <div class="case" id="rig">
+        <!-- 1. CASE PIN -->
+        <div class="rig-hotspot-pin pin-case installed" title="Case: NZXT H9 Flow">
+          <div class="pin-beacon"><span class="beacon-ring"></span><span class="beacon-dot"><i class="fa-solid fa-check"></i></span></div>
+          <div class="pin-card"><span class="pin-title">Case</span><span class="pin-brand">NZXT</span></div>
+        </div>
+
+        <!-- 2. TOP EXHAUST FANS & PIN -->
+        <div class="top-exhaust" title="Top Fans: NZXT 120mm Exhaust"></div>
+        <div class="rig-hotspot-pin pin-fans installed" title="Fans: NZXT Triple 120mm">
+          <div class="pin-beacon"><span class="beacon-ring"></span><span class="beacon-dot"><i class="fa-solid fa-check"></i></span></div>
+          <div class="pin-card"><span class="pin-title">Fans</span><span class="pin-brand">NZXT</span></div>
+        </div>
+
+        <!-- TEMPERED GLASS SIDE PANEL (LIGHT SWEEP REAL REFLECTION) -->
+        <div class="glass" id="glassPanel"></div>
+
+        <!-- MOTHERBOARD: ETCHED PCB -->
+        <div class="mobo" id="moboSlot" title="Motherboard: ASUS ROG Strix B650E-E Gaming WiFi">
+          <span class="mobo-label">ATX · AM5 · PCIe 5.0 · DDR5</span>
+          
+          <!-- 3. MOTHERBOARD PIN -->
+          <div class="rig-hotspot-pin pin-motherboard installed" title="Motherboard: ASUS ROG Strix B650E-E">
+            <div class="pin-beacon"><span class="beacon-ring"></span><span class="beacon-dot"><i class="fa-solid fa-check"></i></span></div>
+            <div class="pin-card"><span class="pin-title">Motherboard</span><span class="pin-brand">ASUS</span></div>
+          </div>
+
+          <!-- VRM HEATSINKS -->
+          <div class="vrm" title="16+2 Power Stage VRM Fins"></div>
+          
+          <!-- EZ-DEBUG 7-SEGMENT LED -->
+          <div class="debug-led" id="debugLed">--</div>
+
+          <!-- CPU & COOLER FAN -->
+          <div class="cpu-block" id="cpuSlot" title="AMD Ryzen 7 7800X3D + DeepCool Liquid 360">
+            <div class="cpu-die"></div>
+            <div class="fan">
+              <div class="blades"></div>
+              <div class="hub"></div>
+            </div>
+          </div>
+
+          <!-- 4. CPU PIN -->
+          <div class="rig-hotspot-pin pin-cpu installed" title="CPU: AMD Ryzen 7 7800X3D">
+            <div class="pin-beacon"><span class="beacon-ring"></span><span class="beacon-dot"><i class="fa-solid fa-check"></i></span></div>
+            <div class="pin-card"><span class="pin-title">CPU</span><span class="pin-brand">AMD</span></div>
+          </div>
+
+          <!-- 5. COOLER PIN -->
+          <div class="rig-hotspot-pin pin-cooler installed" title="Cooler: DeepCool Liquid 360">
+            <div class="pin-beacon"><span class="beacon-ring"></span><span class="beacon-dot"><i class="fa-solid fa-check"></i></span></div>
+            <div class="pin-card"><span class="pin-title">Cooler</span><span class="pin-brand">DeepCool</span></div>
+          </div>
+
+          <!-- 6. 4X DDR5 RAM & PIN -->
+          <div class="ram" id="ramSlot" title="Kingston Fury Beast 32GB (2x16GB) DDR5-6000">
+            <div class="stick"></div>
+            <div class="stick"></div>
+            <div class="stick"></div>
+            <div class="stick"></div>
+          </div>
+          <div class="rig-hotspot-pin pin-ram installed" title="RAM: Kingston Fury Beast 32GB">
+            <div class="pin-beacon"><span class="beacon-ring"></span><span class="beacon-dot"><i class="fa-solid fa-check"></i></span></div>
+            <div class="pin-card"><span class="pin-title">RAM</span><span class="pin-brand">Kingston</span></div>
+          </div>
+
+          <!-- 7. M.2 STORAGE PIN -->
+          <div class="rig-hotspot-pin pin-storage installed" title="Storage: Samsung 990 Pro 2TB NVMe">
+            <div class="pin-beacon"><span class="beacon-ring"></span><span class="beacon-dot"><i class="fa-solid fa-check"></i></span></div>
+            <div class="pin-card"><span class="pin-title">Storage</span><span class="pin-brand">Samsung</span></div>
+          </div>
+
+          <!-- 8. GPU: TRIPLE FAN & PIN -->
+          <div class="gpu" id="gpuSlot" title="NVIDIA GeForce RTX 4080 Super 16GB GDDR6X">
+            <div class="gpu-fans">
+              <div class="gfan"><div class="blades"></div></div>
+              <div class="gfan"><div class="blades"></div></div>
+              <div class="gfan"><div class="blades"></div></div>
+            </div>
+            <span class="gpu-name">RTX 4080S · 16GB GDDR6X</span>
+            <div class="power-conn" title="12VHPWR 600W Power Header"></div>
+          </div>
+          <div class="rig-hotspot-pin pin-gpu installed" title="GPU: NVIDIA RTX 4080 Super">
+            <div class="pin-beacon"><span class="beacon-ring"></span><span class="beacon-dot"><i class="fa-solid fa-check"></i></span></div>
+            <div class="pin-card"><span class="pin-title">GPU</span><span class="pin-brand">NVIDIA</span></div>
+          </div>
+        </div>
+
+        <!-- 9. PSU BASEMENT & PIN -->
+        <div class="psu" id="psuSlot" title="ASUS ROG Thor 850W Platinum Fully Modular">
+          <div class="psu-fan"><div class="blades"></div></div>
+          <div class="psu-text">
+            <strong>850W GOLD</strong>
+            <span>ATX 3.0 · Full Modular</span>
+          </div>
+          <div class="cables">
+            <svg viewBox="0 0 60 22">
+              <path class="core" d="M2,2 C 20,2 20,20 58,20"></path>
+              <path d="M2,2 C 20,2 20,20 58,20"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="rig-hotspot-pin pin-psu installed" title="PSU: ASUS ROG Thor 850W">
+          <div class="pin-beacon"><span class="beacon-ring"></span><span class="beacon-dot"><i class="fa-solid fa-check"></i></span></div>
+          <div class="pin-card"><span class="pin-title">PSU</span><span class="pin-brand">ASUS</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIVE TELEMETRY & SPEC HUD -->
+  <div class="hud-telemetry">
+    <div class="tele-item">
+      <span class="tele-label">CPU Temp / Clock</span>
+      <span class="tele-val accent" id="cpuTelemetry">34°C · 4.8 GHz</span>
+    </div>
+    <div class="tele-item">
+      <span class="tele-label">GPU Temp / VRAM</span>
+      <span class="tele-val accent" id="gpuTelemetry">29°C · 16GB</span>
+    </div>
+    <div class="tele-item">
+      <span class="tele-label">System Power Draw</span>
+      <span class="tele-val good" id="powerTelemetry">65W / 850W</span>
+    </div>
+    <div class="tele-item">
+      <span class="tele-label">Fan Acoustic Speed</span>
+      <span class="tele-val" id="fanTelemetry">0 RPM (Quiet)</span>
+    </div>
+  </div>
+
+  <!-- FOOTER CONTROLS & RGB THEME SELECTOR -->
+  <div class="footer">
+    <div style="display:flex; align-items:center; gap:12px;">
+      <span>installed: 9/9</span>
+      <div class="theme-selector" title="Switch RGB Light Profile">
+        <span style="color:#64748b; font-size:0.58rem;">RGB:</span>
+        <div class="theme-pill pill-chroma active" data-theme="theme-chroma" title="Chroma Wave"></div>
+        <div class="theme-pill pill-cyan" data-theme="theme-cyan" title="Cyberpunk Cyan"></div>
+        <div class="theme-pill pill-amber" data-theme="theme-amber" title="Amber Glow"></div>
+        <div class="theme-pill pill-matrix" data-theme="theme-matrix" title="Matrix Green"></div>
+        <div class="theme-pill pill-stealth" data-theme="theme-stealth" title="Stealth Dark"></div>
+      </div>
+    </div>
+    <span class="status" id="status">SYSTEM READY</span>
+  </div>
+</div>
+
+<script>
+// Elements
+const viewport = document.getElementById('viewport');
+const stage = document.getElementById('stage');
+const rig = document.getElementById('rig');
+const pwrBtn = document.getElementById('pwrBtn');
+const debugLed = document.getElementById('debugLed');
+const status = document.getElementById('status');
+const glassToggle = document.getElementById('glassToggle');
+const audioToggle = document.getElementById('audioToggle');
+
+const cpuTelemetry = document.getElementById('cpuTelemetry');
+const gpuTelemetry = document.getElementById('gpuTelemetry');
+const powerTelemetry = document.getElementById('powerTelemetry');
+const fanTelemetry = document.getElementById('fanTelemetry');
+
+// Audio Synthesizer (No external mp3 needed, pure Web Audio API)
+let audioEnabled = true;
+let audioCtx = null;
+let fanHumOscillator = null;
+let fanHumGain = null;
+
+function initAudio() {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  if (audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+}
+
+function playBeep(freq = 880, duration = 0.12) {
+  if (!audioEnabled) return;
+  try {
+    initAudio();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+    gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + duration);
+  } catch (e) {
+    console.log('Audio suppressed', e);
+  }
+}
+
+function startFanHum() {
+  if (!audioEnabled) return;
+  try {
+    initAudio();
+    stopFanHum();
+    fanHumOscillator = audioCtx.createOscillator();
+    fanHumGain = audioCtx.createGain();
+    fanHumOscillator.type = 'triangle';
+    fanHumOscillator.frequency.setValueAtTime(55, audioCtx.currentTime); // 55Hz low hum
+    fanHumGain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+    fanHumGain.gain.linearRampToValueAtTime(0.04, audioCtx.currentTime + 1.2);
+    fanHumOscillator.connect(fanHumGain);
+    fanHumGain.connect(audioCtx.destination);
+    fanHumOscillator.start();
+  } catch (e) {}
+}
+
+function stopFanHum() {
+  if (fanHumGain && audioCtx) {
+    try {
+      fanHumGain.gain.linearRampToValueAtTime(0.001, audioCtx.currentTime + 0.3);
+      setTimeout(() => {
+        if (fanHumOscillator) {
+          fanHumOscillator.stop();
+          fanHumOscillator.disconnect();
+          fanHumOscillator = null;
+        }
+      }, 350);
+    } catch (e) {}
+  }
+}
+
+audioToggle.addEventListener('click', () => {
+  audioEnabled = !audioEnabled;
+  audioToggle.classList.toggle('active', audioEnabled);
+  audioToggle.innerHTML = audioEnabled 
+    ? '<i class="fa-solid fa-volume-high"></i> AUDIO' 
+    : '<i class="fa-solid fa-volume-xmark"></i> MUTED';
+  if (!audioEnabled) stopFanHum();
+  else if (on) startFanHum();
+});
+
+// Viewport Angle Toggle (ISO, HERO, FRONT)
+document.querySelectorAll('.toggle-group button').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('.toggle-group button').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    viewport.classList.remove('hero', 'front');
+    if (b.dataset.view === 'hero') viewport.classList.add('hero');
+    if (b.dataset.view === 'front') viewport.classList.add('front');
+  });
+});
+
+// Glass Side Panel Detach / Open Toggle
+let isGlassOpen = false;
+glassToggle.addEventListener('click', () => {
+  isGlassOpen = !isGlassOpen;
+  rig.classList.toggle('glass-open', isGlassOpen);
+  glassToggle.classList.toggle('active', isGlassOpen);
+  glassToggle.innerHTML = isGlassOpen 
+    ? '<i class="fa-solid fa-door-open"></i> OPEN' 
+    : '<i class="fa-regular fa-window-maximize"></i> GLASS';
+  playBeep(440, 0.05);
+});
+
+// Points Hotspot Toggle
+const pointsToggle = document.getElementById('pointsToggle');
+if (pointsToggle) {
+  pointsToggle.addEventListener('click', () => {
+    rig.classList.toggle('hide-pins');
+    pointsToggle.classList.toggle('active');
+  });
+}
+
+// RGB Theme Selector
+document.querySelectorAll('.theme-pill').forEach(pill => {
+  pill.addEventListener('click', () => {
+    document.querySelectorAll('.theme-pill').forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+    document.body.className = pill.dataset.theme;
+  });
+});
+
+// 3D Parallax Mouse Physics
+viewport.addEventListener('mousemove', (e) => {
+  const r = viewport.getBoundingClientRect();
+  const x = ((e.clientX - r.left) / r.width - 0.5) * 10;
+  const y = ((e.clientY - r.top) / r.height - 0.5) * -8;
+  
+  if (viewport.classList.contains('front')) {
+    stage.style.transform = `rotateX(${y * 0.3}deg) rotateY(${x * 0.3}deg)`;
+  } else if (viewport.classList.contains('hero')) {
+    stage.style.transform = `rotateX(${-5 + y * 0.35}deg) rotateY(${15 + x * 0.35}deg) scale(1.02)`;
+  } else {
+    stage.style.transform = `rotateX(${9 + y * 0.4}deg) rotateY(${-16 + x * 0.4}deg)`;
+  }
+});
+
+viewport.addEventListener('mouseleave', () => {
+  if (viewport.classList.contains('front')) {
+    stage.style.transform = 'rotateX(1deg) rotateY(0deg)';
+  } else if (viewport.classList.contains('hero')) {
+    stage.style.transform = 'rotateX(-5deg) rotateY(15deg) scale(1.02)';
+  } else {
+    stage.style.transform = 'rotateX(9deg) rotateY(-16deg)';
+  }
+});
+
+// Motherboard POST Boot Sequence (B2 -> A0 -> 55 -> 24 -> 0d -> 00 -> OK + Beep)
+let on = false;
+let bootTimers = [];
+const debugCodes = ['B2', 'A0', '55', '24', '0d', '00'];
+
+function clearTimers() { 
+  bootTimers.forEach(t => clearTimeout(t)); 
+  bootTimers = []; 
+}
+
+function updateTelemetry(active) {
+  if (active) {
+    cpuTelemetry.textContent = '48°C · 5.0 GHz';
+    gpuTelemetry.textContent = '41°C · 16GB';
+    powerTelemetry.textContent = '385W / 850W';
+    fanTelemetry.textContent = '1450 RPM (Optimal)';
+  } else {
+    cpuTelemetry.textContent = '34°C · Standby';
+    gpuTelemetry.textContent = '29°C · Idle';
+    powerTelemetry.textContent = '42W / 850W';
+    fanTelemetry.textContent = '0 RPM (Quiet)';
+  }
+}
+
+function powerOn() {
+  on = true;
+  playBeep(520, 0.08); // Initial click beep
+  pwrBtn.classList.add('on');
+  rig.classList.add('spinning-up');
+  status.textContent = 'BOOTING…';
+  
+  debugCodes.forEach((code, i) => {
+    bootTimers.push(setTimeout(() => { 
+      debugLed.textContent = code; 
+    }, i * 160));
+  });
+
+  // POST Complete Success Trigger
+  bootTimers.push(setTimeout(() => {
+    debugLed.classList.add('done');
+    debugLed.textContent = 'OK';
+    rig.classList.add('on');
+    playBeep(880, 0.16); // Classic Motherboard Single Beep
+    startFanHum();
+    updateTelemetry(true);
+  }, debugCodes.length * 160 + 80));
+
+  bootTimers.push(setTimeout(() => {
+    rig.classList.remove('spinning-up');
+    status.textContent = 'SYSTEM READY';
+  }, debugCodes.length * 160 + 1400));
+}
+
+function powerOff() {
+  on = false;
+  clearTimers();
+  playBeep(320, 0.08);
+  stopFanHum();
+  pwrBtn.classList.remove('on');
+  rig.classList.remove('on', 'spinning-up');
+  debugLed.classList.remove('done');
+  debugLed.textContent = '--';
+  status.textContent = '';
+  updateTelemetry(false);
+}
+
+pwrBtn.addEventListener('click', () => on ? powerOff() : powerOn());
+
+// Slot hover tips for interactive inspection
+const slotTooltips = {
+  cpuSlot: 'AMD Ryzen 7 7800X3D (8C/16T, up to 5.0GHz, 96MB 3D V-Cache)',
+  gpuSlot: 'NVIDIA GeForce RTX 4080 Super (10240 CUDA Cores, 16GB GDDR6X, Ada Lovelace)',
+  ramSlot: 'Corsair Dominator Titanium 32GB (2x16GB) DDR5-6000 CL30',
+  psuSlot: 'Corsair RM850x Shift (850W, 80+ Gold, ATX 3.0 & PCIe 5.0 Ready)',
+  moboSlot: 'ASUS ROG Strix B650E-E Gaming WiFi (PCIe 5.0 x16, 4x M.2, 16+2 VRM)'
+};
+
+Object.keys(slotTooltips).forEach(id => {
+  const el = document.getElementById(id);
+  if (el) {
+    el.addEventListener('mouseenter', () => {
+      status.textContent = slotTooltips[id].substring(0, 36) + '…';
+    });
+    el.addEventListener('mouseleave', () => {
+      status.textContent = on ? 'SYSTEM READY' : '';
+    });
+  }
+});
+</script>
+</body>
+</html>
