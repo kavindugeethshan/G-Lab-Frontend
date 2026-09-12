@@ -4,7 +4,6 @@ import { useCart } from '../../context/CartContext';
 import { useToast } from '../../context/ToastContext';
 import { productService } from '../../services/productService';
 import AssemblyProgress, { ASSEMBLY_STEPS } from './components/AssemblyProgress';
-import BuildVisualizer from './components/BuildVisualizer';
 import ComponentSelector from './components/ComponentSelector';
 import CompatibilityPanel from './components/CompatibilityPanel';
 import BudgetPanel from './components/BudgetPanel';
@@ -35,10 +34,8 @@ export default function PCBuilderPage() {
     const saved = localStorage.getItem(LOCAL_STORAGE_BUDGET_KEY);
     return saved ? Number(saved) : 350000;
   });
-  // Active mobile view tab: 'builder' | 'chassis' | 'diagnostics'
+  // Active mobile view tab: 'builder' | 'diagnostics'
   const [mobileActiveTab, setMobileActiveTab] = useState('builder');
-  // Power On state for interactive 2D chassis animation
-  const [isPoweredOn, setIsPoweredOn] = useState(false);
 
   // Modals state
   const [isAutoModalOpen, setIsAutoModalOpen] = useState(false);
@@ -141,10 +138,6 @@ export default function PCBuilderPage() {
       delete updated[slotId];
       return updated;
     });
-    // Turn off power if critical part removed
-    if (['cpu', 'motherboard', 'psu', 'ram'].includes(slotId)) {
-      setIsPoweredOn(false);
-    }
     showToast(`Removed component from ${slotId.toUpperCase()} slot.`, 'info');
   }, [showToast]);
 
@@ -152,19 +145,9 @@ export default function PCBuilderPage() {
   const handleClearBuild = useCallback(() => {
     if (window.confirm('Are you sure you want to reset your current PC build? All selected components will be cleared.')) {
       setSelectedParts({});
-      setIsPoweredOn(false);
       showToast('PC build reset successfully.', 'info');
     }
   }, [showToast]);
-
-  // Jump to step by slot key (e.g. from 2D Chassis click)
-  const handleSlotClick = useCallback((slotId) => {
-    const stepIdx = ASSEMBLY_STEPS.findIndex((s) => s.id === slotId);
-    if (stepIdx !== -1) {
-      setCurrentStepIndex(stepIdx);
-      setMobileActiveTab('builder');
-    }
-  }, []);
 
   // Step navigation
   const handleNextStep = useCallback(() => {
@@ -174,16 +157,6 @@ export default function PCBuilderPage() {
   const handlePrevStep = useCallback(() => {
     setCurrentStepIndex((prev) => Math.max(prev - 1, 0));
   }, []);
-
-  // Toggle power on
-  const handleTogglePower = useCallback(() => {
-    setIsPoweredOn((prev) => !prev);
-    if (!isPoweredOn) {
-      showToast('System Powered On! RGB Lighting and cooling fans active.', 'success');
-    } else {
-      showToast('System Powered Down.', 'info');
-    }
-  }, [isPoweredOn, showToast]);
 
   // Handle Mode Change
   const handleModeChange = useCallback((mode) => {
@@ -215,7 +188,6 @@ export default function PCBuilderPage() {
   const handleLoadSavedBuild = useCallback((loadedParts, loadedBudget) => {
     setSelectedParts(loadedParts || {});
     if (loadedBudget) setTargetBudget(loadedBudget);
-    setIsPoweredOn(false);
   }, []);
 
   // Export Bill of Materials (BOM)
@@ -294,7 +266,7 @@ export default function PCBuilderPage() {
             </div>
             <h1 className="hero-title">G-LAB PC BUILDER</h1>
             <p className="hero-description">
-              Engineer your ultimate gaming or workstation rig. Live 2D chassis assembly, deterministic hardware validation, game framerate benchmarks, and real-time power budget calculation.
+              Engineer your ultimate gaming or workstation rig. Deterministic hardware compatibility validation, real-time power calculations, and game framerate benchmarks.
             </p>
           </div>
 
@@ -358,44 +330,27 @@ export default function PCBuilderPage() {
           </button>
           <button
             type="button"
-            className={`mobile-tab-btn ${mobileActiveTab === 'chassis' ? 'active' : ''}`}
-            onClick={() => setMobileActiveTab('chassis')}
-          >
-            <i className="fa-solid fa-server"></i>
-            <span>2D Chassis</span>
-          </button>
-          <button
-            type="button"
             className={`mobile-tab-btn ${mobileActiveTab === 'diagnostics' ? 'active' : ''}`}
             onClick={() => setMobileActiveTab('diagnostics')}
           >
-            <i className="fa-solid fa-shield-halved"></i>
-            <span>Diagnostics & Budget</span>
+            <i className="fa-solid fa-wallet"></i>
+            <span>Budget & Specs</span>
           </button>
         </div>
 
-        {/* MAIN BUILDER WORKSPACE (Dual / Triple Column Layout) */}
-        <div className={`pc-builder-workspace mobile-tab-${mobileActiveTab}`}>
-          {/* LEFT COLUMN: 2D CHASSIS VISUALIZER & DIAGNOSTICS */}
-          <div className="builder-sidebar-column">
-            {/* 2D VISUALIZER */}
-            <BuildVisualizer
-              selectedParts={selectedParts}
-              onSlotClick={handleSlotClick}
-              isPoweredOn={isPoweredOn}
-              onTogglePower={handleTogglePower}
-            />
-
-            {/* BUDGET TRACKER */}
+        {/* UNIFIED MASTER WORKBENCH CARD (Single Luxury White Master Card) */}
+        <div className={`pcb-unified-workbench-card mobile-tab-${mobileActiveTab}`}>
+          {/* LEFT PANE: BUDGET TRACKER */}
+          <aside className="pcb-workbench-sidebar">
             <BudgetPanel
               selectedParts={selectedParts}
               targetBudget={targetBudget}
               onBudgetChange={setTargetBudget}
             />
-          </div>
+          </aside>
 
-          {/* RIGHT COLUMN: STEP COMPONENT SELECTOR */}
-          <div className="builder-main-column">
+          {/* RIGHT PANE: HARDWARE COMPONENT SELECTOR */}
+          <main className="pcb-workbench-main">
             <ComponentSelector
               step={currentStep}
               stepIndex={currentStepIndex}
@@ -410,12 +365,12 @@ export default function PCBuilderPage() {
               onExportSpecSheet={handleExportSpecSheet}
               onShareBuild={handleShareBuild}
             />
-          </div>
+          </main>
+        </div>
 
-          {/* HORIZONTAL COMPATIBILITY DIAGNOSTICS CONSOLE (Full Width Across Horizontal Axis) */}
-          <div className="builder-horizontal-diagnostics-column">
-            <CompatibilityPanel selectedParts={selectedParts} />
-          </div>
+        {/* HORIZONTAL COMPATIBILITY DIAGNOSTICS CONSOLE */}
+        <div className="builder-horizontal-diagnostics-column">
+          <CompatibilityPanel selectedParts={selectedParts} />
         </div>
 
         {/* PERSISTENT BUILD SUMMARY BAR */}

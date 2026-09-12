@@ -26,8 +26,8 @@ export default function BuilderModeSelector({ activeMode, onSelectMode }) {
   ];
 
   return (
-    <div className="builder-mode-switcher-container">
-      <div className="builder-mode-tabs" role="tablist">
+    <nav className="pcb-mode-navbar" aria-label="Builder Modes Navigation">
+      <div className="pcb-mode-navbar-track" role="tablist">
         {MODES.map((mode) => {
           const isActive = activeMode === mode.id;
           return (
@@ -36,23 +36,23 @@ export default function BuilderModeSelector({ activeMode, onSelectMode }) {
               type="button"
               role="tab"
               aria-selected={isActive}
-              className={`mode-tab-btn ${isActive ? 'active' : ''}`}
+              className={`pcb-mode-nav-item ${isActive ? 'active' : ''}`}
               onClick={() => onSelectMode(mode.id)}
             >
-              <span className="mode-tab-icon">
+              <span className="pcb-mode-nav-icon">
                 <i className={mode.icon}></i>
               </span>
-              <div className="mode-tab-info">
-                <div className="mode-tab-title-row">
-                  <span className="mode-tab-title">{mode.label}</span>
-                  <span className="mode-tab-badge">{mode.badge}</span>
+              <div className="pcb-mode-nav-content">
+                <div className="pcb-mode-nav-header">
+                  <span className="pcb-mode-nav-label">{mode.label}</span>
+                  <span className="pcb-mode-nav-badge">{mode.badge}</span>
                 </div>
-                <span className="mode-tab-desc">{mode.description}</span>
+                <p className="pcb-mode-nav-desc">{mode.description}</p>
               </div>
             </button>
           );
         })}
       </div>
-    </div>
+    </nav>
   );
 }

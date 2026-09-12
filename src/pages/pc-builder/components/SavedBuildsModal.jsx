@@ -75,9 +75,9 @@ export default function SavedBuildsModal({
                 borderRadius: '8px',
                 fontSize: '0.78rem',
                 fontWeight: '600',
-                color: '#38bdf8',
-                background: 'rgba(56, 189, 248, 0.12)',
-                border: '1px solid rgba(56, 189, 248, 0.35)',
+                color: '#0284c7',
+                background: '#f0f9ff',
+                border: '1px solid #bae6fd',
                 textDecoration: 'none',
                 transition: 'all 0.2s ease',
               }}

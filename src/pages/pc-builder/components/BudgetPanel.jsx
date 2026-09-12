@@ -67,7 +67,10 @@ export default function BudgetPanel({ selectedParts, targetBudget, onBudgetChang
             </form>
           ) : (
             <div className="budget-display-row" onClick={() => setIsEditingBudget(true)} title="Click to edit budget">
-              <strong className="metric-value">
+              <strong
+                className="metric-value"
+                title={targetBudget > 0 ? formatPrice(targetBudget) : 'No limit'}
+              >
                 {targetBudget > 0 ? formatPrice(targetBudget) : 'No limit'}
               </strong>
               <button
@@ -87,14 +90,25 @@ export default function BudgetPanel({ selectedParts, targetBudget, onBudgetChang
         {/* 2. CURRENT BUILD */}
         <div className="budget-metric-block current-total">
           <span className="metric-label">Current Build</span>
-          <strong className="metric-value">{formatPrice(currentTotal)}</strong>
+          <strong className="metric-value" title={formatPrice(currentTotal)}>
+            {formatPrice(currentTotal)}
+          </strong>
           <span className="metric-hint">{items.length} of 9 components</span>
         </div>
 
         {/* 3. REMAINING / OVER */}
         <div className={`budget-metric-block ${isOverBudget ? 'over-budget-block' : 'remaining-budget-block'}`}>
           <span className="metric-label">{isOverBudget ? 'Over Budget' : 'Remaining'}</span>
-          <strong className={`metric-value ${isOverBudget ? 'text-danger' : 'text-success'}`}>
+          <strong
+            className={`metric-value ${isOverBudget ? 'text-danger' : 'text-success'}`}
+            title={
+              targetBudget > 0
+                ? isOverBudget
+                  ? `-${formatPrice(overAmount)}`
+                  : formatPrice(remaining)
+                : 'Unlimited'
+            }
+          >
             {targetBudget > 0
               ? isOverBudget
                 ? `-${formatPrice(overAmount)}`
