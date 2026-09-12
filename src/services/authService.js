@@ -26,20 +26,35 @@ export const authService = {
   },
 
   // Forgot password
-  async forgotPassword(email) {
+  async forgotPassword(emailOrPayload) {
+    const email = typeof emailOrPayload === 'object' && emailOrPayload !== null
+      ? emailOrPayload.email
+      : emailOrPayload;
     const res = await api.post('/users/forgot-password', { email });
     return res.data;
   },
 
   // Verify reset OTP
-  async verifyResetOtp(email, otp) {
-    const res = await api.post('/users/verify-reset-otp', { email, otp });
+  async verifyResetOtp(emailOrPayload, otp) {
+    let payload;
+    if (typeof emailOrPayload === 'object' && emailOrPayload !== null) {
+      payload = emailOrPayload;
+    } else {
+      payload = { email: emailOrPayload, otp };
+    }
+    const res = await api.post('/users/verify-reset-otp', payload);
     return res.data;
   },
 
   // Reset password
-  async resetPassword(email, otp, newPassword) {
-    const res = await api.post('/users/reset-password', { email, otp, newPassword });
+  async resetPassword(emailOrPayload, otp, newPassword) {
+    let payload;
+    if (typeof emailOrPayload === 'object' && emailOrPayload !== null) {
+      payload = emailOrPayload;
+    } else {
+      payload = { email: emailOrPayload, otp, newPassword };
+    }
+    const res = await api.post('/users/reset-password', payload);
     return res.data;
   },
 

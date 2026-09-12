@@ -170,7 +170,9 @@
         }
 
         .btn {
-            width: 150px;
+            min-width: 150px;
+            width: auto;
+            padding: 0 24px;
             background: #5995fd;
             border: none;
             outline: none;
@@ -182,6 +184,10 @@
             margin: 10px 0;
             cursor: pointer;
             transition: 0.5s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
         }
 
         .btn:hover {
@@ -632,4 +638,454 @@
             }
         }
 
+}
+
+/* ==========================================================================
+   FORGOT PASSWORD - LUXURY MODERN CARD UI
+   ========================================================================== */
+.forgot-password-card {
+    width: 100%;
+    max-width: 420px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.07), 0 0 1px 1px rgba(0, 0, 0, 0.04);
+    padding: 32px 28px 24px 28px;
+    margin: 0 auto;
+    text-align: center;
+    box-sizing: border-box;
+    position: relative;
+    animation: forgotCardFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 5;
+}
+
+@keyframes forgotCardFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.forgot-badge-icon {
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 16px auto;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    border: 1px solid #bfdbfe;
+    color: #0284c7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.45rem;
+    box-shadow: 0 8px 16px -4px rgba(2, 132, 199, 0.18);
+    transition: all 0.3s ease;
+}
+
+.forgot-badge-icon:hover {
+    transform: scale(1.05);
+}
+
+.forgot-card-title {
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+}
+
+.forgot-card-subtitle {
+    font-size: 0.86rem;
+    color: #64748b;
+    line-height: 1.5;
+    margin-bottom: 22px;
+    padding: 0 4px;
+}
+
+.forgot-highlight-email {
+    color: #0284c7;
+    font-weight: 700;
+    word-break: break-all;
+}
+
+/* 3-Step Progress Stepper */
+.forgot-stepper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 24px;
+    padding: 0 8px;
+    box-sizing: border-box;
+}
+
+.forgot-stepper .step-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    position: relative;
+    z-index: 2;
+}
+
+.forgot-stepper .step-circle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #f1f5f9;
+    color: #94a3b8;
+    font-weight: 700;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #e2e8f0;
+    transition: all 0.3s ease;
+}
+
+.forgot-stepper .step-item.active .step-circle {
+    background: #0284c7;
+    color: #ffffff;
+    border-color: #0284c7;
+    box-shadow: 0 0 14px rgba(2, 132, 199, 0.4);
+}
+
+.forgot-stepper .step-item.completed .step-circle {
+    background: #10b981;
+    color: #ffffff;
+    border-color: #10b981;
+}
+
+.forgot-stepper .step-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #94a3b8;
+    transition: color 0.3s ease;
+}
+
+.forgot-stepper .step-item.active .step-label {
+    color: #0f172a;
+    font-weight: 700;
+}
+
+.forgot-stepper .step-item.completed .step-label {
+    color: #059669;
+}
+
+.forgot-stepper .step-line {
+    flex: 1;
+    height: 2px;
+    background: #e2e8f0;
+    margin: -14px 8px 0 8px;
+    transition: background 0.3s ease;
+}
+
+.forgot-stepper .step-line.active {
+    background: #0284c7;
+}
+
+/* Field Groups & Modern Inputs */
+.forgot-field-group {
+    width: 100%;
+    margin-bottom: 14px;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.forgot-input-label {
+    display: block;
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: #475569;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.forgot-input-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background: #f8fafc;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 12px;
+    transition: all 0.25s ease;
+    box-sizing: border-box;
+}
+
+.forgot-input-wrapper:hover {
+    border-color: #cbd5e1;
+}
+
+.forgot-input-wrapper:focus-within {
+    background: #ffffff;
+    border-color: #0284c7;
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+}
+
+.forgot-input-wrapper .input-icon {
+    position: absolute;
+    left: 14px;
+    color: #94a3b8;
+    font-size: 1rem;
+    pointer-events: none;
+    transition: color 0.25s ease;
+}
+
+.forgot-input-wrapper:focus-within .input-icon {
+    color: #0284c7;
+}
+
+.forgot-input {
+    width: 100%;
+    padding: 13px 14px 13px 44px;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 0.94rem;
+    color: #0f172a;
+    font-weight: 500;
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+
+.forgot-input::placeholder {
+    color: #94a3b8;
+    font-weight: 400;
+}
+
+.forgot-pw-toggle {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    font-size: 0.95rem;
+    padding: 6px;
+    border-radius: 6px;
+    transition: color 0.2s ease;
+}
+
+.forgot-pw-toggle:hover {
+    color: #0284c7;
+}
+
+/* OTP Specific Styling */
+.forgot-otp-wrapper {
+    background: #f8fafc;
+    border: 2px solid #0284c7;
+    box-shadow: 0 0 16px rgba(2, 132, 199, 0.12);
+}
+
+.forgot-otp-input {
+    text-align: center;
+    letter-spacing: 8px;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #0f172a;
+    padding: 12px 14px;
+}
+
+.forgot-otp-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 8px 0 16px 0;
+    padding: 0 4px;
+    box-sizing: border-box;
+}
+
+.forgot-resend-text {
+    font-size: 0.78rem;
+    color: #64748b;
+}
+
+.forgot-resend-btn {
+    background: none;
+    border: none;
+    color: #0284c7;
+    font-weight: 700;
+    font-size: 0.8rem;
+    cursor: pointer;
+    padding: 4px 6px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.forgot-resend-btn:hover:not(:disabled) {
+    color: #0369a1;
+    background: #f0f9ff;
+}
+
+.forgot-resend-btn:disabled {
+    color: #94a3b8;
+    cursor: not-allowed;
+}
+
+/* Requirement checklist tags */
+.forgot-req-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    width: 100%;
+    margin: 4px 0 16px 0;
+    box-sizing: border-box;
+}
+
+.forgot-req-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 6px;
+    background: #f1f5f9;
+    color: #64748b;
+    transition: all 0.25s ease;
+}
+
+.forgot-req-item.valid {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.forgot-req-item.invalid {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+/* Submit Action Button */
+.forgot-submit-btn {
+    width: 100%;
+    min-width: 200px;
+    height: 48px;
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    border: none;
+    border-radius: 12px;
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+    transition: all 0.25s ease;
+    margin-top: 6px;
+    box-sizing: border-box;
+    text-transform: none;
+    letter-spacing: 0.2px;
+}
+
+.forgot-submit-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, #0369a1 0%, #075985 100%);
+    box-shadow: 0 6px 20px rgba(2, 132, 199, 0.45);
+    transform: translateY(-1px);
+}
+
+.forgot-submit-btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.forgot-submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Alert Notification */
+.forgot-alert-box {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+    text-align: left;
+    box-sizing: border-box;
+    animation: forgotAlertFade 0.25s ease;
+}
+
+@keyframes forgotAlertFade {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.forgot-alert-box.error {
+    background: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+}
+
+.forgot-alert-box.success {
+    background: #f0fdf4;
+    color: #15803d;
+    border: 1px solid #bbf7d0;
+}
+
+/* Secondary Navigation & Footer */
+.forgot-secondary-link {
+    background: none;
+    border: none;
+    color: #64748b;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.forgot-secondary-link:hover {
+    color: #0284c7;
+    background: #f8fafc;
+}
+
+.forgot-footer {
+    width: 100%;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid #f1f5f9;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.forgot-back-btn {
+    background: none;
+    border: none;
+    color: #2563eb;
+    font-weight: 600;
+    font-size: 0.86rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+    padding: 6px 12px;
+    border-radius: 8px;
+}
+
+.forgot-back-btn:hover {
+    color: #1d4ed8;
+    background: #eff6ff;
+    transform: translateX(-3px);
 }
