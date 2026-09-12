@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { paymentService } from '../services/paymentService';
+import { API_BASE_URL } from '../services/api';
 import { useToast } from '../context/ToastContext';
 import './PaymentGatewayPage.css';
 
@@ -224,7 +225,7 @@ export default function PaymentGatewayPage() {
           <input type="hidden" name="merchant_id" value={payment.merchantId || '1228224'} />
           <input type="hidden" name="return_url" value={returnUrl} />
           <input type="hidden" name="cancel_url" value={cancelUrl} />
-          <input type="hidden" name="notify_url" value={payment.notifyUrl || 'http://localhost:3001/payments/notify'} />
+          <input type="hidden" name="notify_url" value={payment.notifyUrl || `${API_BASE_URL}/payments/notify`} />
           <input type="hidden" name="order_id" value={payment.orderId?._id || payment.orderId} />
           <input type="hidden" name="items" value={`G-Lab Order #${payment.orderId?._id || payment.orderId}`} />
           <input type="hidden" name="currency" value={payment.currency || 'LKR'} />

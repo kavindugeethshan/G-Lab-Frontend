@@ -76,8 +76,10 @@ export default function AuthPage() {
       showToast('Login successful! Welcome back.', 'success');
 
       const u = data.user || {};
-      const isAdmin = u.isadmin === true || u.isadmin === 'true' || u.isAdmin === true || u.role === 'admin';
-      const destination = location.state?.from?.pathname || (isAdmin ? '/admin' : '/');
+      const rawDest = location.state?.from?.pathname;
+      const destination = (typeof rawDest === 'string' && rawDest.startsWith('/') && !rawDest.startsWith('//'))
+        ? rawDest
+        : (isAdmin ? '/admin' : '/');
 
       setTimeout(() => {
         navigate(destination, { replace: true });

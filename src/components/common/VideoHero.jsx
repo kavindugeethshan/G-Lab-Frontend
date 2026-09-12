@@ -8,8 +8,8 @@ export default function VideoHero() {
   useEffect(() => {
     const video = videoRef.current;
     if (video) {
-      video.play().catch((err) => {
-        console.log('Video autoplay handling:', err);
+      video.play().catch(() => {
+        // Autoplay may be restricted by browser policy before user interaction
       });
     }
   }, []);

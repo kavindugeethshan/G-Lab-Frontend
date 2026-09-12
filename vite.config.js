@@ -12,8 +12,14 @@ const apiProxy = {
 };
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [react()],
+  oxc: {
+    drop: mode === 'production' ? ['console', 'debugger'] : [],
+  },
+  build: {
+    sourcemap: false,
+  },
   server: {
     port: 5173,
     proxy: {
@@ -26,4 +32,4 @@ export default defineConfig({
       '/ai': apiProxy,
     },
   },
-});
+}));

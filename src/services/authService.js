@@ -39,7 +39,13 @@ export const authService = {
 
   // Reset password
   async resetPassword(email, otp, newPassword) {
-    const res = await api.post('/users/reset-password', { email, otp, newPassword });
+    let payload;
+    if (typeof email === 'object' && email !== null) {
+      payload = email;
+    } else {
+      payload = { email, otp, newPassword };
+    }
+    const res = await api.post('/users/reset-password', payload);
     return res.data;
   },
 
