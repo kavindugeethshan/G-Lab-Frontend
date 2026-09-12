@@ -220,6 +220,8 @@ export default function ComponentSelector({
           <p className="selector-subtitle">
             Review your custom hardware selection, verified component compatibility, and bill of materials.
           </p>
+        </div>
+
         <div className="review-table-scroll-hint">
           <i className="fa-solid fa-arrows-left-right"></i>
           <span>Swipe horizontally to inspect all component specifications and actions</span>
