@@ -144,15 +144,16 @@ export default function EditProfilePage() {
       showToast('New password must be at least 6 characters.', 'error');
       return;
     }
+    if (currentPassword === newPassword) {
+      showToast('New password must be different from current password.', 'error');
+      return;
+    }
 
     setSavingPassword(true);
     showToast('Updating password...', 'loading');
 
     try {
-      await authService.changePassword({
-        currentPassword,
-        newPassword,
-      });
+      await authService.changePassword(currentPassword, newPassword);
       showToast('Password updated successfully! Please sign in again.', 'success');
       setCurrentPassword('');
       setNewPassword('');
@@ -357,6 +358,7 @@ export default function EditProfilePage() {
               <input
                 type="password"
                 id="currentPassword"
+                autoComplete="current-password"
                 required
                 placeholder="••••••••"
                 value={currentPassword}
@@ -369,6 +371,7 @@ export default function EditProfilePage() {
               <input
                 type="password"
                 id="newPassword"
+                autoComplete="new-password"
                 required
                 placeholder="••••••••"
                 value={newPassword}

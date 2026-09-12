@@ -77,8 +77,14 @@ export const authService = {
   },
 
   // Change password
-  async changePassword(currentPassword, newPassword) {
-    const res = await api.put('/users/change-password', { currentPassword, newPassword });
+  async changePassword(currentPasswordOrPayload, newPassword) {
+    let payload;
+    if (typeof currentPasswordOrPayload === 'object' && currentPasswordOrPayload !== null) {
+      payload = currentPasswordOrPayload;
+    } else {
+      payload = { currentPassword: currentPasswordOrPayload, newPassword };
+    }
+    const res = await api.put('/users/change-password', payload);
     return res.data;
   },
 
