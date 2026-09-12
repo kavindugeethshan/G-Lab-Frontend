@@ -90,7 +90,7 @@ export default function HomePage() {
             player.play();
           }
         }
-      } catch (e) {}
+      } catch (e) { }
     }, 1000);
 
     return () => {
@@ -295,7 +295,7 @@ export default function HomePage() {
               Discover the latest components engineered to power your ultimate setup.
             </p>
             <div className="cinematic-banner-actions">
-              <Link to="/products" className="btn btn-primary banner-cta-btn">
+              <Link to="/products?category=Hardware" className="btn btn-primary banner-cta-btn">
                 <i className="fa-solid fa-fire"></i> Shop High Performance
               </Link>
             </div>
@@ -304,8 +304,13 @@ export default function HomePage() {
       </section>
 
       {/* 6. NEXT-GEN HARDWARE GRID */}
-      <section className="featured-section" style={{ paddingTop: '20px', paddingBottom: '60px' }}>
+      <section className="featured-section" id="hardwareSection" style={{ paddingTop: '30px', paddingBottom: '60px', scrollMarginTop: '80px' }}>
         <div className="featured-container">
+          <div className="section-header-center">
+            <h3>Next-Gen Hardware Components</h3>
+            <p>Discover high-performance processors, graphics cards, motherboards, memory, and storage.</p>
+          </div>
+
           {loading ? (
             <p style={{ textAlign: 'center', color: 'var(--text-muted)', padding: '40px' }}>Loading components...</p>
           ) : hardwareProducts.length > 0 ? (
@@ -319,8 +324,8 @@ export default function HomePage() {
           )}
 
           <div style={{ textAlign: 'center' }}>
-            <Link to="/products" className="btn btn-outline" style={{ padding: '12px 30px', fontSize: '0.95rem' }}>
-              View All Products <i className="fa-solid fa-arrow-right"></i>
+            <Link to="/products?category=Hardware" className="btn btn-outline" style={{ padding: '12px 30px', fontSize: '0.95rem' }}>
+              View All Hardware Products <i className="fa-solid fa-arrow-right"></i>
             </Link>
           </div>
         </div>

@@ -6,6 +6,7 @@ import './ProductsPage.css';
 
 const CATEGORIES = [
   { label: 'All Categories', value: '' },
+  { label: 'PC Hardware', value: 'Hardware' },
   { label: 'Graphics Cards', value: 'Graphics Cards' },
   { label: 'Processors', value: 'Processors' },
   { label: 'Memory (RAM)', value: 'RAM' },
@@ -83,6 +84,12 @@ export default function ProductsPage() {
   }, [fetchProducts]);
 
   useEffect(() => {
+    setCategory(searchParams.get('category') || '');
+    setKeyword(searchParams.get('search') || '');
+    setBrand(searchParams.get('brand') || '');
+    setMinPrice(searchParams.get('minPrice') || '');
+    setMaxPrice(searchParams.get('maxPrice') || '');
+    setSortOption(searchParams.get('sort') || 'newest');
     const pageFromUrl = Number(searchParams.get('page')) || 1;
     if (pageFromUrl !== page) {
       setPage(pageFromUrl);
