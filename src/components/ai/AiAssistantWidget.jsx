@@ -12,8 +12,8 @@ const INITIAL_GREETING = "Hi! I'm G-Lab AI. I can help you find products, compar
 const QUICK_SUGGESTIONS = [
   'Find gaming laptops',
   'Find ASUS products',
-  'Show laptops under Rs. 200,000',
-  'Find GPUs',
+  'Find RAM',
+  'Find CPUs',
 ];
 
 export default function AiAssistantWidget() {
